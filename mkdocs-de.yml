@@ -1,0 +1,187 @@
+site_name: Agentic Software Modernization Glossar
+site_description: Ein Glossar mit Begriffen rund um agentengestützte Softwaremodernisierung.
+site_author: Markus Harrer
+site_url: https://feststelltaste.github.io/asm-glossary/de/
+
+docs_dir: docs/de
+site_dir: site/de
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: de
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: In den Dunkelmodus wechseln
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: In den Hellmodus wechseln
+  font:
+    text: Open Sans
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+
+    - navigation.tracking
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.tooltips
+    - content.code.copy
+    - header.autohide
+
+extra_css:
+  - ../stylesheets/extra.css
+
+hooks:
+  - hooks/translation_link.py
+
+extra_javascript:
+  - ../javascripts/header.js
+  - ../javascripts/mermaid-fullscreen.js
+
+extra:
+  generator: false
+  alternate:
+    - name: English
+      link: /asm-glossary/
+      lang: en
+    - name: Deutsch
+      link: /asm-glossary/de/
+      lang: de
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/feststelltaste/asm-glossary
+    - icon: fontawesome/solid/globe
+      link: https://markusharrer.de
+
+copyright: >
+  &copy; 2026 <a href="https://markusharrer.de">Markus Harrer</a> |
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a> |
+  Made with <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank">Material for MkDocs</a>
+
+plugins:
+  - search:
+      lang: de
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+- Startseite: index.md
+- Grundlagen:
+  - agent-fundamentals/index.md
+  - Agentengedächtnis: agentengedaechtnis.md
+  - Agentische Suche: agentische-suche.md
+  - Agentischer Zyklus: agentischer-zyklus.md
+  - Halluzination: halluzination.md
+  - KI-Agent: ki-agent.md
+  - Kontextbereinigung: kontextbereinigung.md
+  - Kontextfenster: kontextfenster.md
+  - Kontextverfall: kontextverfall.md
+  - Kontextvergiftung: kontextvergiftung.md
+  - Kontextverschmutzung: kontextverschmutzung.md
+  - Mehrschrittplanung: mehrschrittplanung.md
+  - Prompt-Abweichung: prompt-abweichung.md
+  - Strukturierte Ausgabe: strukturierte-ausgabe.md
+  - Verankerung: verankerung.md
+  - Vibe Coding: vibe-coding.md
+  - Werkzeugnutzung: werkzeugnutzung.md
+- Infrastruktur:
+  - agent-infrastructure/index.md
+  - Agent Runbook: agent-runbook.md
+  - Agententeams: agententeams.md
+  - Agentenworkflow-Framework: agentenworkflow-framework.md
+  - Befehle: befehle.md
+  - Context Engineering: context-engineering.md
+  - Dark Factory: dark-factory.md
+  - Embeddings: embeddings.md
+  - Hooks: hooks.md
+  - MCP (Model Context Protocol): mcp.md
+  - Orchestrierung: orchestrierung.md
+  - Prompt Engineering: prompt-engineering.md
+  - RAG (Retrieval-Augmented Generation): rag.md
+  - Skills: skills.md
+  - Unteragent: unteragent.md
+- Analyse & Wissen:
+  - analysis-knowledge/index.md
+  - Abweichungserkennung: abweichungserkennung.md
+  - Code-Verständnis: code-verstaendnis.md
+  - Code-Wissensgraph: code-wissensgraph.md
+  - Dark Code: dark-code.md
+  - Geführte KI: gefuehrte-ki.md
+  - Quellcodekonditionierung: quellcodekonditionierung.md
+  - Semantische Anker: semantische-anker.md
+  - Software Analytics: software-analytics.md
+  - Statische Analyse: statische-analyse.md
+- Modernisierung:
+  - modernization/index.md
+  - Absichtsschulden: absichtsschulden.md
+  - Anti-Corruption Layer (ACL): anti-corruption-layer.md
+  - Aufgabenzuschnitt: aufgabenzuschnitt.md
+  - Automatisiertes Refactoring: automatisiertes-refactoring.md
+  - Domain-Driven Refactoring: domain-driven-refactoring.md
+  - Feature Toggle: feature-toggle.md
+  - Hufeisen-Modell: hufeisen-modell.md
+  - Idiomatische Transpilation: idiomatische-transpilation.md
+  - Inkrementelle Verbesserung: inkrementelle-verbesserung.md
+  - Kognitive Schulden: kognitive-schulden.md
+  - Konzeptionelle Umstrukturierung: konzeptionelle-umstrukturierung.md
+  - Modernisierungshandbuch: modernisierungshandbuch.md
+  - Nahtstellen: nahtstellen.md
+  - Reinraum-Reimplementierung: reinraum-reimplementierung.md
+  - Slicing: slicing.md
+  - Sprouting: sprouting.md
+  - Strangler Fig Pattern: strangler-fig.md
+  - Technische Schulden: technische-schulden.md
+  - Transitional Architecture: transitional-architecture.md
+  - Verständnisschulden: verstaendnisschulden.md
+- Testing & Absicherung:
+  - testing-verification/index.md
+  - Charakterisierungstest: charakterisierungstest.md
+  - Fitnessfunktionen: fitnessfunktionen.md
+  - LLM als Richter: llm-als-richter.md
+  - Testrahmen: testrahmen.md
+- Entwicklung & Kontrolle:
+  - engineering-control/index.md
+  - Agentenmonitoring: agentenmonitoring.md
+  - Explosionsradius: explosionsradius.md
+  - Feedbackschleife: feedbackschleife.md
+  - Harness Engineering: harness-engineering.md
+  - Human-in-the-Loop: human-in-the-loop.md
+  - Intent Engineering: intent-engineering.md
+  - Leitplanken: leitplanken.md
+  - Sitzungsaufteilung: sitzungsaufteilung.md
+  - Spec-Driven Development: spec-driven-development.md
+

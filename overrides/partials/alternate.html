@@ -1,0 +1,26 @@
+<div class="md-header__option">
+  <div class="md-select">
+    {% set icon = config.theme.icon.alternate or "material/translate" %}
+    <button class="md-header__button md-icon" aria-label="{{ lang.t('select.language') }}">
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        {% for alt in config.extra.alternate %}
+          <li class="md-select__item">
+            {% if page and alt.lang == "en" and page.meta.translation_en %}
+              {% set href = alt.link ~ page.meta.translation_en ~ "/" %}
+            {% elif page and alt.lang == "de" and page.meta.translation_de %}
+              {% set href = alt.link ~ page.meta.translation_de ~ "/" %}
+            {% else %}
+              {% set href = alt.link %}
+            {% endif %}
+            <a href="{{ href | url }}" hreflang="{{ alt.lang }}" class="md-select__link" target="_self">
+              {{ alt.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
