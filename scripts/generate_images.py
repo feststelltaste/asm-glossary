@@ -156,20 +156,14 @@ def run_pngquant(png_path: Path) -> None:
 
 
 def build_prompt(title: str, description: str) -> str:
-    return textwrap.dedent(f"""
-        Create a clean, minimalist technical illustration for a software engineering glossary.
-
-        Term: {title}
-        Description: {description}
-
-        Style requirements:
-        - Abstract, conceptual diagram style (no photorealistic elements)
-        - Flat design with a white or very light grey background
-        - Muted, professional color palette (blues, greys, with one accent color)
-        - No text labels inside the image
-        - Suitable as a 1200 x 630 px header image for a documentation page
-        - The image should visually represent the core idea of the term
-    """).strip()
+    return (
+        "Create an image as a clean, minimalist black and white line art illustration. "
+        "Style: Modern vector-style textbook diagram. Solid black outlines on a pure white background. "
+        "No shading, no textures, no text, no titles. High contrast, isolated on white. "
+        "Keep the illustration extremely minimalistic: use as few lines and shapes as possible "
+        "to convey the concept. Avoid decorative elements, unnecessary details, and visual clutter. "
+        f"Professional and clinical. Topic: {title} — {description}"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -208,20 +202,20 @@ def generate_image(client: genai.Client, prompt: str, model: str, dry_run: bool)
     response = client.models.generate_content(
         model=model,
         contents=[prompt],
+        config=types.GenerateContentConfig(
+            response_modalities=["IMAGE"],
+        ),
     )
 
     for part in response.parts:
         if part.inline_data is not None:
-            img = part.as_image()
-            buf = io.BytesIO()
-            img.save(buf, format="PNG")
-            return buf.getvalue()
+            return part.inline_data.data
 
     print("  WARNING: no image returned by the API")
     return None
 
 
-def process_term(md_path: Path, client: genai.Client, model: str, count: int, dry_run: bool) -> None:
+def process_term(md_path: Path, client: genai.Client, model: str, variations: int, dry_run: bool) -> None:
     text = md_path.read_text(encoding="utf-8")
     fm = parse_frontmatter(text)
     title = fm.get("title") or md_path.stem.replace("-", " ").title()
@@ -237,44 +231,37 @@ def process_term(md_path: Path, client: genai.Client, model: str, count: int, dr
     print(f"\n→ {en_slug}")
     print(f"  Title:  {title}")
     print(f"  Model:  {model}")
-    print(f"  Count:  {count}")
+    print(f"  Variations: {variations}")
     print(f"  Prompt: {description[:80]}…")
 
     RAW_ASSETS.mkdir(parents=True, exist_ok=True)
     prompt = build_prompt(title, description)
 
-    # --- Generate count variations ---
-    variations: list[bytes] = []
-    for i in range(1, count + 1):
-        if count > 1:
-            print(f"  Generating variation {i}/{count} …")
+    # --- Generate variations ---
+    results: list[bytes] = []
+    for i in range(1, variations + 1):
+        if variations > 1:
+            print(f"  Generating variation {i}/{variations} …")
         img_bytes = generate_image(client, prompt, model, dry_run)
         if dry_run:
             return
         if img_bytes is None:
             continue
-        suffix = f"-{i}" if count > 1 else ""
+        suffix = f"-{i}" if variations > 1 else ""
         raw_path = RAW_ASSETS / f"{en_slug}{suffix}.png"
         raw_path.write_bytes(img_bytes)
-        variations.append(img_bytes)
-        if count > 1:
+        results.append(img_bytes)
+        if variations > 1:
             print(f"  Saved raw variation → {raw_path.relative_to(REPO_ROOT)}")
 
-    if not variations:
+    if not results:
         return
 
-    if count > 1:
-        # Let the user pick which variation to use
-        print(f"\n  {count} variations saved to {RAW_ASSETS.relative_to(REPO_ROOT)}/")
-        print(f"  Files: {', '.join(f'{en_slug}-{i}.png' for i in range(1, len(variations) + 1))}")
-        while True:
-            choice = input(f"  Pick a variation to use [1-{len(variations)}]: ").strip()
-            if choice.isdigit() and 1 <= int(choice) <= len(variations):
-                img_bytes = variations[int(choice) - 1]
-                break
-            print(f"  Please enter a number between 1 and {len(variations)}.")
-    else:
-        img_bytes = variations[0]
+    if variations > 1:
+        print(f"\n  {variations} variations saved to {RAW_ASSETS.relative_to(REPO_ROOT)}/")
+        print(f"  Files: {', '.join(f'{en_slug}-{i}.png' for i in range(1, len(results) + 1))}")
+        print(f"  Using variation 1 — delete the others you don't want from raw-assets/images/")
+    img_bytes = results[0]
 
     # --- Resize to 1200 px ---
     resized = resize_to_width(img_bytes, TARGET_WIDTH)
@@ -304,6 +291,12 @@ def process_term(md_path: Path, client: genai.Client, model: str, count: int, dr
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate glossary images with Gemini Flash")
     parser.add_argument("--term", help="Process only this term slug (e.g. context-rot)")
+    parser.add_argument(
+        "--next",
+        type=int,
+        metavar="N",
+        help="Process only the next N terms that have no image yet",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Parse terms but skip API calls")
     parser.add_argument(
         "--model",
@@ -312,7 +305,7 @@ def main() -> None:
         help="Image model to use (default: nano-banana-2)",
     )
     parser.add_argument(
-        "--count",
+        "--variations",
         type=int,
         default=1,
         metavar="N",
@@ -321,8 +314,10 @@ def main() -> None:
     args = parser.parse_args()
     model = MODELS[args.model]
 
-    if args.count < 1:
-        sys.exit("ERROR: --count must be at least 1.")
+    if args.variations < 1:
+        sys.exit("ERROR: --variations must be at least 1.")
+    if args.next is not None and args.next < 1:
+        sys.exit("ERROR: --next must be at least 1.")
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key and not args.dry_run:
@@ -334,10 +329,16 @@ def main() -> None:
     if not term_files:
         sys.exit(f"No term files found{f' for slug {args.term!r}' if args.term else ''}.")
 
+    if args.next is not None:
+        term_files = [
+            f for f in term_files
+            if not (EN_IMG_DIR / f"{f.stem}.png").exists()
+        ][:args.next]
+
     print(f"Found {len(term_files)} term(s) to process.")
 
     for md_path in term_files:
-        process_term(md_path, client, model, args.count, args.dry_run)
+        process_term(md_path, client, model, args.variations, args.dry_run)
 
     print("\nDone.")
 
