@@ -24,9 +24,9 @@ German site: `http://localhost:8000/asm-glossary/de/`
 
 ## Image Generation Prompt
 
-For generating term illustrations, use this prompt with Nano Banana 2:
+For generating term illustrations, use this prompt with Nano Banana 2 (prompt version 2):
 
-> Create an image as a clean, minimalist black and white line art illustration. Style: Modern vector-style textbook diagram. Solid black outlines on a pure white background. No shading, no textures, no text, no titles. High contrast, isolated on white. Professional and clinical. Topic: [TOPIC and DESCRIPTION]
+> Create an image as a clean, minimalist black and white line art illustration. Style: Modern vector-style textbook diagram. Solid black outlines on a pure white background. No shading, no textures, no text, no titles. High contrast, isolated on white. Keep the illustration extremely minimalistic: use as few lines and shapes as possible to convey the concept. Avoid decorative elements, unnecessary details, and visual clutter. Professional and clinical. Topic: [TOPIC and DESCRIPTION]
 
 ## Adding a Term
 
