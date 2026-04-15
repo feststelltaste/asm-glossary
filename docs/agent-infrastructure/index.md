@@ -2,7 +2,7 @@
 icon: fontawesome/solid/gears
 ---
 
-# :fontawesome-solid-gears: Infrastruktur
+# :fontawesome-solid-gears: Infrastructure
 
 Tools, protocols, and patterns that enable agents to operate within a software development environment.
 

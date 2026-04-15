@@ -1,6 +1,6 @@
 ---
 title: Hooks
-category: Infrastruktur
+category: Infrastructure
 translation_de: hooks
 translation_de_title: Hooks
 ---

@@ -1,6 +1,6 @@
 ---
 title: Grounding
-category: Grundlagen
+category: Fundamentals
 translation_de: verankerung
 translation_de_title: Verankerung
 ---

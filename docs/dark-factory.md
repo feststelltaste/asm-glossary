@@ -1,6 +1,6 @@
 ---
 title: Dark Factory
-category: Infrastruktur
+category: Infrastructure
 translation_de: dark-factory
 translation_de_title: Dark Factory
 ---

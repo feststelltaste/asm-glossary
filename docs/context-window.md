@@ -1,6 +1,6 @@
 ---
 title: Context Window
-category: Grundlagen
+category: Fundamentals
 translation_de: kontextfenster
 translation_de_title: Kontextfenster
 ---

@@ -1,6 +1,6 @@
 ---
 title: Agentic Loop
-category: Grundlagen
+category: Fundamentals
 translation_de: agentischer-zyklus
 translation_de_title: Agentischer Zyklus
 ---

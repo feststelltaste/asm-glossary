@@ -1,6 +1,6 @@
 ---
 title: Prompt Drift
-category: Grundlagen
+category: Fundamentals
 translation_de: prompt-abweichung
 translation_de_title: Prompt-Abweichung
 ---

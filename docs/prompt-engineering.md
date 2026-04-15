@@ -1,6 +1,6 @@
 ---
 title: Prompt Engineering
-category: Infrastruktur
+category: Infrastructure
 translation_de: prompt-engineering
 translation_de_title: Prompt Engineering
 ---

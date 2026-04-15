@@ -1,6 +1,6 @@
 ---
 title: Multi-Step Planning
-category: Grundlagen
+category: Fundamentals
 translation_de: mehrschrittplanung
 translation_de_title: Mehrschrittplanung
 ---

@@ -1,6 +1,6 @@
 ---
 title: Hallucination
-category: Grundlagen
+category: Fundamentals
 translation_de: halluzination
 translation_de_title: Halluzination
 ---

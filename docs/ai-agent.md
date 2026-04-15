@@ -1,6 +1,6 @@
 ---
 title: AI Agent
-category: Grundlagen
+category: Fundamentals
 translation_de: ki-agent
 translation_de_title: KI-Agent
 ---

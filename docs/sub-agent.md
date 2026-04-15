@@ -1,6 +1,6 @@
 ---
 title: Sub Agent
-category: Infrastruktur
+category: Infrastructure
 translation_de: unteragent
 translation_de_title: Unteragent
 ---

@@ -1,6 +1,6 @@
 ---
 title: Structured Output
-category: Grundlagen
+category: Fundamentals
 translation_de: strukturierte-ausgabe
 translation_de_title: Strukturierte Ausgabe
 ---

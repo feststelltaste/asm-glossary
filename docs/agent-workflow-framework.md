@@ -1,6 +1,6 @@
 ---
 title: Agent Workflow Framework
-category: Infrastruktur
+category: Infrastructure
 translation_de: agentenworkflow-framework
 translation_de_title: Agentenworkflow-Framework
 ---

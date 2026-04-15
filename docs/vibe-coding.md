@@ -1,6 +1,6 @@
 ---
 title: Vibe Coding
-category: Grundlagen
+category: Fundamentals
 translation_de: vibe-coding
 translation_de_title: Vibe Coding
 ---

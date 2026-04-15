@@ -1,6 +1,6 @@
 ---
 title: Agent Runbook
-category: Infrastruktur
+category: Infrastructure
 translation_de: agent-runbook
 translation_de_title: Agent Runbook
 ---

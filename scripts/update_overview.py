@@ -42,18 +42,18 @@ STATIC_NAV_ITEMS_DE = [{"Startseite": "index.md"}]
 
 # Canonical category order (English labels); unknown categories are appended alphabetically
 CATEGORY_ORDER = [
-    "Grundlagen",
-    "Infrastruktur",
+    "Fundamentals",
     "Analysis & Knowledge",
     "Modernization",
     "Testing & Verification",
     "Engineering & Control",
+    "Infrastructure",
 ]
 
 # Map English category label → category dir (for index.md links in nav)
 CATEGORY_DIR = {
-    "Grundlagen": "agent-fundamentals",
-    "Infrastruktur": "agent-infrastructure",
+    "Fundamentals": "agent-fundamentals",
+    "Infrastructure": "agent-infrastructure",
     "Analysis & Knowledge": "analysis-knowledge",
     "Modernization": "modernization",
     "Testing & Verification": "testing-verification",
@@ -62,8 +62,8 @@ CATEGORY_DIR = {
 
 # Map English category label → German category label
 CATEGORY_LABEL_DE = {
-    "Grundlagen": "Grundlagen",
-    "Infrastruktur": "Infrastruktur",
+    "Fundamentals": "Grundlagen",
+    "Infrastructure": "Infrastruktur",
     "Analysis & Knowledge": "Analyse & Wissen",
     "Modernization": "Modernisierung",
     "Testing & Verification": "Testing & Absicherung",

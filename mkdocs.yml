@@ -54,7 +54,7 @@ extra_javascript:
 
 nav:
 - Home: index.md
-- Grundlagen:
+- Fundamentals:
   - agent-fundamentals/index.md
   - AI Agent: ai-agent.md
   - Agent Memory: agent-memory.md
@@ -72,22 +72,6 @@ nav:
   - Structured Output: structured-output.md
   - Tool Use: tool-use.md
   - Vibe Coding: vibe-coding.md
-- Infrastruktur:
-  - agent-infrastructure/index.md
-  - Agent Runbook: agent-runbook.md
-  - Agent Teams: agent-teams.md
-  - Agent Workflow Framework: agent-workflow-framework.md
-  - Commands: commands.md
-  - Context Engineering: context-engineering.md
-  - Dark Factory: dark-factory.md
-  - Embeddings: embeddings.md
-  - Hooks: hooks.md
-  - MCP (Model Context Protocol): mcp.md
-  - Orchestration: orchestration.md
-  - Prompt Engineering: prompt-engineering.md
-  - RAG (Retrieval-Augmented Generation): rag.md
-  - Skills: skills.md
-  - Sub Agent: sub-agent.md
 - Analysis & Knowledge:
   - analysis-knowledge/index.md
   - Code Comprehension: code-comprehension.md
@@ -138,6 +122,22 @@ nav:
   - Intent Engineering: intent-engineering.md
   - Session Segmentation: session-segmentation.md
   - Spec-Driven Development: spec-driven-development.md
+- Infrastructure:
+  - agent-infrastructure/index.md
+  - Agent Runbook: agent-runbook.md
+  - Agent Teams: agent-teams.md
+  - Agent Workflow Framework: agent-workflow-framework.md
+  - Commands: commands.md
+  - Context Engineering: context-engineering.md
+  - Dark Factory: dark-factory.md
+  - Embeddings: embeddings.md
+  - Hooks: hooks.md
+  - MCP (Model Context Protocol): mcp.md
+  - Orchestration: orchestration.md
+  - Prompt Engineering: prompt-engineering.md
+  - RAG (Retrieval-Augmented Generation): rag.md
+  - Skills: skills.md
+  - Sub Agent: sub-agent.md
 
 extra:
   generator: false

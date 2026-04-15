@@ -118,22 +118,6 @@ nav:
   - Verankerung: verankerung.md
   - Vibe Coding: vibe-coding.md
   - Werkzeugnutzung: werkzeugnutzung.md
-- Infrastruktur:
-  - agent-infrastructure/index.md
-  - Agent Runbook: agent-runbook.md
-  - Agententeams: agententeams.md
-  - Agentenworkflow-Framework: agentenworkflow-framework.md
-  - Befehle: befehle.md
-  - Context Engineering: context-engineering.md
-  - Dark Factory: dark-factory.md
-  - Embeddings: embeddings.md
-  - Hooks: hooks.md
-  - MCP (Model Context Protocol): mcp.md
-  - Orchestrierung: orchestrierung.md
-  - Prompt Engineering: prompt-engineering.md
-  - RAG (Retrieval-Augmented Generation): rag.md
-  - Skills: skills.md
-  - Unteragent: unteragent.md
 - Analyse & Wissen:
   - analysis-knowledge/index.md
   - Abweichungserkennung: abweichungserkennung.md
@@ -184,4 +168,20 @@ nav:
   - Leitplanken: leitplanken.md
   - Sitzungsaufteilung: sitzungsaufteilung.md
   - Spec-Driven Development: spec-driven-development.md
+- Infrastruktur:
+  - agent-infrastructure/index.md
+  - Agent Runbook: agent-runbook.md
+  - Agententeams: agententeams.md
+  - Agentenworkflow-Framework: agentenworkflow-framework.md
+  - Befehle: befehle.md
+  - Context Engineering: context-engineering.md
+  - Dark Factory: dark-factory.md
+  - Embeddings: embeddings.md
+  - Hooks: hooks.md
+  - MCP (Model Context Protocol): mcp.md
+  - Orchestrierung: orchestrierung.md
+  - Prompt Engineering: prompt-engineering.md
+  - RAG (Retrieval-Augmented Generation): rag.md
+  - Skills: skills.md
+  - Unteragent: unteragent.md
 

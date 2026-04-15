@@ -1,6 +1,6 @@
 ---
 title: Commands
-category: Infrastruktur
+category: Infrastructure
 translation_de: befehle
 translation_de_title: Befehle
 ---

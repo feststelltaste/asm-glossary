@@ -1,6 +1,6 @@
 ---
 title: Tool Use
-category: Grundlagen
+category: Fundamentals
 translation_de: werkzeugnutzung
 translation_de_title: Werkzeugnutzung
 ---

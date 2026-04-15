@@ -11,13 +11,9 @@ The approach combines established modernization patterns (such as [Strangler Fig
 
 ---
 
-## Grundlagen
+## Fundamentals
 
 [AI Agent](ai-agent.md) · [Agent Memory](agent-memory.md) · [Agentic Loop](agentic-loop.md) · [Agentic Search](agentic-search.md) · [Context Poisoning](context-poisoning.md) · [Context Pollution](context-pollution.md) · [Context Pruning](context-pruning.md) · [Context Rot](context-rot.md) · [Context Window](context-window.md) · [Grounding](grounding.md) · [Hallucination](hallucination.md) · [Multi-Step Planning](multi-step-planning.md) · [Prompt Drift](prompt-drift.md) · [Structured Output](structured-output.md) · [Tool Use](tool-use.md) · [Vibe Coding](vibe-coding.md)
-
-## Infrastruktur
-
-[Agent Runbook](agent-runbook.md) · [Agent Teams](agent-teams.md) · [Agent Workflow Framework](agent-workflow-framework.md) · [Commands](commands.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestration](orchestration.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Sub Agent](sub-agent.md)
 
 ## Analysis & Knowledge
 
@@ -34,3 +30,7 @@ The approach combines established modernization patterns (such as [Strangler Fig
 ## Engineering & Control
 
 [Agent Observability](agent-observability.md) · [Blast Radius](blast-radius.md) · [Feedback Loop](feedback-loop.md) · [Guardrails](guardrails.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Session Segmentation](session-segmentation.md) · [Spec-Driven Development](spec-driven-development.md)
+
+## Infrastructure
+
+[Agent Runbook](agent-runbook.md) · [Agent Teams](agent-teams.md) · [Agent Workflow Framework](agent-workflow-framework.md) · [Commands](commands.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestration](orchestration.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Sub Agent](sub-agent.md)

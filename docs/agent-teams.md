@@ -1,6 +1,6 @@
 ---
 title: Agent Teams
-category: Infrastruktur
+category: Infrastructure
 translation_de: agententeams
 translation_de_title: Agententeams
 ---

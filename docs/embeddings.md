@@ -1,6 +1,6 @@
 ---
 title: Embeddings
-category: Infrastruktur
+category: Infrastructure
 translation_de: embeddings
 translation_de_title: Embeddings
 ---

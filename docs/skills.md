@@ -1,6 +1,6 @@
 ---
 title: Skills
-category: Infrastruktur
+category: Infrastructure
 translation_de: skills
 translation_de_title: Skills
 ---

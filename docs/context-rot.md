@@ -1,6 +1,6 @@
 ---
 title: Context Rot
-category: Grundlagen
+category: Fundamentals
 translation_de: kontextverfall
 translation_de_title: Kontextverfall
 ---

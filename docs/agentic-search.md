@@ -1,6 +1,6 @@
 ---
 title: Agentic Search
-category: Grundlagen
+category: Fundamentals
 translation_de: agentische-suche
 translation_de_title: Agentische Suche
 ---

@@ -2,7 +2,7 @@
 icon: fontawesome/solid/robot
 ---
 
-# :fontawesome-solid-robot: Grundlagen
+# :fontawesome-solid-robot: Fundamentals
 
 Core concepts describing how AI agents perceive, reason, and act.
 

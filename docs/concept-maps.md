@@ -182,7 +182,7 @@ All major term clusters and their connections.
 ```mermaid
 mindmap
   root((Agentic Software Modernization))
-    Grundlagen
+    Fundamentals
       AI Agent
       Agent Memory
       Agentic Loop
@@ -199,21 +199,6 @@ mindmap
       Structured Output
       Tool Use
       Vibe Coding
-    Infrastruktur
-      Agent Runbook
-      Agent Teams
-      Agent Workflow Framework
-      Commands
-      Context Engineering
-      Dark Factory
-      Embeddings
-      Hooks
-      MCP (Model Context Protocol)
-      Orchestration
-      Prompt Engineering
-      RAG (Retrieval-Augmented Generation)
-      Skills
-      Sub Agent
     Analysis & Knowledge
       Code Comprehension
       Code Knowledge Graph
@@ -260,4 +245,19 @@ mindmap
       Intent Engineering
       Session Segmentation
       Spec-Driven Development
+    Infrastructure
+      Agent Runbook
+      Agent Teams
+      Agent Workflow Framework
+      Commands
+      Context Engineering
+      Dark Factory
+      Embeddings
+      Hooks
+      MCP (Model Context Protocol)
+      Orchestration
+      Prompt Engineering
+      RAG (Retrieval-Augmented Generation)
+      Skills
+      Sub Agent
 ```

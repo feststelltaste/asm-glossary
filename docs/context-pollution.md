@@ -1,6 +1,6 @@
 ---
 title: Context Pollution
-category: Grundlagen
+category: Fundamentals
 translation_de: kontextverschmutzung
 translation_de_title: Kontextverschmutzung
 ---

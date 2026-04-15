@@ -1,6 +1,6 @@
 ---
 title: Context Pruning
-category: Grundlagen
+category: Fundamentals
 translation_de: kontextbereinigung
 translation_de_title: Kontextbereinigung
 ---

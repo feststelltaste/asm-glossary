@@ -1,6 +1,6 @@
 ---
 title: Context Engineering
-category: Infrastruktur
+category: Infrastructure
 translation_de: context-engineering
 translation_de_title: Context Engineering
 ---

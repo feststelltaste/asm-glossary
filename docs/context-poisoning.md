@@ -1,6 +1,6 @@
 ---
 title: Context Poisoning
-category: Grundlagen
+category: Fundamentals
 translation_de: kontextvergiftung
 translation_de_title: Kontextvergiftung
 ---

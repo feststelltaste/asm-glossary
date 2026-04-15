@@ -1,6 +1,6 @@
 ---
 title: Agent Memory
-category: Grundlagen
+category: Fundamentals
 translation_de: agentengedaechtnis
 translation_de_title: Agentengedächtnis
 ---

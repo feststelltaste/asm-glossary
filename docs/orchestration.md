@@ -1,6 +1,6 @@
 ---
 title: Orchestration
-category: Infrastruktur
+category: Infrastructure
 translation_de: orchestrierung
 translation_de_title: Orchestrierung
 ---
