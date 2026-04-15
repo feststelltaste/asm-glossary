@@ -3,3 +3,4 @@ raw-content/
 .claude/worktrees/
 **/__pycache__/
 site/
+.cache/
