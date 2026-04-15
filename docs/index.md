@@ -1,4 +1,6 @@
 ---
+title: Agentic Software Modernization Glossary
+description: Definitions of the core concepts, patterns, and practices behind modernizing legacy software systems with AI agents.
 hide:
   - toc
 ---

@@ -78,6 +78,11 @@ copyright: >
 plugins:
   - search:
       lang: de
+  - social:
+      cards_layout_options:
+        background_color: "#1C1C1C"
+        color: "#22C55E"
+        font_family: Open Sans
 
 markdown_extensions:
   - admonition

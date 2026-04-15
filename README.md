@@ -15,9 +15,14 @@ Live site: [feststelltaste.github.io/asm-glossary](https://feststelltaste.github
 ## Local Development
 
 ```bash
-pip install mkdocs-material
+pip install "mkdocs-material[imaging]"
 bash serve.sh
 ```
+
+The `[imaging]` extra pulls in `cairosvg` and `pillow`, which the Material
+`social` plugin needs to generate per-page Open Graph / LinkedIn / Twitter
+preview cards. On Linux you also need Cairo and Pango system libraries
+(`apt install libcairo2-dev libpango1.0-dev libgdk-pixbuf2.0-dev`).
 
 English site: `http://localhost:8000/asm-glossary/`
 German site: `http://localhost:8000/asm-glossary/de/`

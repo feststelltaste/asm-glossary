@@ -1,4 +1,6 @@
 ---
+title: Agentic Software Modernization Glossar
+description: Definitionen der zentralen Konzepte, Muster und Praktiken zur Modernisierung von Legacy-Software mit KI-Agenten.
 hide:
   - toc
 ---
