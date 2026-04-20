@@ -98,7 +98,27 @@ flowchart LR
 
 ---
 
-## 3. Modernization Patterns and Safety Net
+## 3. Planning a Modernization Initiative
+
+How high-level goals turn into executable work items.
+
+```mermaid
+flowchart TD
+    GOAL[Modernization Goal] -->|shaped by| WD[Workload Design]
+    WD -->|produces| MC[Modernization Case]
+    MC -->|sequenced into| MP[Modernization Playbook]
+    MC -->|refined through| ITER[Iteration]
+    ITER -->|sharpens scope of| MC
+    MC -->|may be sliced via| SL[Slicing]
+    MC -->|assigned to| AG[Agent, Human, Tool, or Combination]
+    MP -->|coordinates| AG
+    TA[Transitional Architecture] -->|constrains| MP
+    MP -->|operationalized by| AR[Agent Runbook]
+```
+
+---
+
+## 4. Modernization Patterns and Safety Net
 
 How modernization patterns interact with verification mechanisms.
 
@@ -123,7 +143,7 @@ flowchart TD
 
 ---
 
-## 4. Infrastructure Overview
+## 5. Infrastructure Overview
 
 How agent infrastructure components fit together.
 
@@ -154,7 +174,7 @@ flowchart TD
 
 ---
 
-## 5. Supporting Techniques for Agent-Legible Code
+## 6. Supporting Techniques for Agent-Legible Code
 
 How classic legacy-code techniques prepare a codebase so that agents can work within it effectively.
 
@@ -177,7 +197,7 @@ flowchart LR
 
 ---
 
-## 6. Full Concept Map (Overview)
+## 7. Full Concept Map (Overview)
 
 All major term clusters and their connections.
 
@@ -239,6 +259,7 @@ mindmap
       Feature Toggle
       Transitional Architecture
       Modernization Playbook
+      Modernization Case
       Workload Design
       Conceptual Refactoring
       Clean Room Rewrite

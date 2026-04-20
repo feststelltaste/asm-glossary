@@ -222,6 +222,7 @@ mindmap
       Idiomatic Transpilation
       Incremental Improvement
       Intent Debt
+      Modernization Case
       Modernization Playbook
       Seams
       Slicing

@@ -18,6 +18,7 @@ Concepts and patterns for evolving legacy systems with agent assistance.
 - [Idiomatic Transpilation](../idiomatic-transpilation.md)
 - [Incremental Improvement](../incremental-improvement.md)
 - [Intent Debt](../intent-debt.md)
+- [Modernization Case](../modernization-case.md)
 - [Modernization Playbook](../modernization-playbook.md)
 - [Seams](../seams.md)
 - [Slicing](../slicing.md)

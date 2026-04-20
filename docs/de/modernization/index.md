@@ -17,6 +17,7 @@ Konzepte und Muster für die inkrementelle Modernisierung von Legacy-Systemen.
 - [Inkrementelle Verbesserung](../inkrementelle-verbesserung.md)
 - [Kognitive Schulden](../kognitive-schulden.md)
 - [Konzeptionelle Umstrukturierung](../konzeptionelle-umstrukturierung.md)
+- [Modernisierungsfall](../modernisierungsfall.md)
 - [Modernisierungshandbuch](../modernisierungshandbuch.md)
 - [Nahtstellen](../nahtstellen.md)
 - [Reinraum-Reimplementierung](../reinraum-reimplementierung.md)
