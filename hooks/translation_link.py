@@ -1,20 +1,20 @@
 """
-Inject the other-language translation link into the <h1> of term pages at build time.
+Inject the other-language translation link right after the <h1> of term pages.
 Reads translation_en / translation_de front matter and the alternate config to build
-the href, then appends an <a class="translation-link"> before the closing </h1>.
+the href, then inserts an <a class="translation-link"> after the h1. Kept outside the
+h1 so the search index title does not mix English and German terms.
 """
 
-import re
-from html import escape
+from bs4 import BeautifulSoup
 
 
 def on_page_content(html, page, config, **kwargs):
     meta = page.meta
     alternates = config.extra.get("alternate", [])
 
-    en_slug  = meta.get("translation_en")
+    en_slug = meta.get("translation_en")
     en_title = meta.get("translation_en_title")
-    de_slug  = meta.get("translation_de")
+    de_slug = meta.get("translation_de")
     de_title = meta.get("translation_de_title")
 
     if en_slug and en_title:
@@ -31,7 +31,14 @@ def on_page_content(html, page, config, **kwargs):
     if not root:
         return html
 
-    href = root + slug + "/"
-    link = f'<a href="{escape(href)}" class="translation-link">{escape(title)}</a>'
+    soup = BeautifulSoup(html, "html.parser")
+    h1 = soup.find("h1")
+    if h1 is None:
+        return html
 
-    return re.sub(r"(</h1>)", link + r"\1", html, count=1)
+    anchor = soup.new_tag("a", href=root + slug + "/")
+    anchor["class"] = "translation-link"
+    anchor.string = title
+    h1.insert_after(anchor)
+
+    return str(soup)

@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", function () {
           e.preventDefault();
 
           // The translation_link.py hook bakes the correct translated URL into
-          // every term page as <a class="translation-link"> inside the <h1>.
+          // every term page as <a class="translation-link"> right after the <h1>.
           // Use that when available; fall back to just switching roots (for
           // pages like home, about, concept-maps that have no translation link).
-          var translationAnchor = document.querySelector("h1 .translation-link");
+          var translationAnchor = document.querySelector(".translation-link");
           var isOnDE = window.location.href.indexOf(deRoot) === 0;
           var target;
           if (translationAnchor) {

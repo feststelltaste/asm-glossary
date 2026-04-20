@@ -548,9 +548,15 @@ body.is-home .md-nav--lifted > .md-nav__list > .md-nav__item {
   font-size: inherit;
 }
 
-/* ---------- Translation link (other-language equivalent) in h1 ---------- */
-article h1 .translation-link {
-  margin-left: auto;
+/* ---------- Translation link (other-language equivalent) after h1 ---------- */
+article {
+  position: relative;
+}
+
+article > .translation-link {
+  position: absolute;
+  top: 0;
+  right: 0;
   font-size: 0.68rem;
   font-weight: 400;
   letter-spacing: 0.03em;
@@ -559,10 +565,11 @@ article h1 .translation-link {
   opacity: 0.6;
   white-space: nowrap;
   transition: opacity 0.15s;
-  padding-left: 0.5rem;
+  padding: 0.4em 0 0 0.5rem;
+  line-height: 1.2;
 }
 
-article h1 .translation-link:hover {
+article > .translation-link:hover {
   opacity: 1;
   text-decoration: underline !important;
   text-underline-offset: 3px;
