@@ -1,6 +1,8 @@
 raw-content/
+raw-assets/
 *:Zone.Identifier
 .claude/worktrees/
 **/__pycache__/
 site/
 .cache/
+curriculum/
