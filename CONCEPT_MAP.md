@@ -39,6 +39,8 @@ flowchart TD
     CR -->|increases risk of| H
     GR[Grounding] -->|reduces| H
     GR -->|counteracts| CP
+    AT[Attribution] -->|specializes| GR
+    AT -->|makes visible| AO
     TH -->|detects| H
     CKG -->|detects| H
     AL -->|supervised by| HITL[Human-in-the-Loop]
@@ -219,6 +221,7 @@ mindmap
       Context Pruning
       Prompt Drift
       Grounding
+      Attribution
       Vibe Coding
     Infrastructure
       MCP

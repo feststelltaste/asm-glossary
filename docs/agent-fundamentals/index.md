@@ -10,6 +10,7 @@ Core concepts describing how AI agents perceive, reason, and act.
 - [Agent Memory](../agent-memory.md)
 - [Agentic Loop](../agentic-loop.md)
 - [Agentic Search](../agentic-search.md)
+- [Attribution](../attribution.md)
 - [Context Poisoning](../context-poisoning.md)
 - [Context Pollution](../context-pollution.md)
 - [Context Pruning](../context-pruning.md)
