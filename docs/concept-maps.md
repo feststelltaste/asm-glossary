@@ -245,6 +245,8 @@ mindmap
       Harness Engineering
       Human-in-the-Loop
       Intent Engineering
+      Pattern Diffing
+      Review Fatigue
       Session Segmentation
       Spec-Driven Development
     Infrastructure

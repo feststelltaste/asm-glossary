@@ -13,5 +13,7 @@ Infrastructure, discipline, and oversight patterns that keep agent-driven modern
 - [Harness Engineering](../harness-engineering.md)
 - [Human-in-the-Loop](../human-in-the-loop.md)
 - [Intent Engineering](../intent-engineering.md)
+- [Pattern Diffing](../pattern-diffing.md)
+- [Review Fatigue](../review-fatigue.md)
 - [Session Segmentation](../session-segmentation.md)
 - [Spec-Driven Development](../spec-driven-development.md)

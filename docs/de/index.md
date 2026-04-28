@@ -29,7 +29,7 @@ hide:
 
 ## Entwicklung & Kontrolle
 
-[Agentenmonitoring](agentenmonitoring.md) · [Explosionsradius](explosionsradius.md) · [Feedbackschleife](feedbackschleife.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Leitplanken](leitplanken.md) · [Sitzungsaufteilung](sitzungsaufteilung.md) · [Spec-Driven Development](spec-driven-development.md)
+[Agentenmonitoring](agentenmonitoring.md) · [Explosionsradius](explosionsradius.md) · [Feedbackschleife](feedbackschleife.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Leitplanken](leitplanken.md) · [Musterbasierter Vergleich](musterbasierter-vergleich.md) · [Review-Müdigkeit](review-muedigkeit.md) · [Sitzungsaufteilung](sitzungsaufteilung.md) · [Spec-Driven Development](spec-driven-development.md)
 
 ## Infrastruktur
 

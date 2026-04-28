@@ -13,5 +13,7 @@ Mechanismen zur menschlichen Steuerung, Absicherung und Lenkung von Agenten.
 - [Human-in-the-Loop](../human-in-the-loop.md)
 - [Intent Engineering](../intent-engineering.md)
 - [Leitplanken](../leitplanken.md)
+- [Musterbasierter Vergleich](../musterbasierter-vergleich.md)
+- [Review-Müdigkeit](../review-muedigkeit.md)
 - [Sitzungsaufteilung](../sitzungsaufteilung.md)
 - [Spec-Driven Development](../spec-driven-development.md)

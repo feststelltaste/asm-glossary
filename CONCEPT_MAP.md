@@ -92,6 +92,9 @@ flowchart LR
     CC[Code Comprehension] -->|reduces| CD
     DD[Drift Detection] -->|surfaces| CD
     DD -->|surfaces| ID
+    RF[Review Fatigue] -->|undermines| HITL
+    RF -->|accelerates| CD
+    PDF[Pattern Diffing] -->|counters| RF
 
     TD -->|blocks| MOD[Modernization]
     CD -->|blocks| MOD
@@ -279,6 +282,8 @@ mindmap
       Spec-Driven Development
       Guardrails
       Human-in-the-Loop
+      Review Fatigue
+      Pattern Diffing
       Feedback Loop
       Session Segmentation
       Agent Observability

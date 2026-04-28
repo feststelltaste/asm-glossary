@@ -17,29 +17,42 @@ Interactive workflow for adding new definitions to the Agentic Software Moderniz
 
 3. **Iterate**: The user picks one option (or a mix). Revise the text based on their feedback. Repeat until the user confirms.
 
-4. **Determine category**: Decide which category fits best based on existing categories in `CLAUDE.md`. Confirm with the user.
+4. **Determine category**: Decide which category fits best. Confirm with the user. The authoritative list of valid categories and their German translations lives in `scripts/update_overview.py` in the `CATEGORY_LABEL_DE` dict — read it from there, do not hardcode the list elsewhere.
 
-5. **Create files** (only after user confirms the final text):
-   - `docs/<category>/<term>.md` (English) with format:
+5. **Create files** (only after user confirms the final text). Term files live flat in `docs/` and `docs/de/`. English filenames use a slug derived from the English term; German filenames use a slug derived from the German term (e.g., `guardrails.md` ↔ `leitplanken.md`).
+   - `docs/<en-slug>.md` (English) with format:
      ```
+     ---
+     title: <Term Name>
+     category: <English Category>
+     translation_de: <de-slug>
+     translation_de_title: <German Term Name>
+     ---
+
      # <Term Name>
-     *draft version*
 
-     <definition text>
+     > <definition text as a single blockquote>
 
-     **See also:** [Related](link.md) · [Terms](link.md)
+     **See also:** [Related](related.md) · [Terms](terms.md)
      { .see-also }
      ```
-   - `docs/de/<category>/<term>.md` (German) with format:
+   - `docs/de/<de-slug>.md` (German) with format:
      ```
-     # <Term Name>
-     *Entwurfsversion*
+     ---
+     title: <German Term Name>
+     category: <German Category>
+     translation_en: <en-slug>
+     translation_en_title: <Term Name>
+     ---
 
-     <German translation of definition>
+     # <German Term Name>
 
-     **Siehe auch:** [Verwandter](link.md) · [Begriff](link.md)
+     > <German translation of definition as a single blockquote>
+
+     **Siehe auch:** [Verwandter](verwandter.md) · [Begriff](begriff.md)
      { .see-also }
      ```
+   - "See also" links use bare filenames in the same language (e.g., `guardrails.md` in English files, `leitplanken.md` in German files).
 
 6. **Update metadata**:
    - Run `python scripts/update_overview.py`
