@@ -10,4 +10,7 @@ mkdocs build --strict
 echo "Building German site..."
 mkdocs build --strict -f mkdocs-de.yml
 
+echo "Copying self-assessment..."
+cp -r self-assessment/ site/self-assessment/
+
 echo "Done. Site output in site/"
