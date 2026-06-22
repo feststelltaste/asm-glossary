@@ -7,6 +7,8 @@ translation_en_title: Strangler Fig Pattern
 
 # Strangler Fig Pattern
 
+![strangler-fig](assets/images/strangler-fig.png)
+
 > Schrittweises Ersetzen eines Legacy-Systems durch neue Implementierungen, während das alte System weiterläuft. Besonders gut geeignet für agentengestützte Automatisierung, weil die einzelnen Migrationsschritte isoliert und wiederholbar sind. Der Agent kann Feature für Feature migrieren, während das Gesamtsystem jederzeit funktionsfähig bleibt.
 
 **Siehe auch:** [Anti-Corruption Layer](anti-corruption-layer.md) · [Testrahmen](testrahmen.md) · [Automatisiertes Refactoring](automatisiertes-refactoring.md)

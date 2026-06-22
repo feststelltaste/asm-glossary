@@ -7,6 +7,8 @@ translation_en_title: Technical Debt
 
 # Technische Schulden
 
+![technische-schulden](assets/images/technische-schulden.png)
+
 > Langfristige Kosten, die entstehen, wenn Teams bewusst oder unbewusst Abkürzungen in der Implementierung nehmen: unsauberer Code, fehlende Tests, architektonische Kompromisse. Technische Schulden leben im Code und machen Systeme schwerer veränderbar. Sie sind die sichtbarste und am besten verstandene Schuldenart, mit etablierten Praktiken wie Refactoring, Code Review und TDD. Im Kontext agentengestützter Modernisierung kann KI technische Schulden aktiv reduzieren, während sie gleichzeitig kognitive Schulden und Intent Debt beschleunigen kann.
 
 ---
