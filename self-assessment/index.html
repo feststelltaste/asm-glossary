@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Software Modernization Self-Assessment</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f6f6f7;
+    color: #18181b;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .topbar h1 { font-size: 22px; font-weight: 600; }
+  .topbar .sub { font-size: 13px; color: #6b6b70; margin-top: 2px; }
+  .topbar .counter { font-size: 13px; color: #6b6b70; font-variant-numeric: tabular-nums; }
+
+  .progress {
+    height: 6px;
+    background: #e4e4e7;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .progress > div {
+    height: 100%;
+    background: #22C55E;
+    transition: width 0.3s ease;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: #71717a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+  .badge-r1 { background: #F0FDF4; color: #166534; }
+  .badge-r2 { background: #fef3c7; color: #92400e; }
+  .badge-r3 { background: #e4e4e7; color: #3f3f46; }
+  .badge-default { background: #e4e4e7; color: #3f3f46; }
+  .badge-hours { background: #f3e8ff; color: #6b21a8; }
+
+  .card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .desc { color: #3f3f46; margin-bottom: 16px; }
+
+  .topics {
+    background: #fafafa;
+    border-left: 3px solid #d4d4d8;
+    padding: 12px 14px 12px 18px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #3f3f46;
+    border-radius: 2px;
+  }
+  .topics ul { list-style: none; }
+  .topics li { padding: 2px 0; position: relative; padding-left: 14px; }
+  .topics li::before {
+    content: "·";
+    position: absolute;
+    left: 2px;
+    color: #a1a1aa;
+    font-weight: 700;
+  }
+
+  .example { margin-bottom: 22px; }
+  .example summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #22C55E;
+    padding: 6px 0;
+    user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .example summary::-webkit-details-marker { display: none; }
+  .example summary::before {
+    content: "▶";
+    font-size: 9px;
+    transition: transform 0.2s ease;
+    color: #22C55E;
+  }
+  .example[open] summary::before { transform: rotate(90deg); }
+  .example summary:hover { color: #16a34a; }
+  .example-body {
+    padding: 14px 16px;
+    margin-top: 8px;
+    background: #F0FDF4;
+    border-left: 3px solid #22C55E;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #1e293b;
+    white-space: pre-line;
+    line-height: 1.6;
+  }
+
+  .rating-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .rating { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .rating button {
+    padding: 12px 4px;
+    border: 1px solid #e4e4e7;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    color: #3f3f46;
+    transition: all 0.12s;
+    text-align: center;
+    line-height: 1.2;
+    min-height: 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .rating button:hover { border-color: #22C55E; background: #F0FDF4; }
+  .rating button.selected { background: #22C55E; color: white; border-color: #22C55E; }
+  .rating button.flash {
+    animation: ratingFlash 100ms ease-out;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
+  }
+  @keyframes ratingFlash {
+    0%   { transform: scale(1);   box-shadow: 0 0 0 0    rgba(34, 197, 94, 0.55); }
+    40%  { transform: scale(1.08); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.30); }
+    100% { transform: scale(1);   box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.00); }
+  }
+  .rating button .num { font-size: 18px; font-weight: 700; }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .nav button {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid #e4e4e7;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3f3f46;
+  }
+  .nav button:hover:not(:disabled) { background: #fafafa; }
+  .nav button.primary { background: #1C1C1C; color: white; border-color: #1C1C1C; }
+  .nav button.primary:hover:not(:disabled) { background: #333333; }
+  .nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .nav .right-group { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* Picker */
+  .picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .picker-header h2 { font-size: 24px; font-weight: 600; }
+  .picker-header .lead { font-size: 14px; color: #52525b; margin-top: 4px; }
+  .lang-toggle {
+    display: flex;
+    border: 1px solid #e4e4e7;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .lang-toggle button {
+    padding: 8px 16px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #52525b;
+    transition: all 0.12s;
+  }
+  .lang-toggle button:first-child { border-right: 1px solid #e4e4e7; }
+  .lang-toggle button.active { background: #1C1C1C; color: white; }
+  .lang-toggle button:hover:not(.active) { background: #f4f4f5; }
+
+  .level-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .level-card {
+    background: white;
+    border: 2px solid #e4e4e7;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .level-card:hover { border-color: #22C55E; box-shadow: 0 0 0 3px rgba(37,99,235,0.08); }
+  .level-card-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .level-card-num.l1 { background: #e4e4e7; color: #3f3f46; }
+  .level-card-num.l2 { background: #fef3c7; color: #92400e; }
+  .level-card-num.l3 { background: #F0FDF4; color: #166534; }
+  .level-card-title { font-weight: 600; font-size: 15px; line-height: 1.3; color: #18181b; }
+  .level-card-desc { font-size: 13px; color: #52525b; line-height: 1.4; flex: 1; }
+  .level-card-stats {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: #71717a;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+  .level-card-stat { display: flex; align-items: center; gap: 4px; }
+  .level-card-btn {
+    margin-top: 4px;
+    padding: 8px 14px;
+    background: #1C1C1C;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.12s;
+    text-align: center;
+  }
+  .level-card-btn:hover { background: #333333; }
+
+  .picker-import {
+    padding-top: 20px;
+    border-top: 1px solid #e4e4e7;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .picker-import span { font-size: 13px; color: #71717a; }
+  .picker-import button {
+    padding: 7px 14px;
+    font-size: 13px;
+    border-radius: 7px;
+    border: 1px solid #d4d4d8;
+    background: white;
+    cursor: pointer;
+    color: #3f3f46;
+  }
+  .picker-import button:hover { background: #f4f4f5; }
+
+  /* Intro */
+  .intro h2 { font-size: 24px; margin-bottom: 8px; }
+  .intro .lead { color: #52525b; margin-bottom: 20px; }
+  .intro h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #71717a;
+    margin: 20px 0 10px;
+    font-weight: 600;
+  }
+
+  .scale-rows { display: grid; gap: 6px; font-size: 14px; }
+  .scale-row {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    padding: 8px 12px;
+    background: #fafafa;
+    border-radius: 6px;
+    align-items: baseline;
+  }
+  .scale-row .n {
+    font-weight: 700;
+    color: #22C55E;
+    font-variant-numeric: tabular-nums;
+  }
+  .level-rows { display: grid; gap: 6px; font-size: 14px; }
+  .level-row {
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .level-row.r1 { background: #F0FDF4; color: #166534; }
+  .level-row.r2 { background: #fef3c7; color: #78350f; }
+  .level-row.r3 { background: #e4e4e7; color: #27272a; }
+  .level-row.default { background: #e4e4e7; color: #27272a; }
+
+  /* Summary */
+  .summary h2 { font-size: 24px; margin-bottom: 8px; }
+  .summary .lead { color: #52525b; margin-bottom: 20px; }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .stats.stats-4 { grid-template-columns: repeat(4, 1fr); }
+  .stat {
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #22C55E;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-value.red { color: #dc2626; }
+  .stat-value.green { color: #16a34a; }
+  .stat-label {
+    font-size: 11px;
+    color: #71717a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+  }
+  .lesson-bar { margin-bottom: 14px; }
+  .lesson-bar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .lesson-bar-head .name { color: #27272a; }
+  .lesson-bar-head .val { color: #71717a; font-variant-numeric: tabular-nums; font-size: 13px; }
+  .lesson-bar-track {
+    height: 10px;
+    background: #e4e4e7;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+  .lesson-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22C55E, #4ADE80);
+    border-radius: 5px;
+    transition: width 0.4s ease;
+  }
+  .lesson-bar-expected {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    width: 2px;
+    background: #18181b;
+  }
+  .gap-section { margin-top: 28px; }
+  .gap-section h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #18181b;
+  }
+  .gap-item {
+    padding: 10px 14px;
+    background: #fef2f2;
+    border-left: 3px solid #dc2626;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .gap-item .g-id { font-weight: 600; color: #991b1b; margin-right: 6px; }
+  .gap-item .g-title { color: #3f3f46; }
+  .gap-item .g-meta {
+    font-size: 12px;
+    color: #71717a;
+    margin-top: 3px;
+  }
+  .strong-item {
+    padding: 10px 14px;
+    background: #f0fdf4;
+    border-left: 3px solid #16a34a;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .strong-item .g-id { font-weight: 600; color: #166534; margin-right: 6px; }
+  .strong-item .g-title { color: #3f3f46; }
+
+  .report-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e4e4e7;
+  }
+  .report-actions button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #1C1C1C;
+    background: #1C1C1C;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .report-actions button:hover { background: #333333; }
+  .report-actions button.secondary {
+    background: white;
+    color: #22C55E;
+    border-color: #22C55E;
+  }
+  .report-actions button.secondary:hover { background: #F0FDF4; }
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+  .modal-overlay.show { opacity: 1; pointer-events: auto; }
+  .modal-box {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 380px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    transform: translateY(8px);
+    transition: transform 0.15s;
+  }
+  .modal-overlay.show .modal-box { transform: translateY(0); }
+  .modal-box p { font-size: 15px; color: #18181b; margin-bottom: 20px; line-height: 1.5; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+  .modal-actions button {
+    padding: 8px 16px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #e4e4e7;
+    background: white;
+    color: #3f3f46;
+  }
+  .modal-actions button:hover { background: #f4f4f5; }
+  .modal-actions button.danger { background: #dc2626; color: white; border-color: #dc2626; }
+  .modal-actions button.danger:hover { background: #b91c1c; }
+
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #18181b;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+
+  .error-box {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #991b1b;
+  }
+
+  .footnote {
+    font-size: 12px;
+    color: #a1a1aa;
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    .level-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .stats, .stats.stats-4 { grid-template-columns: 1fr 1fr; }
+    .rating { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .rating button { font-size: 10px; min-height: 80px; padding: 8px 2px; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+<div class="toast" id="toast"></div>
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <p id="modal-msg"></p>
+    <div class="modal-actions">
+      <button id="modal-cancel">Cancel</button>
+      <button id="modal-confirm" class="danger">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =============================================================
+   BUNDLED CURRICULA
+   ============================================================= */
+const CURRICULA = {
+  'foundations-de': {"schema": "curriculum-assessment/1", "meta": {"name": "Grundlagen der Softwaremodernisierung", "version": "1.0-DE", "source": "https://github.com/feststelltaste/asm-glossary", "language": "de", "description": "Kompetenzrahmen zu den klassischen Grundlagen der Softwaremodernisierung: Treiber, Problemkategorien, Legacy-Definition, Lehmans Gesetze, 6R-Portfolio, Evolvability, Schätzung und Ist-Analyse. Agentenneutral, baut auf Feathers, Fowler, Lehman und iSAQB IMPROVE auf. Als eigenständiger Lehrplan oder als Voraussetzung für Agentic Software Modernization nutzbar."}, "scale": [{"value": 1, "short": "Unbekannt", "full": "Noch nie gehört"}, {"value": 2, "short": "Grundidee", "full": "Grundidee klar"}, {"value": 3, "short": "Verstehe", "full": "Kann erklären"}, {"value": 4, "short": "Anwenden", "full": "Kann anwenden"}, {"value": 5, "short": "Lehren", "full": "Kann lehren"}], "levels": [{"code": "R1", "label": "Anwenden können", "expected": 4, "description": "Autonom in realen Modernisierungssituationen anwenden, beurteilen und anpassen können"}, {"code": "R2", "label": "Verstehen", "expected": 3, "description": "Zusammenhänge, Mechanik und Tradeoffs erklären können"}, {"code": "R3", "label": "Kennen", "expected": 2, "description": "Begriffe und Konzepte benennen und einordnen können"}], "lessons": [{"number": 1, "title": "Grundlagen der Softwaremodernisierung", "goals": [{"id": "LG 1-1", "level": "R2", "effortHours": 1.5, "title": "Treiber von Softwareänderungen unterscheiden", "description": "Warum muss Software sich überhaupt ändern? Ohne saubere Trennung redet jeder Stakeholder über etwas anderes.", "topics": ["Neue oder veränderte Features", "Veränderte Qualitätsziele (Performance, Skalierung, Security)", "Wandel des fachlichen oder technischen Kontexts", "Bugfixing", "Compliance- und Legal-Anforderungen", "Kostendruck (Dev, Ops, Bugs)", "Tech-Updates (OS, Middleware, Libs, Frameworks)", "Intrinsische Motivation der Entwicklerinnen und Entwickler"], "example": "Ein Kreditsystem: EU-Regulierung verlangt ESG-Scoring (fachlicher Kontext), Java 8 erreicht End-of-Life (Tech-Update), Konkurrenz entscheidet in 3 Tagen statt 3 Wochen (Qualitätsziel Performance), Partner-API migriert von SOAP auf GraphQL (externe Schnittstelle). Vier Treiber, vier Lösungen. Wer sie in einen Topf wirft, verliert die Priorisierung und begründet mit dem falschen Argument."}, {"id": "LG 1-2", "level": "R2", "effortHours": 1.5, "title": "Typische Problemkategorien in Altsystemen benennen", "description": "Nicht jedes Problem ist ein Code-Problem. Kategorien trennen, damit man das richtige Werkzeug greift.", "topics": ["Konzeptionelle Schwächen (Integrität, Redundanz, falsche Technologieentscheidungen)", "Struktur-Probleme in Daten", "Struktur-Probleme im Code (Kopplung, Komplexität, Kohäsion, Modularität)", "Runtime-Probleme (Stabilität, Performance, Skalierung)", "Legacy durch Zeitdruck oder Personalwechsel", "Verschiedene Arten von Technical Debt", "Nicht erreichte Qualitätsziele", "Prozess-Probleme (Release-Zyklus, Governance)"], "example": "15 Jahre alter ERP-Monolith: Copy-Paste in 8 Modulen (konzeptionell), zirkuläre DB-Abhängigkeiten (Daten), eine God-Class sammelt 80 Prozent der Bugfixes (Code), der Nacht-Batch dauert 6 Stunden und blockiert den Morgenbetrieb (Runtime), 3000 Zeilen ungetesteter Notlösung aus 2018 (Legacy), Release einmal pro Quartal (Prozess). Jede Kategorie braucht ein anderes Mittel — Refactoring hilft nicht gegen Prozessprobleme."}, {"id": "LG 1-3", "level": "R3", "effortHours": 1, "title": "Grundvokabular für Change-Diskussionen beherrschen", "description": "Ohne saubere Begriffe wird jede Modernisierungsdiskussion schwammig.", "topics": ["Problem (Issue) vs. Lösungsansatz (Opportunity for Improvement)", "Root Cause vs. Symptom", "Kosten eines Problems vs. Kosten einer Lösung", "Risiko (Wahrscheinlichkeit × Auswirkung)", "m:n-Beziehung zwischen Problemen und Lösungen"], "example": "„Deployments dauern 4 Stunden und brechen oft ab.\" — Symptom: langsam und instabil. Root Cause: monolithisches 800-MB-WAR, alle Services starten gemeinsam. Lösungsansatz A: Deployment-Split, 3 Monate, niedriges Risiko. Lösungsansatz B: Blue-Green, 6 Wochen, aber Datenmigration kritisch. Kosten des Problems: rund 20 verlorene Dev-Tage pro Monat. Ohne diese Trennung reden die Beteiligten aneinander vorbei."}, {"id": "LG 1-4", "level": "R2", "effortHours": 1.5, "title": "Change-Strategien gegeneinander abwägen", "description": "Welche grundsätzlichen Strategien gibt es, um ein System weiterzuentwickeln? Muss man in Diskussionen spontan gegeneinander halten können.", "topics": ["Ad-hoc / einmalige Verbesserung", "Schrittweise Verbesserung (mittel- bis langfristig)", "Rewrite", "Rein strukturelles Refactoring", "Konzeptionelles Re-Architecting / Reengineering"], "example": "VB6-GUI ablösen, 320 Masken. Fünf Strategien für dieselbe Aufgabe: Ad-hoc (einzelne Dialoge auf Zuruf), schrittweise (10 Masken pro Monat über 18 Monate), Rewrite (neue WPF-App in 2 Jahren), Refactoring (VB6-Code aufräumen, keine Tech-Änderung), Re-Architecting (neue Event-basierte Architektur, UI-Tech offen). Die Wahl hängt von Risikotoleranz, Budget und Druck aus dem Fachbereich ab — und bestimmt, wo Agenten später überhaupt ansetzen können."}, {"id": "LG 1-5", "level": "R2", "effortHours": 1, "title": "Legacy-Systeme nicht über Alter, sondern über Änderbarkeit definieren", "description": "Nach Feathers: Legacy ist Code, für den keine Tests existieren und den niemand risikolos ändern kann. Alter allein ist kein Kriterium.", "topics": ["Feathers' Legacy-Definition (Code ohne Tests)", "Fehlendes Verständnis als Legacy-Treiber", "Eingefrorene Änderbarkeit", "Abgrenzung gegen „alte, aber gesunde\" Systeme"], "example": "Ein 20 Jahre alter COBOL-Kern, gut dokumentiert, mit hoher Testabdeckung und klaren Schnittstellen, ist im Sinne der Disziplin kein Legacy. Eine 3 Jahre alte Microservice-Landschaft ohne Integrationstests, mit impliziten Aufrufreihenfolgen und ohne lebende Dokumentation, schon. Alter allein taugt nicht zur Einordnung."}, {"id": "LG 1-6", "level": "R2", "effortHours": 1, "title": "Lehmans Gesetze auf reale Systeme beziehen", "description": "Langzeit-Beobachtungen der Softwareevolution. Continuing Change und Increasing Complexity sind kein Scheitern, sondern Naturgesetz.", "topics": ["Continuing Change", "Increasing Complexity", "Declining Quality", "Konsequenzen für Modernisierungsstrategien"], "example": "Ein ERP-System wird seit 12 Jahren weiterentwickelt. Neue Features werden langsamer, Bugs häufiger, obwohl das Team erfahren ist. Das ist Lehmans Declining Quality in Reinform — nicht Inkompetenz, sondern akkumulierte Komplexität. Die Konsequenz ist nicht „besser arbeiten\", sondern strukturelle Gegenmaßnahmen: Bounded Contexts, Refactoring-Budgets, klare Nahtstellen."}, {"id": "LG 1-7", "level": "R2", "effortHours": 1.5, "title": "Portfolio-Optionen der Anwendungsmodernisierung anwenden", "description": "Die „6R\" (oft auch 7R): Retain, Rehost, Replatform, Refactor, Rearchitect, Replace, Retire. Eine Landkarte für Portfolio-Entscheidungen.", "topics": ["Retain — bewusst nicht anfassen", "Rehost — Lift & Shift", "Replatform — Laufzeitumgebung wechseln ohne Code-Umbau", "Refactor — Code umstrukturieren, Funktion erhalten", "Rearchitect — Architektur neu denken", "Replace — durch Standardsoftware ersetzen", "Retire — abschalten"], "example": "Portfolio-Audit mit 40 Anwendungen: 8 Retire (fachlich obsolet), 6 Retain (stabil, kein Handlungsbedarf), 10 Rehost (Datacenter-Exit), 7 Replatform (Middleware-Wechsel), 5 Refactor (hohe Änderungsfrequenz), 3 Rearchitect (strategische Produkte), 1 Replace (SaaS-Alternative tragfähig). Agentische Unterstützung skaliert am besten bei Refactor und Replatform, kaum bei Rearchitect."}, {"id": "LG 1-8", "level": "R2", "effortHours": 1, "title": "Evolvability als eigenständiges Qualitätsziel begreifen", "description": "Änderbarkeit ist nicht Beiwerk, sondern Voraussetzung aller weiteren Qualitätsziele. Ohne Evolvability läuft jede Modernisierung in Sackgassen.", "topics": ["Wartbarkeit vs. Änderbarkeit vs. Erweiterbarkeit", "Evolvability als Qualitätsziel", "Abgrenzung gegen reine Funktionsfähigkeit", "Messbarkeit (Cycle Time, Change-Failure-Rate)"], "example": "Zwei Systeme erfüllen funktional dieselben Anforderungen. System A akzeptiert neue Features binnen Tagen, System B binnen Monaten. Das ist kein Feature-Unterschied, sondern ein Evolvability-Unterschied — und wird in vielen Business-Cases schlicht ignoriert, bis die Zeit-bis-Markt-Lücke nicht mehr überbrückbar ist."}, {"id": "LG 1-9", "level": "R1", "effortHours": 2.5, "title": "Schätzungen mit Intervallen und expliziten Annahmen führen", "description": "Schätzen ist kein Raten. Punktwerte sind irreführend sicher — Intervalle und Annahmen machen Unsicherheit kommunizierbar.", "topics": ["Best/Avg/Worst-Case", "Konfidenzintervalle", "Annahmen explizit machen", "Kosten: direkt, CAPEX/OPEX, Schulung", "Opportunity Cost, Cost of Delay", "ROI, Break-Even, Abschreibung"], "example": "Tech-Lead schätzt API-Migration auf 40 Tage. Besser: Best 30, Wahrscheinlichster Wert 50, Worst 90 Tage, Konfidenzintervall 45–75. Annahmen: keine Datenmigration nötig, Partner-API stabil, Team bleibt bei 3 Personen. Die Breite des Intervalls ist das eigentliche Maß der Unsicherheit — und sie bestimmt, ob man das Vorhaben überhaupt starten kann."}, {"id": "LG 1-10", "level": "R1", "effortHours": 3, "title": "Für ein reales Altsystem eine Problemlandkarte erstellen", "description": "Der Transfer: Treiber des Wandels, dominante Problemkategorien, in Frage kommende Change-Strategien benennen und priorisieren.", "topics": ["Stakeholder-Analyse", "Kontextanalyse", "Code- und Struktur-Metriken", "Runtime- und Prozess-Metriken", "Priorisierung nach Risiko × Kosten × Wirkung", "Dokumentation von Issues und Risiken"], "example": "4-Wochen-Assessment: Woche 1 Stakeholder-Interviews und Code-Metriken, Woche 2 ATAM-Workshop und Runtime-Profiling, Woche 3 Dev-Prozess- und Incident-Analyse, Woche 4 Synthese. Ergebnis ist keine „Modernisierung\", sondern eine priorisierte Liste von Problemen und Lösungsansätzen mit Intervall-Schätzungen — die Grundlage, auf der erst entschieden werden kann, wo Agenten überhaupt helfen sollen."}]}]},
+  'foundations-en': {"schema": "curriculum-assessment/1", "meta": {"name": "Foundations of Software Modernization", "version": "1.0-EN", "source": "https://github.com/feststelltaste/asm-glossary", "language": "en", "description": "Competency framework covering the classical foundations of software modernization: drivers, problem categories, legacy definition, Lehman's laws, 6R portfolio, evolvability, estimation, and as-is analysis. Agent-neutral, builds on Feathers, Fowler, Lehman, and iSAQB IMPROVE. Usable as a standalone curriculum or as a prerequisite for Agentic Software Modernization."}, "scale": [{"value": 1, "short": "Unknown", "full": "Never heard of it"}, {"value": 2, "short": "Aware", "full": "Basic idea clear"}, {"value": 3, "short": "Understand", "full": "Can explain"}, {"value": 4, "short": "Apply", "full": "Can apply"}, {"value": 5, "short": "Teach", "full": "Can teach"}], "levels": [{"code": "R1", "label": "Can Apply", "expected": 4, "description": "Able to apply, assess, and adapt autonomously in real modernization situations"}, {"code": "R2", "label": "Understand", "expected": 3, "description": "Able to explain relationships, mechanics, and tradeoffs"}, {"code": "R3", "label": "Know", "expected": 2, "description": "Able to name and categorize terms and concepts"}], "lessons": [{"number": 1, "title": "Foundations of Software Modernization", "goals": [{"id": "LG 1-1", "level": "R2", "effortHours": 1.5, "title": "Distinguish drivers of software change", "description": "Why does software need to change at all? Without a clear separation, every stakeholder is talking about something different.", "topics": ["New or changed features", "Changed quality goals (performance, scaling, security)", "Changes in the domain or technical context", "Bug fixing", "Compliance and legal requirements", "Cost pressure (dev, ops, bugs)", "Tech updates (OS, middleware, libs, frameworks)", "Intrinsic motivation of developers"], "example": "A credit system: EU regulation requires ESG scoring (domain context change), Java 8 reaches end-of-life (tech update), competitors decide in 3 days instead of 3 weeks (quality goal: performance), partner API migrates from SOAP to GraphQL (external interface). Four drivers, four solutions. Whoever lumps them together loses prioritization and argues with the wrong rationale."}, {"id": "LG 1-2", "level": "R2", "effortHours": 1.5, "title": "Name typical problem categories in legacy systems", "description": "Not every problem is a code problem. Separating categories ensures you reach for the right tool.", "topics": ["Conceptual weaknesses (integrity, redundancy, wrong technology decisions)", "Structural problems in data", "Structural problems in code (coupling, complexity, cohesion, modularity)", "Runtime problems (stability, performance, scaling)", "Legacy caused by time pressure or staff turnover", "Various types of technical debt", "Unmet quality goals", "Process problems (release cycle, governance)"], "example": "A 15-year-old ERP monolith: copy-paste across 8 modules (conceptual), circular DB dependencies (data), one God class absorbs 80 percent of bug fixes (code), the nightly batch takes 6 hours and blocks morning operations (runtime), 3,000 lines of untested workaround code from 2018 (legacy), releases once per quarter (process). Each category requires a different remedy — refactoring does not help against process problems."}, {"id": "LG 1-3", "level": "R3", "effortHours": 1, "title": "Master basic vocabulary for change discussions", "description": "Without precise terminology, every modernization discussion becomes vague.", "topics": ["Problem (issue) vs. solution approach (opportunity for improvement)", "Root cause vs. symptom", "Cost of a problem vs. cost of a solution", "Risk (probability x impact)", "Many-to-many relationship between problems and solutions"], "example": "\"Deployments take 4 hours and frequently abort.\" Symptom: slow and unstable. Root cause: monolithic 800 MB WAR, all services start together. Solution A: deployment split, 3 months, low risk. Solution B: blue-green, 6 weeks, but data migration is critical. Cost of the problem: roughly 20 lost dev-days per month. Without this separation, stakeholders talk past each other."}, {"id": "LG 1-4", "level": "R2", "effortHours": 1.5, "title": "Weigh change strategies against each other", "description": "What fundamental strategies exist for evolving a system? You need to be able to compare them spontaneously in discussions.", "topics": ["Ad hoc / one-time improvement", "Incremental improvement (medium to long term)", "Rewrite", "Purely structural refactoring", "Conceptual re-architecting / reengineering"], "example": "Replacing a VB6 GUI with 320 screens. Five strategies for the same task: ad hoc (individual dialogs on demand), incremental (10 screens per month over 18 months), rewrite (new WPF app in 2 years), refactoring (clean up VB6 code, no tech change), re-architecting (new event-based architecture, UI technology open). The choice depends on risk tolerance, budget, and business pressure — and determines where agents can even begin to help later."}, {"id": "LG 1-5", "level": "R2", "effortHours": 1, "title": "Define legacy systems by changeability, not age", "description": "Following Feathers: legacy is code for which no tests exist and which nobody can change without risk. Age alone is not a criterion.", "topics": ["Feathers' legacy definition (code without tests)", "Lack of understanding as a legacy driver", "Frozen changeability", "Distinction from \"old but healthy\" systems"], "example": "A 20-year-old COBOL core, well documented, with high test coverage and clear interfaces, is not legacy in the sense of this discipline. A 3-year-old microservice landscape without integration tests, with implicit call ordering and no living documentation, is. Age alone is not sufficient for classification."}, {"id": "LG 1-6", "level": "R2", "effortHours": 1, "title": "Relate Lehman's laws to real systems", "description": "Long-term observations of software evolution. Continuing Change and Increasing Complexity are not failures but laws of nature.", "topics": ["Continuing Change", "Increasing Complexity", "Declining Quality", "Consequences for modernization strategies"], "example": "An ERP system has been evolving for 12 years. New features arrive more slowly and bugs appear more frequently, even though the team is experienced. This is Lehman's Declining Quality in its purest form — not incompetence, but accumulated complexity. The consequence is not \"work better\" but structural countermeasures: bounded contexts, refactoring budgets, clear seams."}, {"id": "LG 1-7", "level": "R2", "effortHours": 1.5, "title": "Apply portfolio options for application modernization", "description": "The \"6R\" (sometimes 7R): Retain, Rehost, Replatform, Refactor, Rearchitect, Replace, Retire. A map for portfolio decisions.", "topics": ["Retain — consciously leave untouched", "Rehost — lift and shift", "Replatform — change the runtime environment without restructuring code", "Refactor — restructure code while preserving function", "Rearchitect — rethink the architecture", "Replace — substitute with standard software", "Retire — decommission"], "example": "Portfolio audit with 40 applications: 8 Retire (functionally obsolete), 6 Retain (stable, no action needed), 10 Rehost (datacenter exit), 7 Replatform (middleware switch), 5 Refactor (high change frequency), 3 Rearchitect (strategic products), 1 Replace (SaaS alternative viable). Agentic support scales best for Refactor and Replatform, and barely at all for Rearchitect."}, {"id": "LG 1-8", "level": "R2", "effortHours": 1, "title": "Understand evolvability as a quality goal in its own right", "description": "Changeability is not a side concern but a prerequisite for all other quality goals. Without evolvability, every modernization effort hits dead ends.", "topics": ["Maintainability vs. changeability vs. extensibility", "Evolvability as a quality goal", "Distinction from pure functional correctness", "Measurability (cycle time, change failure rate)"], "example": "Two systems fulfill the same functional requirements. System A accepts new features within days, System B within months. This is not a feature difference but an evolvability difference — and it is routinely ignored in business cases until the time-to-market gap becomes unbridgeable."}, {"id": "LG 1-9", "level": "R1", "effortHours": 2.5, "title": "Produce estimates with intervals and explicit assumptions", "description": "Estimating is not guessing. Point values are misleadingly precise — intervals and explicit assumptions make uncertainty communicable.", "topics": ["Best/avg/worst case", "Confidence intervals", "Making assumptions explicit", "Costs: direct, CAPEX/OPEX, training", "Opportunity cost, cost of delay", "ROI, break-even, depreciation"], "example": "A tech lead estimates an API migration at 40 days. Better: best case 30, most likely 50, worst case 90 days, confidence interval 45 to 75. Assumptions: no data migration required, partner API stable, team stays at 3 people. The width of the interval is the actual measure of uncertainty — and it determines whether the initiative can be started at all."}, {"id": "LG 1-10", "level": "R1", "effortHours": 3, "title": "Create a problem map for a real legacy system", "description": "The transfer: name and prioritize the drivers of change, dominant problem categories, and candidate change strategies.", "topics": ["Stakeholder analysis", "Context analysis", "Code and structural metrics", "Runtime and process metrics", "Prioritization by risk x cost x impact", "Documentation of issues and risks"], "example": "A 4-week assessment: week 1 stakeholder interviews and code metrics, week 2 ATAM workshop and runtime profiling, week 3 dev process and incident analysis, week 4 synthesis. The result is not a \"modernization plan\" but a prioritized list of problems and solution approaches with interval estimates — the foundation on which decisions about where agents can help at all can first be made."}]}]},
+  'core-de':        {"schema": "curriculum-assessment/1", "meta": {"name": "Agentic Software Modernization", "version": "1.0-DE", "source": "https://github.com/feststelltaste/asm-glossary", "language": "de", "description": "Fokussierter Kompetenzrahmen zur agentengestützten Modernisierung von Legacy-Softwaresystemen. Konzentriert auf die Kernkompetenzen: was ein Agent ist, wie Kontext funktioniert, wie man Legacy-Code für Agenten analysiert, welche Transformationsmuster tragen, wie Änderungen abgesichert werden und wie agentische Arbeit kontrolliert wird. Das klassische Modernisierungsumfeld ist im separaten Curriculum „Grundlagen der Softwaremodernisierung\" abgedeckt."}, "scale": [{"value": 1, "short": "Unbekannt", "full": "Noch nie gehört"}, {"value": 2, "short": "Grundidee", "full": "Grundidee klar"}, {"value": 3, "short": "Verstehe", "full": "Kann erklären"}, {"value": 4, "short": "Anwenden", "full": "Kann anwenden"}, {"value": 5, "short": "Lehren", "full": "Kann lehren"}], "levels": [{"code": "R1", "label": "Anwenden können", "expected": 4, "description": "Autonom in realen Modernisierungssituationen anwenden, beurteilen und anpassen können"}, {"code": "R2", "label": "Verstehen", "expected": 3, "description": "Zusammenhänge, Mechanik und Tradeoffs erklären können"}, {"code": "R3", "label": "Kennen", "expected": 2, "description": "Begriffe und Konzepte benennen und einordnen können"}], "lessons": [{"number": 1, "title": "Agent und agentischer Zyklus", "goals": [{"id": "LG 1-1", "level": "R2", "effortHours": 1.5, "title": "KI-Agent, agentischen Zyklus und Werkzeugnutzung erklären", "description": "Der gemeinsame Grundbegriff. Ohne saubere Abgrenzung vermischen sich Chatbot-Erwartungen mit Agenten-Realität, und jede Folgeaussage kippt.", "topics": ["LLM mit Tool-Zugriff vs. reiner Chatbot", "Zyklus: Planen, Handeln, Beobachten, Re-Planen", "Werkzeugnutzung als Wirkhebel und Risikoquelle", "Strukturierte Ausgabe als Brücke zu deterministischen Systemen"], "example": "Agent bekommt „bring den Test zum Laufen\". Zyklus: (1) Read der Testdatei, (2) Beobachtung: Mock-Server auf Port 8080 erwartet, (3) Re-Plan: Mock starten, (4) Bash-Start, (5) Beobachtung: Port belegt. Ohne sauberen Zyklus wird an Schritt 3 halluziniert. Werkzeugnutzung macht den Unterschied — aber `git reset --hard` als Tool-Aufruf ist auch das, was ganze Feature-Branches killt."}, {"id": "LG 1-2", "level": "R2", "effortHours": 1, "title": "Mehrschrittplanung gegen reaktives Verhalten abgrenzen", "description": "Ein Agent, der immer nur den nächsten Schritt sucht, verläuft sich. Einer, der einen Plan hält und ihn anpasst, nicht. Die explizite Planung ist das, was agentische Arbeit skalierbar macht.", "topics": ["Explizite Planung vs. impliziter Fortschritt", "Plan-Revision bei neuer Beobachtung", "Abbruch bei Zieldrift"], "example": "Refactoring: God-Class in drei Module extrahieren. Ohne Plan landet der Agent nach drei Stunden in einem Halbzustand, alles kompiliert, aber Tests sind weg. Mit Plan (1. Nahtstellen, 2. Tests spannen, 3. extrahieren, 4. Tests wieder grün) bleibt jederzeit nachvollziehbar, wo man steht."}, {"id": "LG 1-3", "level": "R1", "effortHours": 2, "title": "Agentischen Ansatz für eine Aufgabe begründet wählen oder ablehnen", "description": "Die Kernentscheidung. Agent ist nicht immer die Antwort. Ohne diese Urteilskraft wird jede Aufgabe zum Hammer-Nagel-Problem — und jede Modernisierung teurer als nötig.", "topics": ["Wann ein Linter, ein Script oder ein Codemod besser passt", "Wann ein Agent durch Urteilsvermögen oder Recherche vorne liegt", "Aufgabenzuschnitt für Agenten", "Rückbezug auf klassische Change-Strategien"], "example": "Aufgabe A: 300 Dateien auf neuen Lombok-Namespace umschreiben — kein Agent, sondern `sed`. Aufgabe B: einen impliziten Domänen-Begriff in 40 Dateien identifizieren und vereinheitlichen — hier passt ein Agent. Aufgabe C: VB6-Monolith zu .NET migrieren — weder Agent noch Script, das ist eine Re-Architecting-Entscheidung."}]}, {"number": 2, "title": "Kontext und seine Pathologien", "goals": [{"id": "LG 2-1", "level": "R2", "effortHours": 2, "title": "Kontextfenster-Grenzen und die drei Pathologien beherrschen", "description": "Kontext ist endlich und kostet Qualität. Kontextverfall, -vergiftung und -verschmutzung sind drei verschiedene Fehlerbilder mit drei verschiedenen Gegenmaßnahmen — sie zu unterscheiden ist die Voraussetzung für alle weiteren Gegenmaßnahmen.", "topics": ["Kontextfenster als harte Grenze, Qualitätskurve davor", "Kontextverfall: schleichender Qualitätsverlust", "Kontextvergiftung: falsche oder widersprüchliche Inhalte", "Kontextverschmutzung: plausible, aber irrelevante Inhalte"], "example": "Nach 80 Turns erfindet der Agent Code, der nur diskutiert, nie geschrieben wurde — Verfall. Veralteter Copy-Paste-Kommentar behauptet `deprecated since v2`, die Funktion ist längst rehabilitiert — Vergiftung. Drei irrelevante README-Auszüge im Kontext führen zu falschen Schlüssen über die aktuelle Datei — Verschmutzung. Drei Bilder, drei Fixes."}, {"id": "LG 2-2", "level": "R2", "effortHours": 1.5, "title": "Halluzinationen durch Verankerung und Sitzungsaufteilung eindämmen", "description": "Die zwei pragmatischen Werkzeuge. Grounding an echten Artefakten statt plausibel klingender Behauptungen, und neue Sitzungen statt immer längerer Historie.", "topics": ["Verankerung an Dateien, Pfaden, stabilen Identifikatoren", "Kontextbereinigung und Sitzungsaufteilung", "Übergabeartefakte zwischen Sitzungen", "Halluzination und Prompt-Abweichung als Leitsymptome"], "example": "Statt „refaktoriere den Zahlungsservice\" besser: „in `src/payments/service.ts` Methode `processPayment` auf Typ `PaymentRequest` statt `any` umbauen\". Pfad und Typname sind Anker. Langes Refactoring wird in 3 Sitzungen mit kurzer Übergabe besser als in einer 6-Stunden-Sitzung — weil Kontextverfall messbar wird, auch wenn er sich nicht anfühlt."}, {"id": "LG 2-3", "level": "R1", "effortHours": 2, "title": "Kontextstrategie für konkrete Modernisierungsaufgabe entwerfen", "description": "Der Transfer. Was muss der Agent wissen, was nicht, in welcher Reihenfolge, und wann wird die Sitzung geschnitten.", "topics": ["Minimum Viable Context pro Teilaufgabe", "Reihenfolge und Schichtung der Kontextbausteine", "Grenzen der Sitzung", "Verzahnung mit Slicing aus Lektion 4"], "example": "Extraktion eines Zahlungsmoduls. Kontextstrategie: Sitzung 1 nur Analyse (Graph, Nahtstellen, Tests). Sitzung 2 nur Test-Extraktion. Sitzung 3 nur Code-Extraktion. Sitzung 4 Cleanup. Jede startet frisch mit definierter Kontextauswahl, nicht mit der gesamten Historie."}]}, {"number": 3, "title": "Legacy-Code für Agenten verfügbar machen", "goals": [{"id": "LG 3-1", "level": "R2", "effortHours": 1.5, "title": "Wissensrepräsentation für Agenten aufbauen", "description": "Menschliches Code-Verständnis sitzt in Köpfen, Agenten brauchen Artefakte. Call-Graphen, statische Analyse und Software Analytics sind die Brücke — und gleichzeitig die Priorisierungshilfe dafür, wo der Agent überhaupt anfangen soll.", "topics": ["Code-Wissensgraph: Aufrufe, Imports, Abhängigkeiten", "Statische Analyse: Typen, Datenflüsse, Code Smells", "Software Analytics: Git-Hotspots, Change-Frequenz, Ownership", "Grenzen: Reflection, dynamische Konfiguration"], "example": "Hotspot-Karte kombiniert SonarQube-Findings (340 Smells) mit `git log`-Heatmap (60 % aller Commits in einer Klasse). `OrderProcessor` taucht in beiden Metriken als Ausreißer auf. Klarer Startpunkt — keine Diskussion mehr, wo der Agent ansetzen soll. Call-Graph zeigt zusätzlich die indirekten Aufrufwege, die sonst unsichtbar blieben."}, {"id": "LG 3-2", "level": "R2", "effortHours": 1, "title": "Quellcodekonditionierung als Investition vor der Agentenarbeit begreifen", "description": "Die Codebasis für Agenten vorbereiten, bevor man sie auf sie loslässt. Klingt nach Kosmetik, ist aber der größte Hebel für Ergebnisqualität.", "topics": ["Konsistente Benennung und semantische Anker", "Klare Modulgrenzen", "Minimale Dokumentation an der richtigen Stelle", "Onboarding-Artefakte (z.B. CLAUDE.md, AGENTS.md)"], "example": "Vor der Agentenarbeit zwei Tage in Umbenennung investiert: `proc1` wird `calculateTax`, `helper2` wird `normalizeAddress`. Halbiert die Fehlerrate der nachfolgenden Agentenarbeit, weil semantische Anker jetzt stehen. Investition, die sich nach einer Woche zurückzahlt."}, {"id": "LG 3-3", "level": "R1", "effortHours": 2, "title": "Analysestrategie für Legacy-Codebasis entwerfen", "description": "Welche Analyseartefakte in welcher Reihenfolge, für welche Modernisierungsaufgabe. Die Brücke zwischen klassischer Ist-Analyse und agentengerechter Vorbereitung.", "topics": ["Auswahl der Analysewerkzeuge nach Aufgabenprofil", "Reihenfolge: klassisch → agentenorientiert", "Priorisierung nach Hotspot und Risiko", "Integration in den Modernisierungsworkflow"], "example": "ERP-Modernisierung: Woche 1 klassische Ist-Analyse, Woche 2 Hotspot-Karte und Call-Graph, Woche 3 Quellcodekonditionierung der Top-5-Hotspots, Woche 4 erste Agentenaufgaben an den konditionierten Stellen. Agent kommt erst ins Spiel, wenn das Feld für ihn bereitet ist — nicht umgekehrt."}]}, {"number": 4, "title": "Transformationsmuster und Slicing", "goals": [{"id": "LG 4-1", "level": "R2", "effortHours": 1.5, "title": "Schuldenarten für agentische Arbeit differenzieren", "description": "Technical Debt ist nicht alles. Kognitive, Absichts- und Verständnisschulden sind eigenständige Konzepte — und Agenten neigen dazu, technische Schulden zu senken und kognitive zu erzeugen.", "topics": ["Technische Schulden", "Kognitive Schulden", "Absichtsschulden", "Verständnisschulden"], "example": "Agent erzeugt 2000 Zeilen funktionierenden Code. Technische Schulden: niedrig, Tests grün. Kognitive Schulden: hoch, niemand versteht die Design-Entscheidungen. Verständnisschulden: hoch, keine ADRs. Das Paket funktioniert heute, ist in 6 Monaten unwartbar — und der Agent hat die Bilanz nicht wirklich verbessert, er hat sie nur umgeschichtet."}, {"id": "LG 4-2", "level": "R2", "effortHours": 2, "title": "Inkrementelle Transformationsmuster sicher anwenden", "description": "Die Werkzeugkiste der schrittweisen Modernisierung. Strangler Fig, Sprouting, Nahtstellen und Anti-Corruption Layer sind nicht agentenspezifisch — aber erst sie machen agentische Arbeit an realen Altsystemen überhaupt möglich, weil sie den Explosionsradius eingrenzen.", "topics": ["Strangler Fig Pattern", "Sprouting", "Nahtstellen (Seams)", "Anti-Corruption Layer"], "example": "Monolith-Ablösung: neuer Dienst entsteht neben dem alten (Sprout), Traffic wird schrittweise umgeleitet (Strangler), der alte Dienst bleibt hinter einer ACL, bis er sterben kann. Agent arbeitet jeweils nur an einem Stück, nicht am Ganzen — die Muster machen genau das möglich."}, {"id": "LG 4-3", "level": "R2", "effortHours": 1.5, "title": "Slicing und Aufgabenzuschnitt für Agentensitzungen beherrschen", "description": "Die wichtigste Einzeldisziplin. Slicing respektiert das Kontextbudget aus Lektion 2 und ist gleichzeitig die Sicherheit dafür, dass der Agent rückabwickelbar arbeitet.", "topics": ["Slicing nach Domänengrenzen oder Risiko", "Aufgabenzuschnitt für eine einzelne Sitzung", "Definition of Done pro Slice", "Rückabwickelbarkeit"], "example": "„Migration in 200 Mann-Tagen\" ist kein Slice, sondern ein Klumpen. Guter Slice: „Kundendaten-Lesezugriffe binnen 3 Tagen in neuen Service, Schreibzugriffe bleiben vorerst alt\". Klar, testbar, agentengerecht — und rückabwickelbar, wenn er schiefgeht. Ein großer Slice ist kein mutiger, sondern ein unsicherer."}, {"id": "LG 4-4", "level": "R1", "effortHours": 3, "title": "Transformationsmuster und Slicing für ein Vorhaben entwerfen", "description": "Der Transfer: welches Muster für welches Teilsystem, in welche Slices zerlegt, in welcher Reihenfolge — und wo der Agent überhaupt ansetzt.", "topics": ["Mustervergleich im konkreten Kontext", "Begründete Auswahl (ADR-reif)", "Slice-Reihenfolge nach Risiko", "Rollback-Plan pro Slice"], "example": "Reporting-Ablösung: Strangler scheidet aus (keine stabilen API-Grenzen), Sprouting passt (neues System daneben, per ETL gespeist), ACL schützt vor Kopplung. Slices: Slice 1 Tests um kritischen Pfad (niedriges Risiko, hoher Wert), Slice 14 alten Pfad entfernen (höchstes Risiko, zuletzt). Reihenfolge ist keine Kosmetik — sie ist die Wette."}]}, {"number": 5, "title": "Absicherung agentischer Änderungen", "goals": [{"id": "LG 5-1", "level": "R2", "effortHours": 1.5, "title": "Charakterisierungstests und Fitnessfunktionen als Sicherheitsnetz einsetzen", "description": "Die zwei zentralen Testformen der Modernisierung: Charakterisierungstests frieren das Ist-Verhalten ein, Fitnessfunktionen halten Architekturgrenzen im Build. Zusammen sind sie die Voraussetzung dafür, dass ein Agent überhaupt arbeiten darf.", "topics": ["Charakterisierungstest vs. Unit-Test", "Golden Master aus echten Aufrufen", "Fitnessfunktionen (Abhängigkeitsregeln, Latenz-Budgets)", "Integration in CI"], "example": "Untestbare Komponente bekommt 500 reale Input/Output-Paare als Golden Master. Fitnessfunktion: keine Klasse in `domain/` darf `infrastructure/` importieren. Agent refaktoriert frei — das Netz hält. Wenn er eine Grenze verletzt, bricht der Build, nicht das Produkt."}, {"id": "LG 5-2", "level": "R2", "effortHours": 1, "title": "LLM als Richter einordnen — Nutzen, Grenzen, verantwortlicher Einsatz", "description": "Ein mächtiges Werkzeug dort, wo Assertions nicht reichen — und gleichzeitig eine neue Fehlerquelle. Unterscheidung zwischen zulässig, vorfiltern und unzulässig ist die Kernkompetenz.", "topics": ["Einsatzgebiete: Text, Stil, semantische Äquivalenz", "Risiken: eigene Halluzinationen, systematische Bias", "Vorfilter vs. finaler Richter", "Regulatorische Grenzen"], "example": "100 migrierte Funktionen, klassisch lässt sich nur Syntax prüfen. LLM-Richter bewertet idiomatische Qualität — als Vorfilter. Die auffälligen 10 % gehen an einen Menschen. Im Kreditentscheidungssystem ist ein LLM-Richter als alleiniger Prüfer ausgeschlossen, als Vorfilter aber erlaubt. Zwei Fälle, zwei Antworten."}, {"id": "LG 5-3", "level": "R1", "effortHours": 2, "title": "Teststrategie für eine Modernisierungsaufgabe entwerfen", "description": "Welche Tests, in welcher Reihenfolge, mit welcher Abdeckung. Das Absicherungsäquivalent zum Slicing aus Lektion 4.", "topics": ["Pyramide: Charakterisierung, Fitness, Unit, Integration", "Rolle von LLM-Urteilen", "CI-Integration", "Risikoorientierung"], "example": "Zahlungsdienst: Charakterisierungstests an den Außenkanten (hohe Abdeckung), Fitnessfunktionen für Architekturgrenzen, Unit-Tests für neue Logik, LLM-Richter für Lesbarkeit. Jede Schicht schützt gegen eine andere Fehlerklasse — und der Agent arbeitet nur dort, wo alle vier Schichten über ihm sind."}]}, {"number": 6, "title": "Kontrolle und Betrieb", "goals": [{"id": "LG 6-1", "level": "R2", "effortHours": 1.5, "title": "Leitplanken, Explosionsradius und Human-in-the-Loop richtig platzieren", "description": "Autonomie braucht Grenzen. Leitplanken begrenzen, was der Agent überhaupt tun darf. HITL platziert die Aufmerksamkeit des Menschen dort, wo sie zählt — und spart sie überall sonst.", "topics": ["Tool-, Datei- und Netzwerk-Scope", "Revertierbarkeit", "HITL an Entscheidungspunkten, nicht an Routinearbeit", "Risikoabhängige Enge des Rahmens"], "example": "Agent darf Dateien ändern, aber nicht pushen. Nicht ins Produktionssystem. Nicht auf fremde Branches. Bei der Methoden-Extraktion: HITL nicht nach jeder einzelnen Methode (Mensch wird blind), sondern nach jedem Batch mit Diff-Zusammenfassung. Platzierung ist alles."}, {"id": "LG 6-2", "level": "R2", "effortHours": 1, "title": "Feedbackschleife als Produktivitätshebel gestalten", "description": "Die Qualität der Schleife entscheidet über die Qualität des Ergebnisses. Kurz, aussagekräftig, automatisierbar — sonst kippt der Agent in Raten statt Wissen.", "topics": ["Kurze Zykluszeiten", "Aussagekraft der Rückmeldung", "Verschränkung mit Testrahmen aus Lektion 5"], "example": "Agent ändert Code, Tests laufen in 40 Sekunden, Rückmeldung klar — produktive Schleife. Tests laufen 20 Minuten — Agent beginnt zu raten, bevor die erste Rückmeldung da ist. Produktivität kippt. Kurze Schleifen sind nicht Komfort, sondern Voraussetzung agentischer Arbeit."}, {"id": "LG 6-3", "level": "R2", "effortHours": 1, "title": "Agentenmonitoring und Spec-Driven Development als Rückgrat begreifen", "description": "Was tut der Agent wirklich, und wogegen arbeitet er? Monitoring macht Agentenarbeit auditierbar, Spezifikationen halten ihn am Auftrag. Beides ist, was Agentic Modernization vom einzelnen Experiment in den Regelbetrieb hebt.", "topics": ["Tool-Call-Logs, Token- und Kostentracking", "Fehlermuster-Analyse über Zeit", "Spec als Vertrag und Kontext-Anker", "Absichtsschulden reduzieren"], "example": "Nach 3 Monaten Agenteneinsatz: Monitoring zeigt, 40 % aller Fehler an einer bestimmten Tool-Kombination. Werkzeug wird verbessert — ohne Monitoring hätte das Team immer nur Einzelfehler debuggt. Parallel: Aufgabenstellung mit 7 Akzeptanzkriterien statt „mach es besser\" — Agent bleibt am Auftrag, die Spec wird Teil der Dokumentation."}, {"id": "LG 6-4", "level": "R1", "effortHours": 2, "title": "Kontrollrahmen für konkrete Aufgabe entwerfen", "description": "Das Zusammenspiel aus Leitplanken, HITL, Feedback und Monitoring. Das Risikoprofil der Aufgabe bestimmt die Enge des Rahmens — und die reife Entscheidung, wann mehr Autonomie lohnt, wann weniger.", "topics": ["Risikoabhängige Enge", "Platzierung der HITL-Punkte", "Abbruchkriterien und Eskalationspfade", "Autonomie-Kontrolle-Balance über Zeit"], "example": "Niedriges Risiko (Kommentare umformulieren): offenes Setup, HITL nur am Ende. Hohes Risiko (Security-Modul): enge Leitplanken, HITL vor jedem Commit, doppeltes Review, volles Log. Derselbe Agent, völlig verschiedene Rahmen. In 6 Monaten — wenn Strukturen, Monitoring und Teamreife sitzen — kann der Rahmen offener werden."}]}]},
+  'core-en':        {"schema": "curriculum-assessment/1", "meta": {"name": "Agentic Software Modernization", "version": "1.0-EN", "source": "https://github.com/feststelltaste/asm-glossary", "language": "en", "description": "Focused competency framework for agent-assisted modernization of legacy software systems. Concentrated on the core competencies: what an agent is, how context works, how to analyze legacy code for agents, which transformation patterns hold up, how to safeguard changes, and how to control agentic work. The classic modernization environment is covered in the separate curriculum \"Fundamentals of Software Modernization\"."}, "scale": [{"value": 1, "short": "Unknown", "full": "Never heard of it"}, {"value": 2, "short": "Aware", "full": "Basic idea clear"}, {"value": 3, "short": "Understand", "full": "Can explain"}, {"value": 4, "short": "Apply", "full": "Can apply"}, {"value": 5, "short": "Teach", "full": "Can teach"}], "levels": [{"code": "R1", "label": "Can Apply", "expected": 4, "description": "Able to apply, judge, and adapt autonomously in real modernization situations"}, {"code": "R2", "label": "Understand", "expected": 3, "description": "Able to explain relationships, mechanics, and tradeoffs"}, {"code": "R3", "label": "Know", "expected": 2, "description": "Able to name and classify terms and concepts"}], "lessons": [{"number": 1, "title": "Agent and Agentic Loop", "goals": [{"id": "LG 1-1", "level": "R2", "effortHours": 1.5, "title": "Explain AI agent, agentic loop, and tool use", "description": "The shared foundational concept. Without a clear distinction, chatbot expectations get mixed with agent reality, and every subsequent statement falls apart.", "topics": ["LLM with tool access vs. pure chatbot", "Loop: plan, act, observe, re-plan", "Tool use as a lever for impact and a source of risk", "Structured output as a bridge to deterministic systems"], "example": "Agent receives \"get the test to pass\". Loop: (1) read the test file, (2) observation: mock server expected on port 8080, (3) re-plan: start mock, (4) bash start, (5) observation: port occupied. Without a clean loop, step 3 leads to hallucination. Tool use makes the difference — but `git reset --hard` as a tool call is also what kills entire feature branches."}, {"id": "LG 1-2", "level": "R2", "effortHours": 1, "title": "Distinguish multi-step planning from reactive behavior", "description": "An agent that only ever looks for the next step gets lost. One that maintains a plan and adjusts it does not. Explicit planning is what makes agentic work scalable.", "topics": ["Explicit planning vs. implicit progress", "Plan revision upon new observation", "Abort on goal drift"], "example": "Refactoring: extract a God class into three modules. Without a plan, the agent ends up after three hours in a half-finished state — everything compiles, but the tests are gone. With a plan (1. identify seams, 2. write tests, 3. extract, 4. get tests green again) it remains clear at any point where things stand."}, {"id": "LG 1-3", "level": "R1", "effortHours": 2, "title": "Make a reasoned decision to choose or reject an agentic approach for a task", "description": "The core decision. Agent is not always the answer. Without this judgment, every task becomes a hammer-and-nail problem — and every modernization becomes more expensive than necessary.", "topics": ["When a linter, a script, or a codemod is a better fit", "When an agent leads through judgment or research", "Task scoping for agents", "Reference back to classical change strategies"], "example": "Task A: rewrite 300 files to a new Lombok namespace — not an agent, use `sed`. Task B: identify and unify an implicit domain concept across 40 files — an agent fits here. Task C: migrate a VB6 monolith to .NET — neither agent nor script, that is a re-architecting decision."}]}, {"number": 2, "title": "Context and Its Pathologies", "goals": [{"id": "LG 2-1", "level": "R2", "effortHours": 2, "title": "Master context window limits and the three pathologies", "description": "Context is finite and costs quality. Context rot, context poisoning, and context pollution are three different failure modes with three different countermeasures — distinguishing them is the prerequisite for all further remediation.", "topics": ["Context window as a hard limit, quality curve before it", "Context rot: gradual quality loss", "Context poisoning: false or contradictory content", "Context pollution: plausible but irrelevant content"], "example": "After 80 turns the agent invents code that was only discussed, never written — rot. An outdated copy-paste comment claims `deprecated since v2`, but the function has long since been rehabilitated — poisoning. Three irrelevant README excerpts in context lead to wrong conclusions about the current file — pollution. Three pictures, three fixes."}, {"id": "LG 2-2", "level": "R2", "effortHours": 1.5, "title": "Contain hallucinations through grounding and session splitting", "description": "The two pragmatic tools. Grounding on real artifacts rather than plausible-sounding claims, and new sessions instead of ever-longer histories.", "topics": ["Grounding on files, paths, stable identifiers", "Context pruning and session splitting", "Handover artifacts between sessions", "Hallucination and prompt drift as leading symptoms"], "example": "Instead of \"refactor the payment service\", better: \"in `src/payments/service.ts` change method `processPayment` to use type `PaymentRequest` instead of `any`\". Path and type name are anchors. A long refactoring works better split across 3 sessions with a short handover than in one 6-hour session — because context rot becomes measurable, even when it does not feel that way."}, {"id": "LG 2-3", "level": "R1", "effortHours": 2, "title": "Design a context strategy for a concrete modernization task", "description": "The transfer. What must the agent know, what not, in what order, and when is the session cut.", "topics": ["Minimum viable context per subtask", "Order and layering of context components", "Session boundaries", "Interplay with slicing from lesson 4"], "example": "Extraction of a payment module. Context strategy: session 1 analysis only (graph, seams, tests). Session 2 test extraction only. Session 3 code extraction only. Session 4 cleanup. Each starts fresh with a defined context selection, not with the entire history."}]}, {"number": 3, "title": "Making Legacy Code Available to Agents", "goals": [{"id": "LG 3-1", "level": "R2", "effortHours": 1.5, "title": "Build knowledge representations for agents", "description": "Human code understanding lives in people's heads; agents need artifacts. Call graphs, static analysis, and software analytics are the bridge — and at the same time the prioritization aid for where the agent should even begin.", "topics": ["Code knowledge graph: calls, imports, dependencies", "Static analysis: types, data flows, code smells", "Software analytics: git hotspots, change frequency, ownership", "Limits: reflection, dynamic configuration"], "example": "A hotspot map combines SonarQube findings (340 smells) with a `git log` heatmap (60% of all commits in one class). `OrderProcessor` appears as an outlier in both metrics. Clear starting point — no more discussion about where the agent should begin. The call graph additionally reveals the indirect call paths that would otherwise remain invisible."}, {"id": "LG 3-2", "level": "R2", "effortHours": 1, "title": "Understand codebase conditioning as an investment before agentic work", "description": "Preparing the codebase for agents before unleashing them on it. Sounds like cosmetics, but it is the biggest lever for result quality.", "topics": ["Consistent naming and semantic anchors", "Clear module boundaries", "Minimal documentation in the right place", "Onboarding artifacts (e.g., CLAUDE.md, AGENTS.md)"], "example": "Two days invested in renaming before agentic work: `proc1` becomes `calculateTax`, `helper2` becomes `normalizeAddress`. Halves the error rate of the subsequent agentic work, because semantic anchors are now in place. An investment that pays off within a week."}, {"id": "LG 3-3", "level": "R1", "effortHours": 2, "title": "Design an analysis strategy for a legacy codebase", "description": "Which analysis artifacts in which order, for which modernization task. The bridge between classical as-is analysis and agent-ready preparation.", "topics": ["Selection of analysis tools by task profile", "Order: classical then agent-oriented", "Prioritization by hotspot and risk", "Integration into the modernization workflow"], "example": "ERP modernization: week 1 classical as-is analysis, week 2 hotspot map and call graph, week 3 codebase conditioning of the top 5 hotspots, week 4 first agentic tasks on the conditioned areas. The agent enters the picture only when the field is prepared for it — not the other way around."}]}, {"number": 4, "title": "Transformation Patterns and Slicing", "goals": [{"id": "LG 4-1", "level": "R2", "effortHours": 1.5, "title": "Differentiate debt types for agentic work", "description": "Technical debt is not everything. Cognitive debt, intentional debt, and comprehension debt are independent concepts — and agents tend to lower technical debt while generating cognitive debt.", "topics": ["Technical debt", "Cognitive debt", "Intentional debt", "Comprehension debt"], "example": "Agent produces 2000 lines of working code. Technical debt: low, tests green. Cognitive debt: high, nobody understands the design decisions. Comprehension debt: high, no ADRs. The package works today but will be unmaintainable in 6 months — and the agent has not really improved the balance sheet, it has only shifted it."}, {"id": "LG 4-2", "level": "R2", "effortHours": 2, "title": "Apply incremental transformation patterns safely", "description": "The toolbox of incremental modernization. Strangler Fig, Sprouting, Seams, and Anti-Corruption Layer are not agent-specific — but they are what makes agentic work on real legacy systems possible at all, because they limit the blast radius.", "topics": ["Strangler Fig Pattern", "Sprouting", "Seams", "Anti-Corruption Layer"], "example": "Monolith replacement: a new service is created alongside the old one (Sprout), traffic is redirected incrementally (Strangler), the old service stays behind an Anti-Corruption Layer until it can be retired. The agent works on one piece at a time, not on the whole — the patterns make exactly that possible."}, {"id": "LG 4-3", "level": "R2", "effortHours": 1.5, "title": "Master slicing and task scoping for agent sessions", "description": "The single most important discipline. Slicing respects the context budget from lesson 2 and at the same time ensures that the agent works in a reversible manner.", "topics": ["Slicing along domain boundaries or risk", "Task scoping for a single session", "Definition of done per slice", "Reversibility"], "example": "\"Migration in 200 person-days\" is not a slice, it is a lump. A good slice: \"customer data read access moved to new service within 3 days, write access stays in the old system for now\". Clear, testable, agent-ready — and reversible if it goes wrong. A large slice is not a brave one, it is an unsafe one."}, {"id": "LG 4-4", "level": "R1", "effortHours": 3, "title": "Design transformation patterns and slicing for a project", "description": "The transfer: which pattern for which subsystem, broken down into which slices, in which order — and where the agent even starts.", "topics": ["Pattern comparison in concrete context", "Reasoned selection (ADR-ready)", "Slice order by risk", "Rollback plan per slice"], "example": "Reporting replacement: Strangler Fig does not apply (no stable API boundaries), Sprouting fits (new system alongside, fed via ETL), Anti-Corruption Layer protects against coupling. Slices: slice 1 tests around the critical path (low risk, high value), slice 14 remove old path (highest risk, last). Order is not cosmetics — it is the bet."}]}, {"number": 5, "title": "Safeguarding Agentic Changes", "goals": [{"id": "LG 5-1", "level": "R2", "effortHours": 1.5, "title": "Use characterization tests and fitness functions as a safety net", "description": "The two central test forms of modernization: characterization tests freeze the current behavior, fitness functions keep architectural boundaries in the build. Together they are the prerequisite for an agent being allowed to work at all.", "topics": ["Characterization test vs. unit test", "Golden master from real invocations", "Fitness functions (dependency rules, latency budgets)", "Integration into CI"], "example": "An untestable component receives 500 real input/output pairs as a golden master. Fitness function: no class in `domain/` may import from `infrastructure/`. The agent refactors freely — the net holds. If it violates a boundary, the build breaks, not the product."}, {"id": "LG 5-2", "level": "R2", "effortHours": 1, "title": "Understand the LLM as a judge — benefits, limits, and responsible use", "description": "A powerful tool where assertions are not enough — and at the same time a new source of error. Distinguishing between permissible, pre-filter, and impermissible is the core competency.", "topics": ["Use cases: text, style, semantic equivalence", "Risks: own hallucinations, systematic bias", "Pre-filter vs. final judge", "Regulatory limits"], "example": "100 migrated functions; classically only syntax can be checked. An LLM judge evaluates idiomatic quality — as a pre-filter. The notable 10% go to a human. In a credit-decision system, an LLM judge as the sole reviewer is ruled out, but as a pre-filter it is permitted. Two cases, two answers."}, {"id": "LG 5-3", "level": "R1", "effortHours": 2, "title": "Design a test strategy for a modernization task", "description": "Which tests, in which order, with which coverage. The safeguarding equivalent of the slicing from lesson 4.", "topics": ["Pyramid: characterization, fitness, unit, integration", "Role of LLM judgments", "CI integration", "Risk orientation"], "example": "Payment service: characterization tests at the outer edges (high coverage), fitness functions for architectural boundaries, unit tests for new logic, LLM judge for readability. Each layer protects against a different class of error — and the agent only works where all four layers are above it."}]}, {"number": 6, "title": "Control and Operations", "goals": [{"id": "LG 6-1", "level": "R2", "effortHours": 1.5, "title": "Place guardrails, blast radius, and Human-in-the-Loop correctly", "description": "Autonomy needs boundaries. Guardrails limit what the agent is allowed to do at all. Human-in-the-Loop places human attention where it matters — and saves it everywhere else.", "topics": ["Tool, file, and network scope", "Reversibility", "Human-in-the-Loop at decision points, not at routine work", "Risk-dependent tightness of the framework"], "example": "Agent may change files but not push. Not to the production system. Not to foreign branches. During method extraction: Human-in-the-Loop not after every single method (the human goes blind), but after each batch with a diff summary. Placement is everything."}, {"id": "LG 6-2", "level": "R2", "effortHours": 1, "title": "Design the feedback loop as a productivity lever", "description": "The quality of the loop determines the quality of the result. Short, meaningful, automatable — otherwise the agent guesses instead of learns.", "topics": ["Short cycle times", "Meaningfulness of feedback", "Interplay with test harness from lesson 5"], "example": "Agent changes code, tests run in 40 seconds, feedback is clear — a productive loop. Tests take 20 minutes — the agent starts guessing before the first feedback arrives. Productivity collapses. Short loops are not comfort, they are a prerequisite for agentic work."}, {"id": "LG 6-3", "level": "R2", "effortHours": 1, "title": "Understand agent monitoring and spec-driven development as a backbone", "description": "What is the agent actually doing, and what is it working against? Monitoring makes agentic work auditable; specifications keep it on task. Both are what lifts agentic modernization from a single experiment into regular operations.", "topics": ["Tool call logs, token and cost tracking", "Error pattern analysis over time", "Spec as contract and context anchor", "Reducing intentional debt"], "example": "After 3 months of agent use: monitoring shows 40% of all errors occur at a specific tool combination. The tool is improved — without monitoring the team would have debugged only individual errors. In parallel: task description with 7 acceptance criteria instead of \"make it better\" — the agent stays on task, and the spec becomes part of the documentation."}, {"id": "LG 6-4", "level": "R1", "effortHours": 2, "title": "Design a control framework for a concrete task", "description": "The interplay of guardrails, Human-in-the-Loop, feedback, and monitoring. The risk profile of the task determines the tightness of the framework — and the mature decision of when more autonomy is worthwhile and when less.", "topics": ["Risk-dependent tightness", "Placement of Human-in-the-Loop points", "Abort criteria and escalation paths", "Autonomy-control balance over time"], "example": "Low risk (reformulating comments): open setup, Human-in-the-Loop only at the end. High risk (security module): tight guardrails, Human-in-the-Loop before every commit, double review, full log. The same agent, completely different frameworks. In 6 months — once structures, monitoring, and team maturity are in place — the framework can be opened up."}]}]},
+  'advanced-de':    {"schema": "curriculum-assessment/1", "meta": {"name": "Agentic Software Modernization — Advanced", "version": "1.0-DE", "source": "https://github.com/feststelltaste/asm-glossary", "language": "de", "description": "Aufbaukurs zum Kern-Curriculum „Agentic Software Modernization\". Behandelt fortgeschrittene Muster, Antimuster, Retrieval- und Kontext-Infrastruktur sowie Workflow- und Betriebsskalierung — die Themen, die nicht in jedem Modernisierungsvorhaben gebraucht werden, aber bei größeren Initiativen oder beim Aufbau eines agentischen Regelbetriebs wichtig werden. Setzt das Kern-Curriculum inhaltlich voraus."}, "scale": [{"value": 1, "short": "Unbekannt", "full": "Noch nie gehört"}, {"value": 2, "short": "Grundidee", "full": "Grundidee klar"}, {"value": 3, "short": "Verstehe", "full": "Kann erklären"}, {"value": 4, "short": "Anwenden", "full": "Kann anwenden"}, {"value": 5, "short": "Lehren", "full": "Kann lehren"}], "levels": [{"code": "R1", "label": "Anwenden können", "expected": 4, "description": "Autonom in realen Modernisierungssituationen anwenden, beurteilen und anpassen können"}, {"code": "R2", "label": "Verstehen", "expected": 3, "description": "Zusammenhänge, Mechanik und Tradeoffs erklären können"}, {"code": "R3", "label": "Kennen", "expected": 2, "description": "Begriffe und Konzepte benennen und einordnen können"}], "lessons": [{"number": 1, "title": "Fortgeschrittene Muster und Antimuster", "goals": [{"id": "LG 1-1", "level": "R3", "effortHours": 0.5, "title": "Vibe Coding als Antimuster erkennen und benennen", "description": "Das ungeplante „irgendwas-mit-Agent\", das sich gut anfühlt und schlecht skaliert. Muss man benennen können, um dagegenzuhalten — besonders in Teams, die gerade mit Agenten anfangen.", "topics": ["Fehlende Definition of Done", "Keine Begriffsdisziplin", "Keine Abbruchkriterien", "Symptom: „Mach mal\"-Prompts ohne Akzeptanzkriterien"], "example": "„Mach mal das Backend modern.\" Agent ändert Imports, installiert Packages, schreibt neue Dateien. Nach zwei Stunden läuft nichts mehr, niemand kann nachvollziehen, was passiert ist. Die Antwort darauf ist nicht „besserer Agent\", sondern disziplinierte Aufgabenstellung."}, {"id": "LG 1-2", "level": "R2", "effortHours": 1, "title": "Hufeisen-Modell als Orientierungsrahmen einsetzen", "description": "Visuelle Orientierung zwischen reinem Refactoring und komplettem Rewrite. Hilft bei strategischen Diskussionen, die ohne dieses Modell in „Refactoring vs. Neubau\" entgleisen.", "topics": ["Reverse Engineering aufwärts", "Forward Engineering abwärts", "Abstraktionsebene als dritte Dimension"], "example": "Team diskutiert: „Refactoring reicht nicht, aber Rewrite zu riskant.\" Hufeisen zeigt: ein Level hochgehen (Domänenmodell extrahieren), dort umgestalten, dann runter in Code. Das ist Re-Architecting — zwischen den beiden Extremen."}, {"id": "LG 1-3", "level": "R2", "effortHours": 1, "title": "Modernisierungshandbuch als führendes Artefakt strukturieren", "description": "Das Dokument, in dem ein Modernisierungsvorhaben seine Entscheidungen ablegt. Abgrenzung gegen das Runbook und gegen ad-hoc-Mails.", "topics": ["Zielbild und Scope", "Strategiewahl mit Begründung gegen verworfene Alternativen", "Meilensteinplan, Risiken, ADRs", "Abgrenzung gegen Runbook (operativ) und Spec (technisch)"], "example": "10-Seiten-Dokument mit Zielbild, Scope, Strategie (mit Begründung gegen die Alternativen), Meilensteinen, Risiken und ADRs. Wird in jedem Lenkungskreis konsultiert. Runbook und Spec sind andere Artefakte mit anderem Scope."}, {"id": "LG 1-4", "level": "R2", "effortHours": 1, "title": "Reinraum-Reimplementierung gegen klassischen Rewrite abgrenzen", "description": "Reinraum ist eine bewusste, regulierte Variante des Rewrites — nicht das klassische „schreib es einfach neu\". Abgrenzung ist wichtig, weil Reinraum eigene Risiken hat.", "topics": ["Reinraum: Spezifikation, striktes Nicht-Anschauen des Originals", "Klassischer Rewrite: mit Blick auf das Alte", "Lizenz- und IP-Aspekte", "Gefahr des doppelten Irrwegs"], "example": "Team reimplementiert einen Parser im Reinraum, ohne den Original-Code zu lesen. Vorteil: keine IP-Risiken, klare Spec. Nachteil: 17 Edge-Cases, die das Original richtig machte, sind nicht dokumentiert — sie gehen verloren. Klassischer Rewrite hätte sie mitgenommen."}, {"id": "LG 1-5", "level": "R2", "effortHours": 1, "title": "Idiomatische Transpilation vom bloßen Sprachwechsel abgrenzen", "description": "Sprachwechsel allein ist keine Modernisierung. Idiomatisch bedeutet: Zielsprache wird auch zielsprachlich benutzt — Streams, Optional, Exception-Hierarchien statt 1:1-Übersetzung.", "topics": ["Direkte Transpilation (Syntax 1:1)", "Idiomatische Transpilation (Muster und Idiome der Zielsprache)", "Aufwandsunterschied", "Rolle von Agenten in beiden Varianten"], "example": "COBOL-Funktion direkt in Java übersetzt: 1000 Zeilen, keine Exceptions, keine Collections. Idiomatische Version: 200 Zeilen, Streams, Optional, saubere Exception-Hierarchie. Der Unterschied entscheidet, ob das Ergebnis wartbar ist oder nur formal übersetzt."}, {"id": "LG 1-6", "level": "R2", "effortHours": 1, "title": "Dark Code erkennen und vor Agentenarbeit unschädlich machen", "description": "Code, der existiert, aber nicht verwendet oder nicht verstanden wird. Doppelt gefährlich, weil er Agenten in die Irre führt: sie finden Muster darin und reproduzieren sie.", "topics": ["Ungenutzter Code (dead code)", "Code ohne verständliche Absicht", "Detektion über Call-Graph und Coverage", "Markierung oder Entfernung vor Agenteneinsatz"], "example": "800-Zeilen-Modul `LegacyMigrationHelper` ist Teil des Builds, wird seit 4 Jahren nicht aufgerufen. Agent findet darin Muster und reproduziert sie — mit toxischen Folgen. Dark Code muss vor agentischer Arbeit identifiziert, markiert oder entfernt werden."}, {"id": "LG 1-7", "level": "R2", "effortHours": 0.5, "title": "Abweichungserkennung in CI verankern", "description": "Was weicht die neue Version vom Altverhalten ab? Automatisiert erfasst, bevor ein Mensch reviewt — das Äquivalent zum Golden Master, aber laufend in der Pipeline.", "topics": ["Verhaltens-Diff gegen Baseline", "Schema-Diff", "Performance-Diff", "Integration in CI"], "example": "Nach jedem Agenten-Commit läuft ein Diff-Check gegen eine Baseline von 500 typischen Aufrufen. Abweichungen > 1 % brechen den Build. Agenten sind nicht blockiert, aber das System fängt unerwartete Verhaltensänderungen automatisch."}]}, {"number": 2, "title": "Retrieval und Kontext-Infrastruktur", "goals": [{"id": "LG 2-1", "level": "R2", "effortHours": 1, "title": "Context Engineering von Prompt Engineering trennen", "description": "Zwei verwandte, aber verschiedene Disziplinen. Context Engineering ist strategisch (Lebenszyklus, Auswahl), Prompt Engineering taktisch (Formulierung). Wer sie vermischt, optimiert am falschen Hebel.", "topics": ["Prompt: Formulierung einer einzelnen Aufforderung", "Context: Auswahl, Pflege, Lebenszyklus von Kontextbausteinen", "Zusammenspiel", "Typische Fehler: Prompt-Tuning, wo Kontext-Strategie fehlt"], "example": "Prompt Engineering: „Formuliere die Aufgabe so, dass sie eindeutig ist.\" Context Engineering: „Welche Artefakte brauchen alle Agenten dieser Art, welche werden pro Sitzung geladen, welche verfallen nach einer Woche?\" Ohne zweiteres wird ersteres zum Eichhörnchen-Optimieren."}, {"id": "LG 2-2", "level": "R2", "effortHours": 1, "title": "MCP als Werkzeuganbindungsstandard einordnen", "description": "Model Context Protocol standardisiert, wie Agenten mit Werkzeugen sprechen. Reduziert Integrationsaufwand, erhöht Wiederverwendbarkeit und verschiebt Governance an einen zentralen Punkt.", "topics": ["MCP als Protokoll, nicht als Werkzeug", "Standardisierung der Tool-Definition", "Governance-Effekt: Logs, Limits, Berechtigungen zentral", "Grenzen des Standards"], "example": "Drei verschiedene Agenten brauchen Zugriff auf die interne Doku-API. Ohne MCP: drei Integrationen. Mit MCP: ein Server, drei Clients. Nebeneffekt: der Server wird zum Rechenschaftspunkt — Logs, Raten-Limits und Berechtigungen an einer Stelle statt in drei Codebasen."}, {"id": "LG 2-3", "level": "R2", "effortHours": 1.5, "title": "RAG und Embeddings für Modernisierung zweckgerecht einsetzen", "description": "Relevanten Kontext bei Bedarf zuziehen statt permanent im Fenster halten. Mächtig — aber bei Code ist Vektorähnlichkeit kein Ersatz für strukturelles Retrieval über Call-Graphen.", "topics": ["Retrieval-Pipeline: Embedden, Chunking, Re-Ranking", "Embedding-Qualität und Chunk-Zuschnitt", "Grenzen bei Code: Struktur schlägt Ähnlichkeit", "Kombination: Vektor + Graph + Volltext"], "example": "50000 Dateien Legacy-Code. RAG holt pro Frage die relevanten 20 Chunks. Funktioniert — aber bei Code ist Struktur oft wichtiger als Ähnlichkeit, deshalb ergänzt durch Call-Graph-Retrieval. Vektoren allein reichen für Code selten."}, {"id": "LG 2-4", "level": "R1", "effortHours": 2, "title": "Retrieval-Architektur für eine Modernisierungsinitiative entwerfen", "description": "Der Transfer: wie kommen Agenten in einem realen Vorhaben an die Informationen, die sie brauchen — und nichts darüber hinaus.", "topics": ["Auswahl der Retrieval-Mechanismen nach Aufgabentyp", "Zusammenspiel von Vektor, Graph, Volltext", "Zugriffs-Governance", "Messbarkeit der Retrieval-Qualität"], "example": "Migrationsinitiative mit 40 Services. Entscheidung: Volltext über `ripgrep` für bekannte Symbole, Embeddings für Fach-/Domänensuche, Call-Graph-Retrieval für Refactoring-Aufgaben. Alle drei hinter einem MCP-Server, Logs zentral. Messgröße: Anteil der Agentenaufgaben, die mit der ersten Retrieval-Antwort auskommen."}]}, {"number": 3, "title": "Workflow-Infrastruktur und Betriebsskalierung", "goals": [{"id": "LG 3-1", "level": "R2", "effortHours": 1, "title": "Harness Engineering und Intent Engineering differenziert einsetzen", "description": "Zwei komplementäre Disziplinen: Harness baut den Käfig, Intent formuliert den Auftrag. Wer sie verwechselt, diagnostiziert Fehler falsch und baut am falschen Ende.", "topics": ["Harness: Werkzeuge, Skripte, Leitplanken, Feedback-Infrastruktur", "Intent: Aufgabenformulierung, Abgrenzung, Akzeptanzkriterien", "Typische Fehler auf beiden Seiten", "Iteratives Tuning: wo anfangen"], "example": "Agent schlägt fehl. Harness-Problem: Testlauf scheitert, bevor der Agent überhaupt Feedback bekommt. Intent-Problem: Aufgabe war „mach es besser\" — ohne Kriterium ist jede Lösung richtig und keine akzeptabel. Zwei verschiedene Fehler, zwei verschiedene Fixes. Die Reihenfolge: erst Harness tragfähig, dann Intent schärfen."}, {"id": "LG 3-2", "level": "R2", "effortHours": 1, "title": "Befehle, Skills und Hooks als Automatisierungsbausteine einsetzen", "description": "Wiederverwendbare Bausteine für Agentenarbeit — das Äquivalent zu Bibliotheken in klassischer Programmierung. Ohne diese Mechanismen erfindet jeder alles neu.", "topics": ["Slash-Commands / Befehle", "Skills als thematische Fähigkeiten", "Hooks in Tool-Zyklen", "Governance der Wiederverwendung (Review, Versionierung, Deprecation)"], "example": "Team etabliert Skill `add-migration` mit festem Ablauf (Schema anpassen, Migration erzeugen, Test laufen lassen, Doku ergänzen). Jeder Agent im Team kann ihn aufrufen — Qualität wird reproduzierbar. Ohne diese Mechanismen baut jeder seinen eigenen halbguten Ablauf."}, {"id": "LG 3-3", "level": "R2", "effortHours": 1, "title": "Einzelagent, Unteragent und Agententeam unterscheiden", "description": "Drei Skalierungsstufen mit unterschiedlichen Koordinationskosten. Wer sie verwechselt, baut unnötige Komplexität oder überfordert einzelne Agenten.", "topics": ["Einzelagent für geschlossene Aufgaben", "Unteragent für delegierte Teilaufgabe", "Team für parallele, koordinierte Arbeit", "Koordinationskosten als Entscheidungskriterium"], "example": "Testabdeckung erhöhen — Einzelagent reicht. Komplettes Modul modernisieren — mehrere Unteragenten (Analyse, Refactoring, Test-Ergänzung) unter einer Koordination. Team mit eigenständigen Rollen lohnt sich erst, wenn die Koordination selbst zum Engpass wird."}, {"id": "LG 3-4", "level": "R2", "effortHours": 1, "title": "Workflow-Framework, Orchestrierung und Runbook auseinanderhalten", "description": "Drei Artefaktklassen mit unterschiedlichem Scope: Framework definiert das Möglichkeitsfeld, Orchestrierung verkettet Schritte, Runbook steuert den operativen Lauf. Drei Lesergruppen, drei Lebenszyklen.", "topics": ["Framework: Regeln und Primitive", "Orchestrierung: konkrete Verkettung von Schritten", "Runbook: operative Anweisung für den Betrieb", "Abgrenzung gegen Modernisierungshandbuch und Spec"], "example": "Framework legt fest: jeder Agent hat HITL nach Tool-Aufruf X. Orchestrierung für nächtliches Refactoring: Agent A → B → C mit Checks dazwischen. Runbook für Operator: „Wenn Orchestrierung 3× fehlschlägt, Eskalationspfad D\". Drei Artefakte, drei Lesergruppen."}, {"id": "LG 3-5", "level": "R2", "effortHours": 0.5, "title": "Dark Factory als Zielbild einordnen und seine Grenzen benennen", "description": "Vollautomatisierte Arbeitsstrecken als Vision. Realistisch für bestimmte Modernisierungstypen (Replatform, Dependency-Bumps), unrealistisch für Urteilsarbeit (Rearchitect, Domänenentscheidungen).", "topics": ["Dark Factory als Metapher", "Voraussetzungen: Standardisierung, Monitoring, klare Spec", "Grenzen: Urteilsentscheidungen, Domänenwissen", "Risiko der Überdehnung"], "example": "Dark Factory funktioniert für 1000 Abhängigkeiten auf neue Major-Version zu heben. Funktioniert nicht für die Neuordnung einer Domäne. Wer die Metapher auf alle Modernisierungsaufgaben anwendet, baut unsichtbare Schulden im Namen der Automatisierung."}, {"id": "LG 3-6", "level": "R1", "effortHours": 1.5, "title": "Autonomie-Kontrolle-Balance situativ begründen", "description": "Die reife Entscheidung jenseits des Dogmas. Wann lohnt mehr Freiheit, wann mehr Kontrolle — und wie verschiebt sich die Balance über Zeit, Teamreife und Vertrauen.", "topics": ["Aufgabenreife", "Teamreife", "Fehlerkosten", "Feedback-Verlässlichkeit", "Verschiebung der Balance über Zeit"], "example": "Erfahrenes Team, wiederholte Aufgabe, gute Tests: mehr Autonomie lohnt sich. Neues Team, unbekannte Codebasis, schwache Tests: Autonomie ist teuer. Die Balance verschiebt sich — heute wenig Autonomie, in 6 Monaten mehr, wenn Strukturen und Monitoring sitzen."}, {"id": "LG 3-7", "level": "R1", "effortHours": 2.5, "title": "Einstiegsarchitektur für wiederkehrende agentische Modernisierungsaufgaben entwerfen", "description": "Der organisatorische Transfer: wie bringt eine Organisation agentische Modernisierung vom Einzelexperiment in den Regelbetrieb, ohne sich zu überbauen.", "topics": ["Minimaler Satz an Befehlen und Skills", "MCP-Server für gemeinsame Ressourcen", "Monitoring und Auditierbarkeit", "Governance: wer darf was", "Iterativer Ausbau statt Overengineering"], "example": "Start mit 3 Skills (`add-tests`, `bump-dependency`, `extract-module`), 1 MCP-Server (Repo-Zugriff), zentralem Logging und klarer HITL-Regel. Nach 3 Monaten sehen, was funktioniert hat, und dann ausbauen — nicht vorab überdimensionieren. Die erste Architektur muss tragen, nicht glänzen."}]}]},
+  'advanced-en':    {"schema": "curriculum-assessment/1", "meta": {"name": "Agentic Software Modernization — Advanced", "version": "1.0-EN", "source": "https://github.com/feststelltaste/asm-glossary", "language": "en", "description": "Advanced course building on the core Agentic Software Modernization curriculum. Covers advanced patterns, anti-patterns, retrieval and context infrastructure, and workflow and operational scaling — topics not needed in every modernization effort, but important for larger initiatives or when establishing agentic operations at scale. Assumes familiarity with the core curriculum."}, "scale": [{"value": 1, "short": "Unknown", "full": "Never heard of it"}, {"value": 2, "short": "Aware", "full": "Basic idea clear"}, {"value": 3, "short": "Understand", "full": "Can explain"}, {"value": 4, "short": "Apply", "full": "Can apply"}, {"value": 5, "short": "Teach", "full": "Can teach"}], "levels": [{"code": "R1", "label": "Can Apply", "expected": 4, "description": "Able to apply, evaluate, and adapt autonomously in real modernization situations"}, {"code": "R2", "label": "Understand", "expected": 3, "description": "Able to explain relationships, mechanics, and tradeoffs"}, {"code": "R3", "label": "Know", "expected": 2, "description": "Able to name and place terms and concepts in context"}], "lessons": [{"number": 1, "title": "Advanced Patterns and Anti-Patterns", "goals": [{"id": "LG 1-1", "level": "R3", "effortHours": 0.5, "title": "Recognize and name vibe coding as an anti-pattern", "description": "The unplanned \"something-with-agents\" approach that feels good and scales poorly. You need to be able to name it in order to push back — especially in teams just starting out with agents.", "topics": ["Missing definition of done", "No terminological discipline", "No abort criteria", "Symptom: \"just do it\" prompts without acceptance criteria"], "example": "\"Just modernize the backend.\" The agent changes imports, installs packages, writes new files. After two hours nothing runs and nobody can tell what happened. The answer is not \"better agent\" but disciplined task definition."}, {"id": "LG 1-2", "level": "R2", "effortHours": 1, "title": "Use the horseshoe model as an orientation framework", "description": "Visual orientation between pure refactoring and complete rewrite. Helps in strategic discussions that without this model derail into \"refactoring vs. rebuild\".", "topics": ["Reverse engineering upward", "Forward engineering downward", "Abstraction level as a third dimension"], "example": "Team discusses: \"Refactoring is not enough, but a rewrite is too risky.\" The horseshoe model shows: move up one level (extract the domain model), restructure there, then go back down to code. That is re-architecting — between the two extremes."}, {"id": "LG 1-3", "level": "R2", "effortHours": 1, "title": "Structure a modernization handbook as the leading artifact", "description": "The document in which a modernization initiative records its decisions. Distinguished from the runbook and from ad-hoc emails.", "topics": ["Target vision and scope", "Strategy choice with rationale against rejected alternatives", "Milestone plan, risks, ADRs", "Distinction from runbook (operational) and spec (technical)"], "example": "A 10-page document with target vision, scope, strategy (with rationale against alternatives), milestones, risks, and ADRs. Consulted at every steering committee meeting. The runbook and spec are separate artifacts with different scope."}, {"id": "LG 1-4", "level": "R2", "effortHours": 1, "title": "Distinguish clean-room reimplementation from a classic rewrite", "description": "Clean-room is a deliberate, regulated variant of the rewrite — not the classic \"just write it again\". The distinction matters because clean-room carries its own risks.", "topics": ["Clean-room: specification, strictly not looking at the original", "Classic rewrite: done with reference to the old code", "License and IP considerations", "Risk of the double dead-end"], "example": "Team reimplements a parser in clean-room style without reading the original code. Advantage: no IP risks, clear spec. Disadvantage: 17 edge cases the original handled correctly are not documented — they are lost. A classic rewrite would have carried them over."}, {"id": "LG 1-5", "level": "R2", "effortHours": 1, "title": "Distinguish idiomatic transpilation from a mere language switch", "description": "A language switch alone is not modernization. Idiomatic means the target language is actually used in the target-language way — streams, Optional, exception hierarchies instead of a 1:1 translation.", "topics": ["Direct transpilation (syntax 1:1)", "Idiomatic transpilation (patterns and idioms of the target language)", "Difference in effort", "Role of agents in both variants"], "example": "COBOL function translated directly to Java: 1000 lines, no exceptions, no collections. Idiomatic version: 200 lines, streams, Optional, clean exception hierarchy. The difference determines whether the result is maintainable or merely formally translated."}, {"id": "LG 1-6", "level": "R2", "effortHours": 1, "title": "Identify dark code and neutralize it before agent work", "description": "Code that exists but is not used or not understood. Doubly dangerous because it misleads agents: they find patterns in it and reproduce them.", "topics": ["Unused code (dead code)", "Code without intelligible intent", "Detection via call graph and coverage", "Marking or removal before agent deployment"], "example": "An 800-line module `LegacyMigrationHelper` is part of the build but has not been called in 4 years. The agent finds patterns in it and reproduces them — with toxic consequences. Dark code must be identified, marked, or removed before agentic work begins."}, {"id": "LG 1-7", "level": "R2", "effortHours": 0.5, "title": "Anchor drift detection in CI", "description": "Where does the new version deviate from legacy behavior? Captured automatically before a human reviews — the equivalent of a golden master, but running continuously in the pipeline.", "topics": ["Behavior diff against baseline", "Schema diff", "Performance diff", "Integration into CI"], "example": "After every agent commit a diff check runs against a baseline of 500 representative calls. Deviations greater than 1% break the build. Agents are not blocked, but the system automatically catches unexpected behavior changes."}]}, {"number": 2, "title": "Retrieval and Context Infrastructure", "goals": [{"id": "LG 2-1", "level": "R2", "effortHours": 1, "title": "Separate context engineering from prompt engineering", "description": "Two related but distinct disciplines. Context engineering is strategic (lifecycle, selection); prompt engineering is tactical (wording). Conflating them means optimizing the wrong lever.", "topics": ["Prompt: wording of a single instruction", "Context: selection, maintenance, lifecycle of context building blocks", "Interplay between the two", "Common mistake: prompt tuning where a context strategy is missing"], "example": "Prompt engineering: \"Phrase the task so it is unambiguous.\" Context engineering: \"Which artifacts do all agents of this type need, which are loaded per session, which expire after a week?\" Without the second, the first becomes squirrel optimization."}, {"id": "LG 2-2", "level": "R2", "effortHours": 1, "title": "Place MCP as a tool-connectivity standard", "description": "The Model Context Protocol standardizes how agents communicate with tools. It reduces integration effort, increases reusability, and shifts governance to a central point.", "topics": ["MCP as a protocol, not a tool", "Standardization of tool definitions", "Governance effect: logs, limits, permissions centralized", "Limits of the standard"], "example": "Three different agents need access to the internal documentation API. Without MCP: three integrations. With MCP: one server, three clients. Side effect: the server becomes the accountability point — logs, rate limits, and permissions in one place instead of three codebases."}, {"id": "LG 2-3", "level": "R2", "effortHours": 1.5, "title": "Apply RAG and embeddings purposefully for modernization", "description": "Pull relevant context on demand rather than keeping it permanently in the context window. Powerful — but for code, vector similarity is no substitute for structural retrieval via call graphs.", "topics": ["Retrieval pipeline: embedding, chunking, re-ranking", "Embedding quality and chunk sizing", "Limits with code: structure beats similarity", "Combination: vector + graph + full-text"], "example": "50,000 files of legacy code. RAG fetches the relevant 20 chunks per query. That works — but for code, structure is often more important than similarity, so it is supplemented by call-graph retrieval. Vectors alone rarely suffice for code."}, {"id": "LG 2-4", "level": "R1", "effortHours": 2, "title": "Design a retrieval architecture for a modernization initiative", "description": "The transfer: how do agents in a real initiative get the information they need — and nothing beyond that.", "topics": ["Selecting retrieval mechanisms by task type", "Interplay of vector, graph, and full-text", "Access governance", "Measuring retrieval quality"], "example": "Migration initiative with 40 services. Decision: full-text via `ripgrep` for known symbols, embeddings for domain search, call-graph retrieval for refactoring tasks. All three behind one MCP server, logs centralized. Metric: share of agent tasks satisfied by the first retrieval response."}]}, {"number": 3, "title": "Workflow Infrastructure and Operational Scaling", "goals": [{"id": "LG 3-1", "level": "R2", "effortHours": 1, "title": "Apply harness engineering and intent engineering as distinct disciplines", "description": "Two complementary disciplines: harness builds the cage, intent formulates the assignment. Conflating them leads to misdiagnosed failures and fixes at the wrong end.", "topics": ["Harness: tools, scripts, guardrails, feedback infrastructure", "Intent: task formulation, scope, acceptance criteria", "Common mistakes on both sides", "Iterative tuning: where to start"], "example": "Agent fails. Harness problem: the test run fails before the agent gets any feedback at all. Intent problem: the task was \"make it better\" — without a criterion every solution is correct and none is acceptable. Two different failures, two different fixes. The order: make the harness solid first, then sharpen the intent."}, {"id": "LG 3-2", "level": "R2", "effortHours": 1, "title": "Use commands, skills, and hooks as automation building blocks", "description": "Reusable building blocks for agent work — the equivalent of libraries in classical programming. Without these mechanisms everyone reinvents everything.", "topics": ["Slash commands", "Skills as thematic capabilities", "Hooks in tool cycles", "Governance of reuse (review, versioning, deprecation)"], "example": "Team establishes skill `add-migration` with a fixed sequence (adjust schema, generate migration, run tests, update docs). Every agent on the team can call it — quality becomes reproducible. Without these mechanisms everyone builds their own half-baked workflow."}, {"id": "LG 3-3", "level": "R2", "effortHours": 1, "title": "Distinguish single agent, subagent, and agent team", "description": "Three scaling levels with different coordination costs. Conflating them leads to unnecessary complexity or overloaded single agents.", "topics": ["Single agent for self-contained tasks", "Subagent for delegated subtasks", "Team for parallel, coordinated work", "Coordination cost as a decision criterion"], "example": "Increasing test coverage — a single agent is enough. Modernizing a complete module — several subagents (analysis, refactoring, test augmentation) under one coordinator. A team with independent roles only pays off when coordination itself becomes the bottleneck."}, {"id": "LG 3-4", "level": "R2", "effortHours": 1, "title": "Tell apart workflow framework, orchestration, and runbook", "description": "Three artifact classes with different scope: the framework defines the solution space, orchestration chains steps together, the runbook guides the operational run. Three audiences, three lifecycles.", "topics": ["Framework: rules and primitives", "Orchestration: concrete chaining of steps", "Runbook: operational instructions for the operator", "Distinction from modernization handbook and spec"], "example": "Framework specifies: every agent has a human-in-the-loop checkpoint after tool call X. Orchestration for nightly refactoring: agent A → B → C with checks in between. Runbook for the operator: \"If orchestration fails 3 times, follow escalation path D.\" Three artifacts, three audiences."}, {"id": "LG 3-5", "level": "R2", "effortHours": 0.5, "title": "Place the dark factory as a target vision and name its limits", "description": "Fully automated work pipelines as a vision. Realistic for certain modernization types (replatform, dependency bumps), unrealistic for judgment work (re-architect, domain decisions).", "topics": ["Dark factory as a metaphor", "Prerequisites: standardization, monitoring, clear spec", "Limits: judgment decisions, domain knowledge", "Risk of overextension"], "example": "The dark factory works for upgrading 1,000 dependencies to a new major version. It does not work for reorganizing a domain. Applying the metaphor to all modernization tasks builds invisible debt in the name of automation."}, {"id": "LG 3-6", "level": "R1", "effortHours": 1.5, "title": "Justify the autonomy-control balance situationally", "description": "The mature decision beyond dogma. When does more autonomy pay off, when does more control — and how does the balance shift over time, team maturity, and trust.", "topics": ["Task maturity", "Team maturity", "Cost of failure", "Reliability of feedback", "Shifting the balance over time"], "example": "Experienced team, repeated task, good tests: more autonomy pays off. New team, unfamiliar codebase, weak tests: autonomy is expensive. The balance shifts — less autonomy today, more in 6 months once structures and monitoring are in place."}, {"id": "LG 3-7", "level": "R1", "effortHours": 2.5, "title": "Design an entry-level architecture for recurring agentic modernization tasks", "description": "The organizational transfer: how does an organization move agentic modernization from isolated experiments into regular operations without over-building.", "topics": ["Minimal set of commands and skills", "MCP server for shared resources", "Monitoring and auditability", "Governance: who may do what", "Iterative expansion rather than over-engineering"], "example": "Start with 3 skills (`add-tests`, `bump-dependency`, `extract-module`), 1 MCP server (repository access), centralized logging, and a clear human-in-the-loop rule. After 3 months assess what worked and expand from there — do not over-dimension upfront. The first architecture must hold, not shine."}]}]}
+};
+
+const LEVEL_META = [
+  {
+    key: 'foundations',
+    numClass: 'l1',
+    label: { de: 'Grundlagen der Softwaremodernisierung', en: 'Foundations of Software Modernization' },
+    desc: {
+      de: 'Klassische Softwaremodernisierung: Treiber, Problemkategorien, Change-Strategien, 6R-Portfolio, Evolvability, Schätzung.',
+      en: 'Classical software modernization: change drivers, problem types, change strategies, 6R portfolio, evolvability, estimation.'
+    }
+  },
+  {
+    key: 'core',
+    numClass: 'l2',
+    label: { de: 'Agentic Software Modernization', en: 'Agentic Software Modernization' },
+    desc: {
+      de: 'Kernkompetenzen: KI-Agenten, Kontextmanagement, Legacy-Analyse, Slicing, Testen, Kontrolle.',
+      en: 'Core competencies: AI agents, context management, legacy analysis, slicing, testing, control.'
+    }
+  },
+  {
+    key: 'advanced',
+    numClass: 'l3',
+    label: { de: 'Agentic Software Modernization — Advanced', en: 'Agentic Software Modernization — Advanced' },
+    desc: {
+      de: 'Fortgeschrittene Muster und Antimuster, Retrieval-Infrastruktur, Workflow-Frameworks, Agententeams, Betriebsskalierung.',
+      en: 'Advanced patterns and anti-patterns, retrieval infrastructure, workflow frameworks, agent teams, operational scaling.'
+    }
+  }
+];
+
+/* =============================================================
+   RUNTIME STATE
+   ============================================================= */
+let currentCurriculum = null;
+let currentCurricKey = null;
+let LG = [];
+let SCALE = [];
+let EXPECTED = {};
+
+const STORAGE_KEY = 'curriculum-assessment-v3';
+
+let state = {
+  view: 'picker',
+  lang: 'en',
+  index: 0,
+  ratings: {},
+  exampleOpen: {}
+};
+
+let storageAvailable = true;
+
+/* =============================================================
+   HELPERS
+   ============================================================= */
+function flattenLG(curr) {
+  const flat = [];
+  for (const lesson of curr.lessons) {
+    for (const goal of lesson.goals) {
+      flat.push({
+        id: goal.id,
+        level: goal.level,
+        title: goal.title,
+        desc: goal.description,
+        topics: goal.topics || [],
+        example: goal.example || '',
+        effortHours: typeof goal.effortHours === 'number' ? goal.effortHours : null,
+        lesson: lesson.number,
+        lessonTitle: lesson.title
+      });
+    }
+  }
+  return flat;
+}
+
+function expectedMap(curr) {
+  const m = {};
+  for (const lvl of curr.levels) m[lvl.code] = lvl.expected;
+  return m;
+}
+
+function validateCurriculum(obj) {
+  const errors = [];
+  if (!obj || typeof obj !== 'object') { errors.push('Not a valid JSON object'); return errors; }
+  if (!obj.meta || !obj.meta.name) errors.push('meta.name missing');
+  if (!Array.isArray(obj.scale) || obj.scale.length < 2) errors.push('scale missing or fewer than 2 entries');
+  if (!Array.isArray(obj.levels) || obj.levels.length < 1) errors.push('levels missing or empty');
+  if (!Array.isArray(obj.lessons) || obj.lessons.length < 1) errors.push('lessons missing or empty');
+  if (Array.isArray(obj.scale)) {
+    obj.scale.forEach((s, i) => {
+      if (typeof s.value !== 'number' || !s.short) errors.push('scale[' + i + '] incomplete (value, short required)');
+    });
+  }
+  if (Array.isArray(obj.levels)) {
+    obj.levels.forEach((l, i) => {
+      if (!l.code || typeof l.expected !== 'number') errors.push('levels[' + i + '] incomplete (code, expected required)');
+    });
+  }
+  if (Array.isArray(obj.lessons)) {
+    const codes = new Set((obj.levels || []).map(l => l.code));
+    obj.lessons.forEach((lesson, li) => {
+      if (!lesson.title) errors.push('lessons[' + li + '].title missing');
+      if (!Array.isArray(lesson.goals)) { errors.push('lessons[' + li + '].goals missing'); return; }
+      lesson.goals.forEach((g, gi) => {
+        if (!g.id) errors.push('lessons[' + li + '].goals[' + gi + '].id missing');
+        if (!g.title) errors.push('lessons[' + li + '].goals[' + gi + '].title missing');
+        if (!g.level || !codes.has(g.level)) errors.push('lessons[' + li + '].goals[' + gi + '].level "' + g.level + '" not defined in levels');
+      });
+    });
+  }
+  return errors;
+}
+
+/* =============================================================
+   STORAGE
+   ============================================================= */
+async function load() {
+  try {
+    if (!window.storage) { storageAvailable = false; render(); return; }
+    const r = await window.storage.get(STORAGE_KEY);
+    if (r && r.value) {
+      const parsed = JSON.parse(r.value);
+      if (parsed.lang) state.lang = parsed.lang;
+      if (parsed.curricKey && CURRICULA[parsed.curricKey]) {
+        applyCurriculum(parsed.curricKey, false);
+        if (parsed.state) {
+          state = {...state, ...parsed.state};
+          const validIds = new Set(LG.map(l => l.id));
+          state.ratings = Object.fromEntries(
+            Object.entries(state.ratings || {}).filter(([k]) => validIds.has(k))
+          );
+        }
+      }
+      if (parsed.customCurriculum) {
+        try {
+          applyCustomCurriculum(parsed.customCurriculum, false);
+          if (parsed.state) {
+            state = {...state, ...parsed.state};
+            const validIds = new Set(LG.map(l => l.id));
+            state.ratings = Object.fromEntries(
+              Object.entries(state.ratings || {}).filter(([k]) => validIds.has(k))
+            );
+          }
+        } catch (e) {}
+      }
+    }
+  } catch (e) {}
+  render();
+}
+
+async function save() {
+  if (!storageAvailable || !window.storage) return;
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify({
+      lang: state.lang,
+      curricKey: currentCurricKey,
+      customCurriculum: currentCurricKey === '__custom__' ? currentCurriculum : null,
+      state: {
+        view: state.view,
+        index: state.index,
+        ratings: state.ratings
+      }
+    }));
+  } catch (e) {
+    storageAvailable = false;
+  }
+}
+
+/* =============================================================
+   CURRICULUM MANAGEMENT
+   ============================================================= */
+function applyCurriculum(key, resetRatings = true) {
+  const curr = CURRICULA[key];
+  if (!curr) return;
+  currentCurriculum = curr;
+  currentCurricKey = key;
+  LG = flattenLG(curr);
+  SCALE = curr.scale;
+  EXPECTED = expectedMap(curr);
+  if (resetRatings) {
+    state.ratings = {};
+    state.exampleOpen = {};
+    state.index = 0;
+  }
+}
+
+function applyCustomCurriculum(curr, resetRatings = true) {
+  currentCurriculum = curr;
+  currentCurricKey = '__custom__';
+  LG = flattenLG(curr);
+  SCALE = curr.scale;
+  EXPECTED = expectedMap(curr);
+  if (resetRatings) {
+    state.ratings = {};
+    state.exampleOpen = {};
+    state.index = 0;
+  }
+}
+
+function selectCurriculum(key) {
+  if (Object.keys(state.ratings).length > 0 && currentCurricKey !== key) {
+    showModal('This will reset your current ratings.', 'Reset', () => {
+      applyCurriculum(key, true);
+      state.view = 'intro';
+      save();
+      render();
+    });
+    return;
+  }
+  applyCurriculum(key, true);
+  state.view = 'intro';
+  save();
+  render();
+}
+
+function handleFileImport(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const parsed = JSON.parse(e.target.result);
+      const errors = validateCurriculum(parsed);
+      if (errors.length > 0) {
+        showError('Invalid curriculum:\n• ' + errors.join('\n• '));
+        return;
+      }
+      if (Object.keys(state.ratings).length > 0 && !confirm('Import will reset your current ratings. Continue?')) return;
+      applyCustomCurriculum(parsed, true);
+      state.view = 'intro';
+      save();
+      render();
+      toast('Loaded "' + parsed.meta.name + '"');
+    } catch (err) {
+      showError('JSON parse error: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+
+/* =============================================================
+   MARKDOWN REPORT
+   ============================================================= */
+function generateMarkdownReport() {
+  const meta = currentCurriculum.meta;
+  const total = Object.keys(state.ratings).length;
+  const rated = LG.filter(lg => state.ratings[lg.id] !== undefined);
+  const avg = rated.length > 0 ? (rated.reduce((s, lg) => s + state.ratings[lg.id], 0) / rated.length) : 0;
+  const gaps = LG.filter(lg => state.ratings[lg.id] !== undefined && state.ratings[lg.id] < EXPECTED[lg.level]);
+  const strengths = LG.filter(lg => state.ratings[lg.id] !== undefined && state.ratings[lg.id] >= 4);
+  const gapHours = gaps.reduce((s, lg) => s + (lg.effortHours || 0), 0);
+  const totalHours = sumEffort(LG);
+  const hasEffort = totalHours > 0;
+  const date = new Date().toLocaleDateString(meta.language === 'de' ? 'de-DE' : 'en-GB', {year:'numeric', month:'long', day:'numeric'});
+  const datetime = new Date().toLocaleString(meta.language === 'de' ? 'de-DE' : 'en-GB');
+
+  const lessons = {};
+  LG.forEach(lg => {
+    if (!lessons[lg.lesson]) lessons[lg.lesson] = {title: lg.lessonTitle, items: []};
+    lessons[lg.lesson].items.push(lg);
+  });
+
+  const isDE = meta.language === 'de';
+  let md = '';
+  md += '# ' + meta.name + ' — Self-Assessment\n\n';
+  md += '**' + (isDE ? 'Datum' : 'Date') + ':** ' + date + '  \n';
+  if (meta.version) md += '**' + (isDE ? 'Curriculum-Version' : 'Curriculum version') + ':** ' + meta.version + '  \n';
+  md += '**' + (isDE ? 'Fortschritt' : 'Progress') + ':** ' + total + ' ' + (isDE ? 'von' : 'of') + ' ' + LG.length + ' Learning Goals ' + (isDE ? 'bewertet' : 'rated') + '\n\n';
+  md += '---\n\n';
+
+  md += '## ' + (isDE ? 'Zusammenfassung' : 'Summary') + '\n\n';
+  md += '| ' + (isDE ? 'Metrik' : 'Metric') + ' | ' + (isDE ? 'Wert' : 'Value') + ' |\n';
+  md += '|---|---|\n';
+  md += '| Ø ' + (isDE ? 'Bewertung' : 'Rating') + ' | ' + (avg ? avg.toFixed(1) : '—') + ' / ' + Math.max(...SCALE.map(s => s.value)) + ' |\n';
+  md += '| ' + (isDE ? 'Stärken (Bewertung ≥ 4)' : 'Strengths (rating ≥ 4)') + ' | ' + strengths.length + ' |\n';
+  md += '| ' + (isDE ? 'Lücken gegenüber R-Level' : 'Gaps vs. R-level') + ' | ' + gaps.length + ' |\n';
+  if (hasEffort) {
+    md += '| ' + (isDE ? 'Gesamt-Lernaufwand' : 'Total learning effort') + ' | ~' + formatHours(totalHours) + ' |\n';
+    md += '| ' + (isDE ? 'Aufwand für Lücken' : 'Effort to close gaps') + ' | ~' + formatHours(gapHours) + ' |\n';
+  }
+  md += '\n';
+
+  if (gaps.length > 0) {
+    md += '## ' + (isDE ? 'Entwicklungsfelder' : 'Development areas') + '\n\n';
+    gaps.sort((a, b) => (state.ratings[a.id] - EXPECTED[a.level]) - (state.ratings[b.id] - EXPECTED[b.level]));
+    gaps.forEach(lg => {
+      md += '### ' + lg.id + ': ' + lg.title + '\n';
+      md += '- **Level:** ' + lg.level + ' (' + (isDE ? 'erwartet' : 'expected') + ' ≥ ' + EXPECTED[lg.level] + ')\n';
+      md += '- **' + (isDE ? 'Aktuelle Bewertung' : 'Current rating') + ':** ' + state.ratings[lg.id] + '\n';
+      if (lg.effortHours != null) md += '- **' + (isDE ? 'Lernaufwand' : 'Learning effort') + ':** ~' + formatHours(lg.effortHours) + '\n';
+      md += '\n';
+    });
+  }
+
+  if (strengths.length > 0) {
+    md += '## ' + (isDE ? 'Stärken' : 'Strengths') + '\n\n';
+    strengths.sort((a, b) => state.ratings[b.id] - state.ratings[a.id]);
+    strengths.forEach(lg => {
+      md += '- **' + lg.id + '** — ' + lg.title + ' (' + state.ratings[lg.id] + ')\n';
+    });
+    md += '\n';
+  }
+
+  md += '---\n\n';
+  md += '*' + (isDE ? 'Generiert am' : 'Generated on') + ' ' + datetime + ' · ' + (isDE ? 'Bewertungsskala' : 'Rating scale') + ' 1–' + Math.max(...SCALE.map(s => s.value)) + '*\n';
+
+  return md;
+}
+
+function downloadMarkdownReport() {
+  const md = generateMarkdownReport();
+  const name = (currentCurriculum.meta.name || 'assessment').toLowerCase().replace(/\s+/g, '-');
+  const date = new Date().toISOString().slice(0, 10);
+  const blob = new Blob([md], {type: 'text/markdown'});
+  downloadBlob(blob, name + '-assessment-' + date + '.md');
+  toast(currentCurriculum.meta.language === 'de' ? 'Markdown-Report heruntergeladen' : 'Markdown report downloaded');
+}
+
+async function copyMarkdownReport() {
+  const md = generateMarkdownReport();
+  try {
+    await navigator.clipboard.writeText(md);
+    toast(currentCurriculum.meta.language === 'de' ? 'In Zwischenablage kopiert' : 'Copied to clipboard');
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = md;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast('Copied to clipboard'); }
+    catch (e2) { showError('Copy failed — please download the report'); }
+    document.body.removeChild(ta);
+  }
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* =============================================================
+   TOAST + ERROR
+   ============================================================= */
+function showModal(msg, confirmLabel, onConfirm) {
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('modal-msg').textContent = msg;
+  document.getElementById('modal-confirm').textContent = confirmLabel;
+  overlay.classList.add('show');
+  const cancel = document.getElementById('modal-cancel');
+  const confirm = document.getElementById('modal-confirm');
+  const close = () => { overlay.classList.remove('show'); };
+  const onOk = () => { close(); onConfirm(); };
+  cancel.onclick = close;
+  confirm.onclick = onOk;
+  overlay.onclick = (e) => { if (e.target === overlay) close(); };
+}
+
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+let errorMsg = null;
+function showError(msg) {
+  errorMsg = msg;
+  render();
+  setTimeout(() => { errorMsg = null; render(); }, 8000);
+}
+
+/* =============================================================
+   STATE ACTIONS
+   ============================================================= */
+function setRating(lgId, value) {
+  state.ratings[lgId] = value;
+  save();
+  render();
+}
+
+function go(view, index) {
+  state.view = view;
+  if (index !== undefined) state.index = index;
+  save();
+  render();
+}
+
+function resetRatings() {
+  const isDE = currentCurriculum && currentCurriculum.meta.language === 'de';
+  showModal(
+    isDE ? 'Alle Bewertungen löschen?' : 'Reset all ratings?',
+    isDE ? 'Löschen' : 'Reset',
+    () => {
+      state.ratings = {};
+      state.exampleOpen = {};
+      state.index = 0;
+      state.view = 'intro';
+      save();
+      render();
+    }
+  );
+}
+
+function setLang(lang) {
+  state.lang = lang;
+  save();
+  render();
+}
+
+/* =============================================================
+   RENDERING — HELPERS
+   ============================================================= */
+function formatHours(h) {
+  if (h == null) return '';
+  const mins = Math.round(h * 60);
+  if (mins < 120) return mins + ' min';
+  if (h === Math.floor(h)) return h + 'h';
+  return h.toFixed(1) + 'h';
+}
+
+function sumEffort(lgs) {
+  return lgs.reduce((s, lg) => s + (lg.effortHours || 0), 0);
+}
+
+function el(tag, attrs = {}, ...children) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') e.className = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2).toLowerCase(), v);
+    else if (k === 'html') e.innerHTML = v;
+    else if (typeof v === 'boolean') { if (v) e.setAttribute(k, ''); }
+    else e.setAttribute(k, v);
+  }
+  for (const c of children) {
+    if (c == null || c === false) continue;
+    e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  }
+  return e;
+}
+
+function levelBadgeClass(code) {
+  const c = code.toLowerCase();
+  if (c === 'r1' || c === 'r2' || c === 'r3') return 'badge-' + c;
+  return 'badge-default';
+}
+
+function levelRowClass(code) {
+  const c = code.toLowerCase();
+  if (c === 'r1' || c === 'r2' || c === 'r3') return c;
+  return 'default';
+}
+
+/* =============================================================
+   RENDERING — PICKER
+   ============================================================= */
+function renderPicker() {
+  const lang = state.lang;
+  const isDE = lang === 'de';
+
+  const header = el('div', {class: 'picker-header'},
+    el('div', {},
+      el('h2', {}, 'Agentic Software Modernization Self-Assessment'),
+      el('p', {class: 'lead'}, isDE
+        ? 'Dieses Tool hilft dir einzuschätzen, wie gut du die Lernziele der ASM-Curricula bereits beherrschst. Wähle ein Curriculum und eine Sprache, um dein Self-Assessment zu starten.'
+        : 'This tool helps you gauge how well you already meet the learning goals of the ASM curricula. Rate yourself on each goal, then get a summary of your strengths and gaps. Choose a curriculum and language to begin.')
+    ),
+    el('div', {class: 'lang-toggle'},
+      el('button', {class: lang === 'de' ? 'active' : '', onClick: () => setLang('de')}, 'DE'),
+      el('button', {class: lang === 'en' ? 'active' : '', onClick: () => setLang('en')}, 'EN')
+    )
+  );
+
+  const cards = el('div', {class: 'level-cards'},
+    ...LEVEL_META.map((lm, i) => {
+      const key = lm.key + '-' + lang;
+      const curr = CURRICULA[key];
+      const goals = curr ? curr.lessons.reduce((s, l) => s + l.goals.length, 0) : 0;
+      const effort = curr ? curr.lessons.reduce((s, l) => s + l.goals.reduce((gs, g) => gs + (g.effortHours || 0), 0), 0) : 0;
+      const isActive = currentCurricKey === key;
+
+      return el('div', {class: 'level-card' + (isActive ? ' active' : ''), onClick: () => selectCurriculum(key)},
+        el('div', {class: 'level-card-num ' + lm.numClass}, String(i + 1)),
+        el('div', {class: 'level-card-title'}, lm.label[lang]),
+        el('div', {class: 'level-card-desc'}, lm.desc[lang]),
+        el('div', {class: 'level-card-stats'},
+          el('span', {class: 'level-card-stat'}, goals + ' ' + (isDE ? 'Lernziele' : 'goals')),
+          el('span', {class: 'level-card-stat'}, '~' + formatHours(effort))
+        ),
+        el('button', {class: 'level-card-btn', onClick: (e) => { e.stopPropagation(); selectCurriculum(key); }},
+          isActive
+            ? (isDE ? 'Fortfahren →' : 'Continue →')
+            : (isDE ? 'Starten →' : 'Start →')
+        )
+      );
+    })
+  );
+
+  return el('div', {class: 'card'},
+    errorMsg ? el('div', {class: 'error-box', style: 'white-space:pre-line'}, errorMsg) : null,
+    header,
+    cards
+  );
+}
+
+/* =============================================================
+   RENDERING — INTRO
+   ============================================================= */
+function renderIntro() {
+  const answered = Object.keys(state.ratings).length;
+  const hasProgress = answered > 0;
+  const meta = currentCurriculum.meta;
+  const isDE = meta.language === 'de';
+  const maxVal = Math.max(...SCALE.map(s => s.value));
+
+  return el('div', {class: 'card intro'},
+    errorMsg ? el('div', {class: 'error-box', style: 'white-space:pre-line'}, errorMsg) : null,
+
+    el('h2', {}, 'Agentic Software Modernization Self-Assessment'),
+    el('p', {class: 'lead'}, isDE
+      ? 'Du bewertest dich selbst auf den Learning Goals eines Curriculums. Pro Thema gibt es eine kurze Einordnung und ein Beispiel. Am Ende bekommst du einen Markdown-Bericht.'
+      : 'Rate yourself on the learning goals of a curriculum. Each topic includes a short context and a concrete example. At the end you get a Markdown report.'),
+
+    el('div', {style: 'background:#fafafa; border-radius:8px; padding:14px 16px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;'},
+      el('div', {},
+        el('div', {style: 'font-weight:600; color:#18181b;'}, meta.name),
+        el('div', {style: 'font-size:13px; color:#71717a; margin-top:2px;'},
+          LG.length + (isDE ? ' Lernziele · ' : ' goals · ') +
+          currentCurriculum.lessons.length + (isDE ? ' Lektionen' : ' lessons') +
+          (sumEffort(LG) > 0 ? ' · ~' + formatHours(sumEffort(LG)) + (isDE ? ' Lernaufwand' : ' learning effort') : '')
+        )
+      ),
+      el('button', {
+        style: 'padding:6px 12px; font-size:12px; border-radius:6px; border:1px solid #d4d4d8; background:white; cursor:pointer; color:#3f3f46; flex-shrink:0;',
+        onClick: () => go('picker')
+      }, isDE ? '← Curriculum wechseln' : '← Change curriculum')
+    ),
+
+    el('h3', {}, isDE ? 'Bewertungsskala (1–' + maxVal + ')' : 'Rating scale (1–' + maxVal + ')'),
+    el('div', {class: 'scale-rows'},
+      ...SCALE.map(s => el('div', {class: 'scale-row'},
+        el('div', {class: 'n'}, String(s.value)),
+        el('div', {html: '<strong>' + (s.full || s.short) + '</strong>'})
+      ))
+    ),
+
+    el('p', {style: 'margin-top:16px; font-size:13px; color:#6b6b70;'}, isDE
+      ? 'Tipp: Tasten 1–' + maxVal + ' bewerten und springen automatisch weiter. ← / → navigieren zwischen Themen.'
+      : 'Tip: Press 1–' + maxVal + ' to rate and auto-advance. ← / → navigate between topics.'),
+
+    el('h3', {}, isDE ? 'Relevanz-Level' : 'Relevance levels'),
+    el('div', {class: 'level-rows'},
+      ...currentCurriculum.levels.map(l => el('div', {class: 'level-row ' + levelRowClass(l.code)},
+        el('div', {html: '<strong>' + l.code + '</strong>'}),
+        el('div', {}, (l.label || '') + (l.expected !== undefined ? (isDE ? ' — Ziel ist Skala ≥' : ' — target ≥') + l.expected : ''))
+      ))
+    ),
+
+    el('div', {class: 'nav'},
+      el('div'),
+      el('div', {class: 'right-group'},
+        hasProgress ? el('button', {onClick: resetRatings}, isDE ? 'Bewertungen zurücksetzen' : 'Reset ratings') : null,
+        hasProgress && answered === LG.length
+          ? el('button', {class: 'primary', onClick: () => go('summary')}, isDE ? 'Auswertung →' : 'Results →')
+          : el('button', {class: 'primary', onClick: () => go('lg', state.index || 0)},
+              hasProgress ? ((isDE ? 'Weiter (' : 'Continue (') + answered + '/' + LG.length + ')') : (isDE ? 'Starten' : 'Start')
+            )
+      )
+    )
+  );
+}
+
+/* =============================================================
+   RENDERING — LEARNING GOAL
+   ============================================================= */
+function renderLG() {
+  const lg = LG[state.index];
+  const current = state.ratings[lg.id];
+  const answered = Object.keys(state.ratings).length;
+  const pct = Math.round(((state.index) / LG.length) * 100);
+  const isDE = currentCurriculum.meta.language === 'de';
+
+  const topbar = el('div', {class: 'topbar'},
+    el('div', {},
+      el('h1', {}, currentCurriculum.meta.name),
+      el('div', {class: 'sub'}, (isDE ? 'Lektion ' : 'Lesson ') + lg.lesson + ' · ' + lg.lessonTitle)
+    ),
+    el('div', {class: 'counter'}, (state.index + 1) + (isDE ? ' von ' : ' of ') + LG.length + ' · ' + answered + (isDE ? ' bewertet' : ' rated'))
+  );
+
+  const progress = el('div', {class: 'progress'},
+    el('div', {style: 'width:' + pct + '%'})
+  );
+
+  const card = el('div', {class: 'card'},
+    el('div', {class: 'meta'},
+      el('span', {class: 'badge ' + levelBadgeClass(lg.level)}, lg.level),
+      el('span', {}, lg.id),
+      lg.effortHours != null ? el('span', {class: 'badge badge-hours'}, '~' + formatHours(lg.effortHours)) : null
+    ),
+    el('h2', {}, lg.title),
+    el('p', {class: 'desc'}, lg.desc),
+    lg.topics && lg.topics.length > 0 ? el('div', {class: 'topics'},
+      el('ul', {}, ...lg.topics.map(t => el('li', {}, t)))
+    ) : null,
+    lg.example ? el('details', {
+      class: 'example',
+      open: !!state.exampleOpen[lg.id],
+      onToggle: (e) => { state.exampleOpen[lg.id] = e.target.open; }
+    },
+      el('summary', {}, isDE ? 'Konkretes Beispiel' : 'Concrete example'),
+      el('div', {class: 'example-body'}, lg.example)
+    ) : null,
+    el('div', {class: 'rating-label'}, isDE ? 'Wie schätzt du dich hier ein?' : 'How do you rate yourself here?'),
+    el('div', {class: 'rating'},
+      ...SCALE.map(s => el('button', {
+        class: current === s.value ? 'selected' : '',
+        onClick: () => setRating(lg.id, s.value)
+      },
+        el('span', {class: 'num'}, String(s.value)),
+        el('span', {}, s.short)
+      ))
+    ),
+    el('div', {class: 'nav'},
+      el('button', {
+        onClick: () => { if (state.index === 0) go('intro'); else go('lg', state.index - 1); }
+      }, state.index === 0 ? (isDE ? 'Zurück' : 'Back') : '← ' + (isDE ? 'Vorheriges' : 'Previous')),
+      el('div', {class: 'right-group'},
+        state.index === LG.length - 1
+          ? el('button', {class: 'primary', disabled: current === undefined, onClick: () => go('summary')}, (isDE ? 'Auswertung' : 'Results') + ' →')
+          : el('button', {class: 'primary', disabled: current === undefined, onClick: () => go('lg', state.index + 1)}, (isDE ? 'Weiter' : 'Next') + ' →')
+      )
+    )
+  );
+
+  return el('div', {}, topbar, progress, card);
+}
+
+/* =============================================================
+   RENDERING — SUMMARY
+   ============================================================= */
+function renderSummary() {
+  const answered = Object.entries(state.ratings);
+  const total = answered.length;
+  const avg = total > 0 ? (answered.reduce((s, [, v]) => s + v, 0) / total).toFixed(1) : '—';
+  const gaps = LG.filter(lg => state.ratings[lg.id] !== undefined && state.ratings[lg.id] < EXPECTED[lg.level]);
+  const strengths = LG.filter(lg => state.ratings[lg.id] !== undefined && state.ratings[lg.id] >= 4);
+  const isDE = currentCurriculum.meta.language === 'de';
+
+  const lessons = {};
+  LG.forEach(lg => {
+    if (!lessons[lg.lesson]) lessons[lg.lesson] = {title: lg.lessonTitle, ratings: [], expected: []};
+    if (state.ratings[lg.id] !== undefined) {
+      lessons[lg.lesson].ratings.push(state.ratings[lg.id]);
+      lessons[lg.lesson].expected.push(EXPECTED[lg.level]);
+    }
+  });
+
+  const maxVal = Math.max(...SCALE.map(s => s.value));
+
+  const topbar = el('div', {class: 'topbar'},
+    el('div', {},
+      el('h1', {}, isDE ? 'Auswertung' : 'Results'),
+      el('div', {class: 'sub'}, currentCurriculum.meta.name)
+    ),
+    el('div', {class: 'counter'}, total + '/' + LG.length + (isDE ? ' bewertet' : ' rated'))
+  );
+
+  const gapHours = gaps.reduce((s, lg) => s + (lg.effortHours || 0), 0);
+  const totalHours = sumEffort(LG);
+
+  const statsEl = el('div', {class: 'stats stats-4'},
+    el('div', {class: 'stat'},
+      el('div', {class: 'stat-value'}, String(avg)),
+      el('div', {class: 'stat-label'}, 'Ø ' + (isDE ? 'Bewertung' : 'Rating'))
+    ),
+    el('div', {class: 'stat'},
+      el('div', {class: 'stat-value green'}, String(strengths.length)),
+      el('div', {class: 'stat-label'}, isDE ? 'Stärken (≥4)' : 'Strengths (≥4)')
+    ),
+    el('div', {class: 'stat'},
+      el('div', {class: 'stat-value red'}, String(gaps.length)),
+      el('div', {class: 'stat-label'}, isDE ? 'Gaps ggü. R-Level' : 'Gaps vs. R-level')
+    ),
+    totalHours > 0 ? el('div', {class: 'stat'},
+      el('div', {class: 'stat-value red'}, '~' + formatHours(gapHours)),
+      el('div', {class: 'stat-label'}, isDE ? 'Aufwand für Lücken' : 'Effort for gaps')
+    ) : null
+  );
+
+  const lessonBars = el('div', {},
+    el('h3', {style: 'font-size:15px; margin:6px 0 14px; color:#18181b;'}, isDE ? 'Pro Lektion' : 'Per lesson'),
+    ...Object.keys(lessons).sort((a, b) => Number(a) - Number(b)).map(num => {
+      const data = lessons[num];
+      if (data.ratings.length === 0) {
+        return el('div', {class: 'lesson-bar'},
+          el('div', {class: 'lesson-bar-head'},
+            el('span', {class: 'name'}, (isDE ? 'Lektion ' : 'Lesson ') + num + ' — ' + data.title),
+            el('span', {class: 'val'}, isDE ? 'keine Bewertungen' : 'no ratings')
+          ),
+          el('div', {class: 'lesson-bar-track'})
+        );
+      }
+      const a = data.ratings.reduce((s, v) => s + v, 0) / data.ratings.length;
+      const exp = data.expected.reduce((s, v) => s + v, 0) / data.expected.length;
+      return el('div', {class: 'lesson-bar'},
+        el('div', {class: 'lesson-bar-head'},
+          el('span', {class: 'name'}, (isDE ? 'Lektion ' : 'Lesson ') + num + ' — ' + data.title),
+          el('span', {class: 'val'}, 'Ø ' + a.toFixed(1) + ' (' + (isDE ? 'erwartet ' : 'expected ') + exp.toFixed(1) + ')')
+        ),
+        el('div', {class: 'lesson-bar-track'},
+          el('div', {class: 'lesson-bar-fill', style: 'width:' + (a / maxVal * 100) + '%'}),
+          el('div', {class: 'lesson-bar-expected', style: 'left:' + (exp / maxVal * 100) + '%', title: isDE ? 'Erwartetes Level' : 'Expected level'})
+        )
+      );
+    })
+  );
+
+  const gapsEl = gaps.length > 0 ? el('div', {class: 'gap-section'},
+    el('h3', {}, isDE ? 'Entwicklungsfelder (unter erwartetem Level)' : 'Development areas (below expected level)'),
+    ...gaps
+      .sort((a, b) => (state.ratings[a.id] - EXPECTED[a.level]) - (state.ratings[b.id] - EXPECTED[b.level]))
+      .map(lg => el('div', {class: 'gap-item'},
+        el('div', {},
+          el('span', {class: 'g-id'}, lg.id),
+          el('span', {class: 'g-title'}, lg.title)
+        ),
+        el('div', {class: 'g-meta'},
+          'Level ' + lg.level + ' (' + (isDE ? 'erwartet' : 'expected') + ' ≥' + EXPECTED[lg.level] + ') · ' +
+          (isDE ? 'aktuell: ' : 'current: ') + state.ratings[lg.id] +
+          (lg.effortHours != null ? ' · ~' + formatHours(lg.effortHours) : '')
+        )
+      ))
+  ) : null;
+
+  const strengthsEl = strengths.length > 0 ? el('div', {class: 'gap-section'},
+    el('h3', {}, isDE ? 'Stärken (≥4)' : 'Strengths (≥4)'),
+    ...strengths.map(lg => el('div', {class: 'strong-item'},
+      el('span', {class: 'g-id'}, lg.id),
+      el('span', {class: 'g-title'}, lg.title)
+    ))
+  ) : null;
+
+  const card = el('div', {class: 'card summary'},
+    el('h2', {}, isDE ? 'Deine Auswertung' : 'Your results'),
+    el('p', {class: 'lead'}, total < LG.length
+      ? (isDE ? 'Noch ' : 'Still ') + (LG.length - total) + (isDE ? ' Themen offen.' : ' topics open.')
+      : (isDE ? 'Alle ' + LG.length + ' Learning Goals bewertet.' : 'All ' + LG.length + ' learning goals rated.')),
+    statsEl,
+    lessonBars,
+    gapsEl,
+    strengthsEl,
+
+    el('div', {class: 'report-actions'},
+      el('button', {onClick: downloadMarkdownReport}, isDE ? 'Markdown-Report herunterladen' : 'Download Markdown report'),
+      el('button', {class: 'secondary', onClick: copyMarkdownReport}, isDE ? 'In Zwischenablage kopieren' : 'Copy to clipboard')
+    ),
+
+    el('div', {class: 'nav'},
+      el('button', {onClick: () => go('lg', 0)}, '← ' + (isDE ? 'Zurück zu den Themen' : 'Back to topics')),
+      el('div', {class: 'right-group'},
+        el('button', {onClick: () => go('picker')}, isDE ? 'Curriculum wechseln' : 'Change curriculum'),
+        el('button', {onClick: resetRatings}, isDE ? 'Bewertungen zurücksetzen' : 'Reset ratings')
+      )
+    ),
+    el('div', {class: 'footnote'}, currentCurriculum.meta.name + (currentCurriculum.meta.version ? ' ' + currentCurriculum.meta.version : '') + ' · Self-Assessment')
+  );
+
+  return el('div', {}, topbar, card);
+}
+
+/* =============================================================
+   RENDER DISPATCHER
+   ============================================================= */
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  let content;
+  if (state.view === 'picker' || !currentCurriculum) content = renderPicker();
+  else if (state.view === 'intro') content = renderIntro();
+  else if (state.view === 'lg') content = renderLG();
+  else content = renderSummary();
+  app.appendChild(content);
+  window.scrollTo(0, 0);
+}
+
+/* =============================================================
+   KEYBOARD SHORTCUTS (LG view only)
+   ============================================================= */
+function handleKeydown(e) {
+  if (state.view !== 'lg') return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+
+  const n = parseInt(e.key, 10);
+  if (!isNaN(n) && n >= 1 && n <= SCALE.length) {
+    e.preventDefault();
+    const lg = LG[state.index];
+    const value = SCALE[n - 1].value;
+    state.ratings[lg.id] = value;
+    save();
+
+    const buttons = document.querySelectorAll('.rating button');
+    const btn = buttons[n - 1];
+    if (btn) {
+      buttons.forEach(b => b.classList.remove('selected', 'flash'));
+      btn.classList.add('selected', 'flash');
+    }
+
+    const targetIndex = state.index;
+    setTimeout(() => {
+      if (state.view !== 'lg' || state.index !== targetIndex) return;
+      if (state.index < LG.length - 1) go('lg', state.index + 1);
+      else go('summary');
+    }, 100);
+    return;
+  }
+
+  if (e.key === 'ArrowRight') {
+    const lg = LG[state.index];
+    if (state.ratings[lg.id] === undefined) return;
+    e.preventDefault();
+    if (state.index < LG.length - 1) go('lg', state.index + 1);
+    else go('summary');
+  } else if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (state.index === 0) go('intro');
+    else go('lg', state.index - 1);
+  }
+}
+
+/* =============================================================
+   INIT
+   ============================================================= */
+document.addEventListener('keydown', handleKeydown);
+load();
+</script>
+</body>
+</html>

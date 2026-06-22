@@ -1,0 +1,295 @@
+{
+  "schema": "curriculum-assessment/1",
+  "meta": {
+    "name": "Agentic Software Modernization — Advanced",
+    "version": "1.0-EN",
+    "source": "https://github.com/feststelltaste/asm-glossary",
+    "language": "en",
+    "description": "Advanced course building on the core Agentic Software Modernization curriculum. Covers advanced patterns, anti-patterns, retrieval and context infrastructure, and workflow and operational scaling — topics not needed in every modernization effort, but important for larger initiatives or when establishing agentic operations at scale. Assumes familiarity with the core curriculum."
+  },
+  "scale": [
+    { "value": 1, "short": "Unknown", "full": "Never heard of it" },
+    { "value": 2, "short": "Aware", "full": "Basic idea clear" },
+    { "value": 3, "short": "Understand", "full": "Can explain" },
+    { "value": 4, "short": "Apply", "full": "Can apply" },
+    { "value": 5, "short": "Teach", "full": "Can teach" }
+  ],
+  "levels": [
+    { "code": "R1", "label": "Can Apply", "expected": 4, "description": "Able to apply, evaluate, and adapt autonomously in real modernization situations" },
+    { "code": "R2", "label": "Understand", "expected": 3, "description": "Able to explain relationships, mechanics, and tradeoffs" },
+    { "code": "R3", "label": "Know", "expected": 2, "description": "Able to name and place terms and concepts in context" }
+  ],
+  "lessons": [
+    {
+      "number": 1,
+      "title": "Advanced Patterns and Anti-Patterns",
+      "goals": [
+        {
+          "id": "LG 1-1",
+          "level": "R3",
+          "effortHours": 0.5,
+          "title": "Recognize and name vibe coding as an anti-pattern",
+          "description": "The unplanned \"something-with-agents\" approach that feels good and scales poorly. You need to be able to name it in order to push back — especially in teams just starting out with agents.",
+          "topics": [
+            "Missing definition of done",
+            "No terminological discipline",
+            "No abort criteria",
+            "Symptom: \"just do it\" prompts without acceptance criteria"
+          ],
+          "example": "\"Just modernize the backend.\" The agent changes imports, installs packages, writes new files. After two hours nothing runs and nobody can tell what happened. The answer is not \"better agent\" but disciplined task definition."
+        },
+        {
+          "id": "LG 1-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Use the horseshoe model as an orientation framework",
+          "description": "Visual orientation between pure refactoring and complete rewrite. Helps in strategic discussions that without this model derail into \"refactoring vs. rebuild\".",
+          "topics": [
+            "Reverse engineering upward",
+            "Forward engineering downward",
+            "Abstraction level as a third dimension"
+          ],
+          "example": "Team discusses: \"Refactoring is not enough, but a rewrite is too risky.\" The horseshoe model shows: move up one level (extract the domain model), restructure there, then go back down to code. That is re-architecting — between the two extremes."
+        },
+        {
+          "id": "LG 1-3",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Structure a modernization handbook as the leading artifact",
+          "description": "The document in which a modernization initiative records its strategic decisions. Distinguished from the runbook (operational guidance for day-to-day runs) and the spec (technical acceptance criteria per task).",
+          "topics": [
+            "Target vision and scope",
+            "Strategy choice with rationale against rejected alternatives",
+            "Milestone plan, risks, ADRs",
+            "Distinction from runbook (operational) and spec (technical)"
+          ],
+          "example": "A 10-page document with target vision, scope, strategy (with rationale against alternatives), milestones, risks, and ADRs. Consulted at every steering committee meeting. The runbook and spec are separate artifacts with different scope."
+        },
+        {
+          "id": "LG 1-4",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Distinguish clean-room reimplementation from a classic rewrite",
+          "description": "Clean-room is a deliberate, regulated variant of the rewrite — not the classic \"just write it again\". The distinction matters because clean-room carries its own risks.",
+          "topics": [
+            "Clean-room: specification, strictly not looking at the original",
+            "Classic rewrite: done with reference to the old code",
+            "License and IP considerations",
+            "Risk of the double dead-end"
+          ],
+          "example": "Team reimplements a parser in clean-room style without reading the original code. Advantage: no IP risks, clear spec. Disadvantage: 17 edge cases the original handled correctly are not documented — they are lost. A classic rewrite would have carried them over."
+        },
+        {
+          "id": "LG 1-5",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Distinguish idiomatic transpilation from a mere language switch",
+          "description": "A language switch alone is not modernization. Idiomatic means the target language is actually used in the target-language way — streams, Optional, exception hierarchies instead of a 1:1 translation.",
+          "topics": [
+            "Direct transpilation (syntax 1:1)",
+            "Idiomatic transpilation (patterns and idioms of the target language)",
+            "Difference in effort",
+            "Role of agents in both variants"
+          ],
+          "example": "COBOL function translated directly to Java: 1000 lines, no exceptions, no collections. Idiomatic version: 200 lines, streams, Optional, clean exception hierarchy. The difference determines whether the result is maintainable or merely formally translated."
+        },
+        {
+          "id": "LG 1-6",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Identify dark code and neutralize it before agent work",
+          "description": "Code that exists but is not used or not understood. Doubly dangerous because it misleads agents: they find patterns in it and reproduce them.",
+          "topics": [
+            "Unused code (dead code)",
+            "Code without intelligible intent",
+            "Detection via call graph and coverage",
+            "Marking or removal before agent deployment"
+          ],
+          "example": "An 800-line module `LegacyMigrationHelper` is part of the build but has not been called in 4 years. The agent finds patterns in it and reproduces them — with toxic consequences. Dark code must be identified, marked, or removed before agentic work begins."
+        },
+        {
+          "id": "LG 1-7",
+          "level": "R2",
+          "effortHours": 0.5,
+          "title": "Anchor drift detection in CI",
+          "description": "Where does the new version deviate from legacy behavior? Captured automatically before a human reviews — the equivalent of a golden master, but running continuously in the pipeline.",
+          "topics": [
+            "Output diff against a frozen baseline snapshot",
+            "Schema drift detection for APIs and data contracts",
+            "Performance regression thresholds",
+            "Automated integration in CI — break on deviation, not just on test failure"
+          ],
+          "example": "After every agent commit a diff check runs against a baseline of 500 representative calls. Deviations greater than 1% break the build. Agents are not blocked, but the system automatically catches unexpected behavior changes."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Retrieval and Context Infrastructure",
+      "goals": [
+        {
+          "id": "LG 2-1",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Separate context engineering from prompt engineering",
+          "description": "Two related but distinct disciplines. Context engineering is strategic (lifecycle, selection); prompt engineering is tactical (wording). Conflating them means optimizing the wrong lever.",
+          "topics": [
+            "Prompt: wording of a single instruction",
+            "Context: selection, maintenance, lifecycle of context building blocks",
+            "Interplay between the two",
+            "Common mistake: prompt tuning where a context strategy is missing"
+          ],
+          "example": "Prompt engineering: \"Phrase the task so it is unambiguous.\" Context engineering: \"Which artifacts do all agents of this type need, which are loaded per session, which expire after a week?\" Without the second, the first becomes squirrel optimization."
+        },
+        {
+          "id": "LG 2-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Place MCP as a tool-connectivity standard",
+          "description": "The Model Context Protocol standardizes how agents communicate with tools. It reduces integration effort, increases reusability, and shifts governance to a central point.",
+          "topics": [
+            "MCP as a protocol, not a tool",
+            "Standardization of tool definitions",
+            "Governance effect: logs, limits, permissions centralized",
+            "Limits of the standard"
+          ],
+          "example": "Three different agents need access to the internal documentation API. Without MCP: three integrations. With MCP: one server, three clients. Side effect: the server becomes the accountability point — logs, rate limits, and permissions in one place instead of three codebases."
+        },
+        {
+          "id": "LG 2-3",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Apply RAG and embeddings purposefully for modernization",
+          "description": "Pull relevant context on demand rather than keeping it permanently in the context window. Powerful — but for code, vector similarity is no substitute for structural retrieval via call graphs.",
+          "topics": [
+            "Retrieval pipeline: embedding, chunking, re-ranking",
+            "Embedding quality and chunk sizing",
+            "Limits with code: structure beats similarity",
+            "Combination: vector + graph + full-text"
+          ],
+          "example": "50,000 files of legacy code. RAG fetches the relevant 20 chunks per query. That works — but for code, structure is often more important than similarity, so it is supplemented by call-graph retrieval. Vectors alone rarely suffice for code."
+        },
+        {
+          "id": "LG 2-4",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Design a retrieval architecture for a modernization initiative",
+          "description": "The transfer: how do agents in a real initiative get the information they need — and nothing beyond that.",
+          "topics": [
+            "Selecting retrieval mechanisms by task type",
+            "Interplay of vector, graph, and full-text",
+            "Access governance",
+            "Measuring retrieval quality"
+          ],
+          "example": "Migration initiative with 40 services. Decision: full-text via `ripgrep` for known symbols, embeddings for domain search, call-graph retrieval for refactoring tasks. All three behind one MCP server, logs centralized. Metric: share of agent tasks satisfied by the first retrieval response."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Workflow Infrastructure and Operational Scaling",
+      "goals": [
+        {
+          "id": "LG 3-1",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Apply harness engineering and intent engineering as distinct disciplines",
+          "description": "Two complementary disciplines: harness builds the cage, intent formulates the assignment. Conflating them leads to misdiagnosed failures and fixes at the wrong end.",
+          "topics": [
+            "Harness: tools, scripts, guardrails, feedback infrastructure",
+            "Intent: task formulation, scope, acceptance criteria",
+            "Common mistakes on both sides",
+            "Iterative tuning: where to start"
+          ],
+          "example": "Agent fails. Harness problem: the test run fails before the agent gets any feedback at all. Intent problem: the task was \"make it better\" — without a criterion every solution is correct and none is acceptable. Two different failures, two different fixes. The order: make the harness solid first, then sharpen the intent."
+        },
+        {
+          "id": "LG 3-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Use commands, skills, and hooks as automation building blocks",
+          "description": "Reusable building blocks for agent work — the equivalent of libraries in classical programming. Without these mechanisms everyone reinvents everything.",
+          "topics": [
+            "Slash commands",
+            "Skills as thematic capabilities",
+            "Hooks in tool cycles",
+            "Governance of reuse (review, versioning, deprecation)"
+          ],
+          "example": "Team establishes skill `add-migration` with a fixed sequence (adjust schema, generate migration, run tests, update docs). Every agent on the team can call it — quality becomes reproducible. Without these mechanisms everyone builds their own half-baked workflow."
+        },
+        {
+          "id": "LG 3-3",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Distinguish single agent, subagent, and agent team",
+          "description": "Three scaling levels with different coordination costs. Conflating them leads to unnecessary complexity or overloaded single agents.",
+          "topics": [
+            "Single agent for self-contained tasks",
+            "Subagent for delegated subtasks",
+            "Team for parallel, coordinated work",
+            "Coordination cost as a decision criterion"
+          ],
+          "example": "Increasing test coverage — a single agent is enough. Modernizing a complete module — several subagents (analysis, refactoring, test augmentation) under one coordinator. A team with independent roles only pays off when coordination itself becomes the bottleneck."
+        },
+        {
+          "id": "LG 3-4",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Tell apart workflow framework, orchestration, and runbook",
+          "description": "Three artifact classes with different scope: the framework defines the solution space, orchestration chains steps together, the runbook guides the operational run. Three audiences, three lifecycles.",
+          "topics": [
+            "Framework: rules and primitives",
+            "Orchestration: concrete chaining of steps",
+            "Runbook: operational instructions for the operator",
+            "Distinction from modernization handbook and spec"
+          ],
+          "example": "Framework specifies: every agent has a human-in-the-loop checkpoint after tool call X. Orchestration for nightly refactoring: agent A → B → C with checks in between. Runbook for the operator: \"If orchestration fails 3 times, follow escalation path D.\" Three artifacts, three audiences."
+        },
+        {
+          "id": "LG 3-5",
+          "level": "R2",
+          "effortHours": 0.5,
+          "title": "Place the dark factory as a target vision and name its limits",
+          "description": "Fully automated work pipelines as a vision. Realistic for certain modernization types (replatform, dependency bumps), unrealistic for judgment work (re-architect, domain decisions).",
+          "topics": [
+            "Dark factory as a metaphor",
+            "Prerequisites: standardization, monitoring, clear spec",
+            "Limits: judgment decisions, domain knowledge",
+            "Risk of overextension"
+          ],
+          "example": "The dark factory works for upgrading 1,000 dependencies to a new major version. It does not work for reorganizing a domain. Applying the metaphor to all modernization tasks builds invisible debt in the name of automation."
+        },
+        {
+          "id": "LG 3-6",
+          "level": "R1",
+          "effortHours": 1.5,
+          "title": "Justify the autonomy-control balance situationally",
+          "description": "The reasoning behind the balance, not just the design of a specific framework. Where core lesson 6 asks 'how tight should this control framework be for this task', this goal asks 'why does the right answer change — and how do you develop the judgment to know when to shift it'.",
+          "topics": [
+            "Task maturity",
+            "Team maturity",
+            "Cost of failure",
+            "Reliability of feedback",
+            "Shifting the balance over time"
+          ],
+          "example": "Experienced team, repeated task, good tests: more autonomy pays off. New team, unfamiliar codebase, weak tests: autonomy is expensive. The balance shifts — less autonomy today, more in 6 months once structures and monitoring are in place."
+        },
+        {
+          "id": "LG 3-7",
+          "level": "R1",
+          "effortHours": 2.5,
+          "title": "Design an entry-level architecture for recurring agentic modernization tasks",
+          "description": "The organizational transfer: how does an organization move agentic modernization from isolated experiments into regular operations without over-building.",
+          "topics": [
+            "Minimal set of commands and skills",
+            "MCP server for shared resources",
+            "Monitoring and auditability",
+            "Governance: who may do what",
+            "Iterative expansion rather than over-engineering"
+          ],
+          "example": "Start with 3 skills (`add-tests`, `bump-dependency`, `extract-module`), 1 MCP server (repository access), centralized logging, and a clear human-in-the-loop rule. After 3 months assess what worked and expand from there — do not over-dimension upfront. The first architecture must hold, not shine."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "schema": "curriculum-assessment/1",
+  "meta": {
+    "name": "Agentic Software Modernization — Advanced",
+    "version": "1.0-DE",
+    "source": "https://github.com/feststelltaste/asm-glossary",
+    "language": "de",
+    "description": "Aufbaukurs zum Kern-Curriculum „Agentic Software Modernization\". Behandelt fortgeschrittene Muster, Antimuster, Retrieval- und Kontext-Infrastruktur sowie Workflow- und Betriebsskalierung — die Themen, die nicht in jedem Modernisierungsvorhaben gebraucht werden, aber bei größeren Initiativen oder beim Aufbau eines agentischen Regelbetriebs wichtig werden. Setzt das Kern-Curriculum inhaltlich voraus."
+  },
+  "scale": [
+    { "value": 1, "short": "Unbekannt", "full": "Noch nie gehört" },
+    { "value": 2, "short": "Grundidee", "full": "Grundidee klar" },
+    { "value": 3, "short": "Verstehe", "full": "Kann erklären" },
+    { "value": 4, "short": "Anwenden", "full": "Kann anwenden" },
+    { "value": 5, "short": "Lehren", "full": "Kann lehren" }
+  ],
+  "levels": [
+    { "code": "R1", "label": "Anwenden können", "expected": 4, "description": "Autonom in realen Modernisierungssituationen anwenden, beurteilen und anpassen können" },
+    { "code": "R2", "label": "Verstehen", "expected": 3, "description": "Zusammenhänge, Mechanik und Tradeoffs erklären können" },
+    { "code": "R3", "label": "Kennen", "expected": 2, "description": "Begriffe und Konzepte benennen und einordnen können" }
+  ],
+  "lessons": [
+    {
+      "number": 1,
+      "title": "Fortgeschrittene Muster und Antimuster",
+      "goals": [
+        {
+          "id": "LG 1-1",
+          "level": "R3",
+          "effortHours": 0.5,
+          "title": "Vibe Coding als Antimuster erkennen und benennen",
+          "description": "Das ungeplante „irgendwas-mit-Agent\", das sich gut anfühlt und schlecht skaliert. Muss man benennen können, um dagegenzuhalten — besonders in Teams, die gerade mit Agenten anfangen.",
+          "topics": [
+            "Fehlende Definition of Done",
+            "Keine Begriffsdisziplin",
+            "Keine Abbruchkriterien",
+            "Symptom: „Mach mal\"-Prompts ohne Akzeptanzkriterien"
+          ],
+          "example": "„Mach mal das Backend modern.\" Agent ändert Imports, installiert Packages, schreibt neue Dateien. Nach zwei Stunden läuft nichts mehr, niemand kann nachvollziehen, was passiert ist. Die Antwort darauf ist nicht „besserer Agent\", sondern disziplinierte Aufgabenstellung."
+        },
+        {
+          "id": "LG 1-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Hufeisen-Modell als Orientierungsrahmen einsetzen",
+          "description": "Visuelle Orientierung zwischen reinem Refactoring und komplettem Rewrite. Hilft bei strategischen Diskussionen, die ohne dieses Modell in „Refactoring vs. Neubau\" entgleisen.",
+          "topics": [
+            "Reverse Engineering aufwärts",
+            "Forward Engineering abwärts",
+            "Abstraktionsebene als dritte Dimension"
+          ],
+          "example": "Team diskutiert: „Refactoring reicht nicht, aber Rewrite zu riskant.\" Hufeisen zeigt: ein Level hochgehen (Domänenmodell extrahieren), dort umgestalten, dann runter in Code. Das ist Re-Architecting — zwischen den beiden Extremen."
+        },
+        {
+          "id": "LG 1-3",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Modernisierungshandbuch als führendes Artefakt strukturieren",
+          "description": "Das Dokument, in dem ein Modernisierungsvorhaben seine strategischen Entscheidungen ablegt. Abgrenzung gegen das Runbook (operative Anleitung für den laufenden Betrieb) und die Spec (technische Akzeptanzkriterien je Aufgabe).",
+          "topics": [
+            "Zielbild und Scope",
+            "Strategiewahl mit Begründung gegen verworfene Alternativen",
+            "Meilensteinplan, Risiken, ADRs",
+            "Abgrenzung gegen Runbook (operativ) und Spec (technisch)"
+          ],
+          "example": "10-Seiten-Dokument mit Zielbild, Scope, Strategie (mit Begründung gegen die Alternativen), Meilensteinen, Risiken und ADRs. Wird in jedem Lenkungskreis konsultiert. Runbook und Spec sind andere Artefakte mit anderem Scope."
+        },
+        {
+          "id": "LG 1-4",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Reinraum-Reimplementierung gegen klassischen Rewrite abgrenzen",
+          "description": "Reinraum ist eine bewusste, regulierte Variante des Rewrites — nicht das klassische „schreib es einfach neu\". Abgrenzung ist wichtig, weil Reinraum eigene Risiken hat.",
+          "topics": [
+            "Reinraum: Spezifikation, striktes Nicht-Anschauen des Originals",
+            "Klassischer Rewrite: mit Blick auf das Alte",
+            "Lizenz- und IP-Aspekte",
+            "Gefahr des doppelten Irrwegs"
+          ],
+          "example": "Team reimplementiert einen Parser im Reinraum, ohne den Original-Code zu lesen. Vorteil: keine IP-Risiken, klare Spec. Nachteil: 17 Edge-Cases, die das Original richtig machte, sind nicht dokumentiert — sie gehen verloren. Klassischer Rewrite hätte sie mitgenommen."
+        },
+        {
+          "id": "LG 1-5",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Idiomatische Transpilation vom bloßen Sprachwechsel abgrenzen",
+          "description": "Sprachwechsel allein ist keine Modernisierung. Idiomatisch bedeutet: Zielsprache wird auch zielsprachlich benutzt — Streams, Optional, Exception-Hierarchien statt 1:1-Übersetzung.",
+          "topics": [
+            "Direkte Transpilation (Syntax 1:1)",
+            "Idiomatische Transpilation (Muster und Idiome der Zielsprache)",
+            "Aufwandsunterschied",
+            "Rolle von Agenten in beiden Varianten"
+          ],
+          "example": "COBOL-Funktion direkt in Java übersetzt: 1000 Zeilen, keine Exceptions, keine Collections. Idiomatische Version: 200 Zeilen, Streams, Optional, saubere Exception-Hierarchie. Der Unterschied entscheidet, ob das Ergebnis wartbar ist oder nur formal übersetzt."
+        },
+        {
+          "id": "LG 1-6",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Dark Code erkennen und vor Agentenarbeit unschädlich machen",
+          "description": "Code, der existiert, aber nicht verwendet oder nicht verstanden wird. Doppelt gefährlich, weil er Agenten in die Irre führt: sie finden Muster darin und reproduzieren sie.",
+          "topics": [
+            "Ungenutzter Code (dead code)",
+            "Code ohne verständliche Absicht",
+            "Detektion über Call-Graph und Coverage",
+            "Markierung oder Entfernung vor Agenteneinsatz"
+          ],
+          "example": "800-Zeilen-Modul `LegacyMigrationHelper` ist Teil des Builds, wird seit 4 Jahren nicht aufgerufen. Agent findet darin Muster und reproduziert sie — mit toxischen Folgen. Dark Code muss vor agentischer Arbeit identifiziert, markiert oder entfernt werden."
+        },
+        {
+          "id": "LG 1-7",
+          "level": "R2",
+          "effortHours": 0.5,
+          "title": "Abweichungserkennung in CI verankern",
+          "description": "Was weicht die neue Version vom Altverhalten ab? Automatisiert erfasst, bevor ein Mensch reviewt — das Äquivalent zum Golden Master, aber laufend in der Pipeline.",
+          "topics": [
+            "Ausgabe-Diff gegen einen eingefrorenen Baseline-Snapshot",
+            "Schema-Abweichungserkennung für APIs und Datenkontrakte",
+            "Schwellenwerte für Performance-Regressionen",
+            "Automatisierte Integration in CI — bei Abweichung brechen, nicht nur bei Testfehler"
+          ],
+          "example": "Nach jedem Agenten-Commit läuft ein Diff-Check gegen eine Baseline von 500 typischen Aufrufen. Abweichungen > 1 % brechen den Build. Agenten sind nicht blockiert, aber das System fängt unerwartete Verhaltensänderungen automatisch."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Retrieval und Kontext-Infrastruktur",
+      "goals": [
+        {
+          "id": "LG 2-1",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Context Engineering von Prompt Engineering trennen",
+          "description": "Zwei verwandte, aber verschiedene Disziplinen. Context Engineering ist strategisch (Lebenszyklus, Auswahl), Prompt Engineering taktisch (Formulierung). Wer sie vermischt, optimiert am falschen Hebel.",
+          "topics": [
+            "Prompt: Formulierung einer einzelnen Aufforderung",
+            "Context: Auswahl, Pflege, Lebenszyklus von Kontextbausteinen",
+            "Zusammenspiel",
+            "Typische Fehler: Prompt-Tuning, wo Kontext-Strategie fehlt"
+          ],
+          "example": "Prompt Engineering: „Formuliere die Aufgabe so, dass sie eindeutig ist.\" Context Engineering: „Welche Artefakte brauchen alle Agenten dieser Art, welche werden pro Sitzung geladen, welche verfallen nach einer Woche?\" Ohne zweiteres wird ersteres zum Eichhörnchen-Optimieren."
+        },
+        {
+          "id": "LG 2-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "MCP als Werkzeuganbindungsstandard einordnen",
+          "description": "Model Context Protocol standardisiert, wie Agenten mit Werkzeugen sprechen. Reduziert Integrationsaufwand, erhöht Wiederverwendbarkeit und verschiebt Governance an einen zentralen Punkt.",
+          "topics": [
+            "MCP als Protokoll, nicht als Werkzeug",
+            "Standardisierung der Tool-Definition",
+            "Governance-Effekt: Logs, Limits, Berechtigungen zentral",
+            "Grenzen des Standards"
+          ],
+          "example": "Drei verschiedene Agenten brauchen Zugriff auf die interne Doku-API. Ohne MCP: drei Integrationen. Mit MCP: ein Server, drei Clients. Nebeneffekt: der Server wird zum Rechenschaftspunkt — Logs, Raten-Limits und Berechtigungen an einer Stelle statt in drei Codebasen."
+        },
+        {
+          "id": "LG 2-3",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "RAG und Embeddings für Modernisierung zweckgerecht einsetzen",
+          "description": "Relevanten Kontext bei Bedarf zuziehen statt permanent im Fenster halten. Mächtig — aber bei Code ist Vektorähnlichkeit kein Ersatz für strukturelles Retrieval über Call-Graphen.",
+          "topics": [
+            "Retrieval-Pipeline: Embedden, Chunking, Re-Ranking",
+            "Embedding-Qualität und Chunk-Zuschnitt",
+            "Grenzen bei Code: Struktur schlägt Ähnlichkeit",
+            "Kombination: Vektor + Graph + Volltext"
+          ],
+          "example": "50000 Dateien Legacy-Code. RAG holt pro Frage die relevanten 20 Chunks. Funktioniert — aber bei Code ist Struktur oft wichtiger als Ähnlichkeit, deshalb ergänzt durch Call-Graph-Retrieval. Vektoren allein reichen für Code selten."
+        },
+        {
+          "id": "LG 2-4",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Retrieval-Architektur für eine Modernisierungsinitiative entwerfen",
+          "description": "Der Transfer: wie kommen Agenten in einem realen Vorhaben an die Informationen, die sie brauchen — und nichts darüber hinaus.",
+          "topics": [
+            "Auswahl der Retrieval-Mechanismen nach Aufgabentyp",
+            "Zusammenspiel von Vektor, Graph, Volltext",
+            "Zugriffs-Governance",
+            "Messbarkeit der Retrieval-Qualität"
+          ],
+          "example": "Migrationsinitiative mit 40 Services. Entscheidung: Volltext über `ripgrep` für bekannte Symbole, Embeddings für Fach-/Domänensuche, Call-Graph-Retrieval für Refactoring-Aufgaben. Alle drei hinter einem MCP-Server, Logs zentral. Messgröße: Anteil der Agentenaufgaben, die mit der ersten Retrieval-Antwort auskommen."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Workflow-Infrastruktur und Betriebsskalierung",
+      "goals": [
+        {
+          "id": "LG 3-1",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Harness Engineering und Intent Engineering differenziert einsetzen",
+          "description": "Zwei komplementäre Disziplinen: Harness baut den Käfig, Intent formuliert den Auftrag. Wer sie verwechselt, diagnostiziert Fehler falsch und baut am falschen Ende.",
+          "topics": [
+            "Harness: Werkzeuge, Skripte, Leitplanken, Feedback-Infrastruktur",
+            "Intent: Aufgabenformulierung, Abgrenzung, Akzeptanzkriterien",
+            "Typische Fehler auf beiden Seiten",
+            "Iteratives Tuning: wo anfangen"
+          ],
+          "example": "Agent schlägt fehl. Harness-Problem: Testlauf scheitert, bevor der Agent überhaupt Feedback bekommt. Intent-Problem: Aufgabe war „mach es besser\" — ohne Kriterium ist jede Lösung richtig und keine akzeptabel. Zwei verschiedene Fehler, zwei verschiedene Fixes. Die Reihenfolge: erst Harness tragfähig, dann Intent schärfen."
+        },
+        {
+          "id": "LG 3-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Befehle, Skills und Hooks als Automatisierungsbausteine einsetzen",
+          "description": "Wiederverwendbare Bausteine für Agentenarbeit — das Äquivalent zu Bibliotheken in klassischer Programmierung. Ohne diese Mechanismen erfindet jeder alles neu.",
+          "topics": [
+            "Slash-Commands / Befehle",
+            "Skills als thematische Fähigkeiten",
+            "Hooks in Tool-Zyklen",
+            "Governance der Wiederverwendung (Review, Versionierung, Deprecation)"
+          ],
+          "example": "Team etabliert Skill `add-migration` mit festem Ablauf (Schema anpassen, Migration erzeugen, Test laufen lassen, Doku ergänzen). Jeder Agent im Team kann ihn aufrufen — Qualität wird reproduzierbar. Ohne diese Mechanismen baut jeder seinen eigenen halbguten Ablauf."
+        },
+        {
+          "id": "LG 3-3",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Einzelagent, Unteragent und Agententeam unterscheiden",
+          "description": "Drei Skalierungsstufen mit unterschiedlichen Koordinationskosten. Wer sie verwechselt, baut unnötige Komplexität oder überfordert einzelne Agenten.",
+          "topics": [
+            "Einzelagent für geschlossene Aufgaben",
+            "Unteragent für delegierte Teilaufgabe",
+            "Team für parallele, koordinierte Arbeit",
+            "Koordinationskosten als Entscheidungskriterium"
+          ],
+          "example": "Testabdeckung erhöhen — Einzelagent reicht. Komplettes Modul modernisieren — mehrere Unteragenten (Analyse, Refactoring, Test-Ergänzung) unter einer Koordination. Team mit eigenständigen Rollen lohnt sich erst, wenn die Koordination selbst zum Engpass wird."
+        },
+        {
+          "id": "LG 3-4",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Workflow-Framework, Orchestrierung und Runbook auseinanderhalten",
+          "description": "Drei Artefaktklassen mit unterschiedlichem Scope: Framework definiert das Möglichkeitsfeld, Orchestrierung verkettet Schritte, Runbook steuert den operativen Lauf. Drei Lesergruppen, drei Lebenszyklen.",
+          "topics": [
+            "Framework: Regeln und Primitive",
+            "Orchestrierung: konkrete Verkettung von Schritten",
+            "Runbook: operative Anweisung für den Betrieb",
+            "Abgrenzung gegen Modernisierungshandbuch und Spec"
+          ],
+          "example": "Framework legt fest: jeder Agent hat HITL nach Tool-Aufruf X. Orchestrierung für nächtliches Refactoring: Agent A → B → C mit Checks dazwischen. Runbook für Operator: „Wenn Orchestrierung 3× fehlschlägt, Eskalationspfad D\". Drei Artefakte, drei Lesergruppen."
+        },
+        {
+          "id": "LG 3-5",
+          "level": "R2",
+          "effortHours": 0.5,
+          "title": "Dark Factory als Zielbild einordnen und seine Grenzen benennen",
+          "description": "Vollautomatisierte Arbeitsstrecken als Vision. Realistisch für bestimmte Modernisierungstypen (Replatform, Dependency-Bumps), unrealistisch für Urteilsarbeit (Rearchitect, Domänenentscheidungen).",
+          "topics": [
+            "Dark Factory als Metapher",
+            "Voraussetzungen: Standardisierung, Monitoring, klare Spec",
+            "Grenzen: Urteilsentscheidungen, Domänenwissen",
+            "Risiko der Überdehnung"
+          ],
+          "example": "Dark Factory funktioniert für 1000 Abhängigkeiten auf neue Major-Version zu heben. Funktioniert nicht für die Neuordnung einer Domäne. Wer die Metapher auf alle Modernisierungsaufgaben anwendet, baut unsichtbare Schulden im Namen der Automatisierung."
+        },
+        {
+          "id": "LG 3-6",
+          "level": "R1",
+          "effortHours": 1.5,
+          "title": "Autonomie-Kontrolle-Balance situativ begründen",
+          "description": "Die Begründung hinter der Balance, nicht nur der Entwurf eines konkreten Rahmens. Wo Kernlektion 6 fragt 'wie eng muss dieser Kontrollrahmen für diese Aufgabe sein', fragt dieses Lernziel 'warum ändert sich die richtige Antwort — und wie entwickelt man das Urteilsvermögen, um den richtigen Zeitpunkt zur Verschiebung zu erkennen'.",
+          "topics": [
+            "Aufgabenreife",
+            "Teamreife",
+            "Fehlerkosten",
+            "Feedback-Verlässlichkeit",
+            "Verschiebung der Balance über Zeit"
+          ],
+          "example": "Erfahrenes Team, wiederholte Aufgabe, gute Tests: mehr Autonomie lohnt sich. Neues Team, unbekannte Codebasis, schwache Tests: Autonomie ist teuer. Die Balance verschiebt sich — heute wenig Autonomie, in 6 Monaten mehr, wenn Strukturen und Monitoring sitzen."
+        },
+        {
+          "id": "LG 3-7",
+          "level": "R1",
+          "effortHours": 2.5,
+          "title": "Einstiegsarchitektur für wiederkehrende agentische Modernisierungsaufgaben entwerfen",
+          "description": "Der organisatorische Transfer: wie bringt eine Organisation agentische Modernisierung vom Einzelexperiment in den Regelbetrieb, ohne sich zu überbauen.",
+          "topics": [
+            "Minimaler Satz an Befehlen und Skills",
+            "MCP-Server für gemeinsame Ressourcen",
+            "Monitoring und Auditierbarkeit",
+            "Governance: wer darf was",
+            "Iterativer Ausbau statt Overengineering"
+          ],
+          "example": "Start mit 3 Skills (`add-tests`, `bump-dependency`, `extract-module`), 1 MCP-Server (Repo-Zugriff), zentralem Logging und klarer HITL-Regel. Nach 3 Monaten sehen, was funktioniert hat, und dann ausbauen — nicht vorab überdimensionieren. Die erste Architektur muss tragen, nicht glänzen."
+        }
+      ]
+    }
+  ]
+}

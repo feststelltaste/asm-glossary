@@ -1,0 +1,277 @@
+{
+  "schema": "curriculum-assessment/1",
+  "meta": {
+    "name": "Grundlagen der Softwaremodernisierung",
+    "version": "2.0-DE",
+    "source": "https://github.com/feststelltaste/asm-glossary",
+    "language": "de",
+    "description": "Kompetenzrahmen für die praktischen Grundlagen der Softwaremodernisierung und des Reengineerings. Behandelt, warum sich Systeme ändern müssen, wie man Legacy über Änderbarkeit statt über Alter definiert, wie man ein unbekanntes System versteht, bevor man es anfasst, und wie man eine Änderungsstrategie sicher wählt und umsetzt. Orientiert sich an der Object-Oriented Reengineering Patterns (OORP)-Tradition und allgemeinen Konzepten der Softwaretechnik. Agentenneutral; anwendbar auf jede Sprache, Plattform oder jeden Modernisierungsansatz. Als eigenständiger Lehrplan oder als Voraussetzung für Agentic Software Modernization nutzbar."
+  },
+  "scale": [
+    { "value": 1, "short": "Unbekannt", "full": "Noch nie gehört" },
+    { "value": 2, "short": "Grundidee", "full": "Grundidee klar" },
+    { "value": 3, "short": "Verstehe",  "full": "Kann erklären" },
+    { "value": 4, "short": "Anwenden",  "full": "Kann anwenden" },
+    { "value": 5, "short": "Lehren",    "full": "Kann lehren" }
+  ],
+  "levels": [
+    { "code": "R1", "label": "Anwenden können", "expected": 4, "description": "Autonom in realen Modernisierungssituationen anwenden, beurteilen und anpassen können" },
+    { "code": "R2", "label": "Verstehen",       "expected": 3, "description": "Zusammenhänge, Mechanik und Tradeoffs erklären können" },
+    { "code": "R3", "label": "Kennen",          "expected": 2, "description": "Begriffe und Konzepte benennen und einordnen können" }
+  ],
+  "lessons": [
+    {
+      "number": 1,
+      "title": "Was Legacy ist und warum Systeme sich ändern müssen",
+      "goals": [
+        {
+          "id": "LG 1-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Treiber von Softwareänderungen unterscheiden",
+          "description": "Warum muss Software sich überhaupt ändern? Ohne Trennung der Treiber redet jeder Stakeholder über etwas anderes und jede vorgeschlagene Änderung konkurriert auf der falschen Achse.",
+          "topics": [
+            "Neue oder veränderte Features",
+            "Veränderte Qualitätsziele (Performance, Skalierung, Security)",
+            "Wandel des fachlichen oder technischen Kontexts",
+            "Bugfixing",
+            "Compliance- und Legal-Anforderungen",
+            "Kostendruck (Entwicklung, Betrieb, Fehler)",
+            "Tech-Updates (OS, Laufzeitumgebungen, Bibliotheken, Frameworks)",
+            "Entwicklerwissen und Teammotivation"
+          ],
+          "example": "Ein Kreditsystem: EU-Regulierung verlangt ESG-Scoring (fachlicher Kontext), Java 8 erreicht End-of-Life (Tech-Update), Konkurrenz entscheidet in 3 Tagen statt 3 Wochen (Qualitätsziel Performance), Partner-API migriert von SOAP auf GraphQL (externe Schnittstelle). Vier Treiber, vier Lösungen. Wer sie in einen Topf wirft, verliert die Priorisierung und begründet mit dem falschen Argument."
+        },
+        {
+          "id": "LG 1-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Legacy-Systeme nicht über Alter, sondern über Änderbarkeit und Verständlichkeit definieren",
+          "description": "Ein Legacy-System ist Code, den man sich nicht zu ändern traut — nicht weil er alt ist, sondern weil man ihn nicht gut genug versteht, um zuversichtlich zu sein. Alter ist ein schlechter Proxy; Änderbarkeit und Verständlichkeit sind die eigentlichen Kriterien.",
+          "topics": [
+            "Feathers: Legacy als Code ohne Tests",
+            "OORP-Perspektive: Code, den man sich nicht zu ändern traut",
+            "Fehlendes Verständnis als bestimmendes Merkmal",
+            "Die Doppelfalle: man kann es nicht testen, weil man es nicht versteht; man kann es nicht verstehen, ohne es zu ändern",
+            "Abgrenzung gegen 'alte, aber gesunde' Systeme mit hoher Testabdeckung und lebender Dokumentation"
+          ],
+          "example": "Ein 20 Jahre alter COBOL-Kern, gut dokumentiert, mit hoher Testabdeckung und klaren Schnittstellen, ist in diesem Sinne kein Legacy. Eine 3 Jahre alte Microservice-Landschaft ohne Integrationstests, mit impliziten Aufrufreihenfolgen und ohne lebende Dokumentation, schon. Das Kriterium ist nicht der Kalender, sondern das Vertrauen der Person, die ihn nächste Woche anfassen muss."
+        },
+        {
+          "id": "LG 1-3",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Typische Problemkategorien in Altsystemen benennen",
+          "description": "Nicht jedes Problem in einem Altsystem ist ein Code-Problem. Kategorien zu trennen stellt sicher, dass das Mittel zur Ursache passt — strukturelle Probleme brauchen strukturelle Lösungen, Wissensprobleme brauchen Wissenslösungen.",
+          "topics": [
+            "Konzeptionelle Probleme: Integritätsverletzungen, Redundanz, falsche Technologieentscheidungen",
+            "Strukturprobleme in Daten: zirkuläre Abhängigkeiten, Datenduplikate, Schema-Verfall",
+            "Strukturprobleme im Code: Kopplung, Komplexität, geringe Kohäsion, schlechte Modularität",
+            "Runtime-Probleme: Stabilität, Performance, Skalierung",
+            "Wissensprobleme: fehlende Tests, undokumentierte Absichten, in Personen gebundenes implizites Wissen",
+            "Prozessprobleme: Release-Zyklus, Governance, Teamstruktur"
+          ],
+          "example": "Ein 15 Jahre alter ERP-Monolith: Copy-Paste-Logik in 8 Modulen (konzeptionell), zirkuläre Datenbankabhängigkeiten (Daten), eine God-Class sammelt 80 Prozent der Bugfixes (Code), der Nacht-Batch dauert 6 Stunden und blockiert den Morgenbetrieb (Runtime), keine lebende Dokumentation und die letzten zwei Experten haben das Unternehmen verlassen (Wissen), Release einmal pro Quartal mit manuellen Tests (Prozess). Jede Kategorie braucht ein anderes Mittel — Refactoring hilft nicht gegen Wissensprobleme."
+        },
+        {
+          "id": "LG 1-4",
+          "level": "R3",
+          "effortHours": 0.75,
+          "title": "Grundvokabular für Change-Diskussionen beherrschen",
+          "description": "Ohne gemeinsame, präzise Begriffe wird jede Modernisierungsdiskussion schwammig und Beteiligte reden aneinander vorbei.",
+          "topics": [
+            "Problem (was falsch ist) vs. Lösungskandidat (was dagegen getan werden könnte) — beides getrennt halten",
+            "Root Cause vs. Symptom",
+            "Kosten eines Problems vs. Kosten einer Lösung",
+            "Risiko als Produkt aus Wahrscheinlichkeit und Auswirkung",
+            "Ein Problem kann mehrere Lösungskandidaten haben; eine Lösung kann mehrere Probleme adressieren"
+          ],
+          "example": "„Deployments dauern 4 Stunden und brechen oft ab.\" Symptom: langsam und instabil. Root Cause: monolithisches 800-MB-Artefakt, alle Services starten gemeinsam. Lösungsansatz A: Deployment-Split, 3 Monate, niedriges Risiko. Lösungsansatz B: Blue-Green, 6 Wochen, aber Datenmigration kritisch. Kosten des Problems: rund 20 verlorene Dev-Tage pro Monat. Ohne diese Trennung reden die Beteiligten aneinander vorbei."
+        },
+        {
+          "id": "LG 1-5",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Reengineering, Refactoring und Migration als eigenständige Tätigkeiten unterscheiden",
+          "description": "Drei Begriffe, die in der Praxis oft synonym verwendet werden, aber verschiedene Tätigkeiten mit verschiedenen Zielen, Voraussetzungen und Risiken bezeichnen. Wer sie verwechselt, setzt falsche Erwartungen an Dauer, Risiko und Teamzusammensetzung.",
+          "topics": [
+            "Refactoring: verhaltenserhaltende Umstrukturierung innerhalb einer bekannten, getesteten Codebasis",
+            "Reverse Engineering: Wissen und Struktur aus bestehendem Code zurückgewinnen",
+            "Reengineering: der vollständige Zyklus aus Reverse Engineering und Forward Engineering — verstehen, umstrukturieren, erweitern",
+            "Migration: ein System auf eine neue Plattform, Sprache oder Laufzeitumgebung übertragen und dabei das Verhalten erhalten",
+            "Typische Verwechslungen: eine Re-Architektur als 'Refactoring' bezeichnen; eine Migration als 'Modernisierung'"
+          ],
+          "example": "Das Team sagt, es 'refaktoriert den Zahlungsservice'. Genauer betrachtet: es extrahiert einen Microservice, ändert das öffentliche Interface und deployt auf eine neue Plattform. Das ist eine Migration. Gleichzeitig 'ordnet die Seniorentwicklerin nur Dinge um' — aber sie ergänzt dabei Tests und stellt Designabsichten wieder her, die niemand aufgeschrieben hat. Das ist Reengineering. Beide als 'Refactoring' zu bezeichnen setzt für beide die falschen Erwartungen an Dauer, Risiko und benötigte Fähigkeiten."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Verstehen vor dem Ändern",
+      "goals": [
+        {
+          "id": "LG 2-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "First-Contact-Techniken für ein rasches erstes Verständnis eines Altsystems einsetzen",
+          "description": "Bevor man irgendetwas sicher ändern kann, braucht man ein mentales Modell. Die First-Contact-Muster aus OORP liefern strukturierte Wege, dieses Modell schnell aufzubauen — ohne jede Codezeile zu lesen, bevor man den ersten Schritt tut.",
+          "topics": [
+            "Code in einer Stunde lesen: Struktur erfassen, nicht Details — Paketorganisation, Modulnamen, Einstiegspunkte",
+            "Dokumentation überfliegen: Was setzt die Dokumentation als bekannt voraus?",
+            "Mit den Maintainern sprechen: implizites Wissen, das in keinem Artefakt steckt",
+            "Beim Demo zuschauen: das System in seiner natürlichen Umgebung sehen, bevor man es isoliert analysiert",
+            "Mock-Installation durchführen: den Laufzeitkontext des Systems durch Deployment verstehen"
+          ],
+          "example": "Tag 1 eines Legacy-Assessments. Eine Stunde: Paketstruktur überfliegen, Module zählen, Top-Level-README und vorhandene Architekturdiagramme lesen. Weitere Stunde: die zwei oder drei Personen finden, die dieses System am längsten gewartet haben, und fragen: 'Was weiß man über dieses System nicht, bis man damit auf die Nase gefallen ist?' Das bringt mehr relevantes Wissen als eine Woche Dokumentationslesen — weil es das zutage fördert, was nie aufgeschrieben wurde."
+        },
+        {
+          "id": "LG 2-2",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Geschäftsregeln und implizite Absicht aus bestehendem Code zurückgewinnen",
+          "description": "In langlebigen Systemen stecken die wichtigsten Anforderungen im Code selbst — nicht in einer Spezifikation. Diese Regeln zurückzugewinnen ist Voraussetzung für jede sichere Änderung und schwieriger, als es aussieht.",
+          "topics": [
+            "Geschäftsregeln in Bedingungen, Guard-Clauses und Kontrollfluss",
+            "Implizite Invarianten, die keine Spezifikation benennt",
+            "Der Unterschied zwischen Code, der eine Domäne bewusst modelliert, und Code, der sie versehentlich enkodiert",
+            "Rückgewinnungstechniken: Debugger-gestützte Erkundung, testgetriebenes Sondieren, Datenarchäologie",
+            "Zurückgewonnene Regeln als ausführbare Tests festhalten — das Implizite explizit und dauerhaft machen"
+          ],
+          "example": "Eine Versicherungsprämienberechnung hat eine 200-Zeilen-Funktion mit 40 verschachtelten Bedingungen. Niemand kennt die Geschäftsregeln — die Person, die sie geschrieben hat, ist 2011 in Rente gegangen. Das Team gewinnt die Regeln zurück, indem es parametrierte Tests mit 50 echten Produktionsdaten schreibt. Die Tests laufen durch. Die Bedingungen sind jetzt dokumentiert — nicht in einer Spezifikation, sondern in ausführbarer Form, die jedes Teammitglied lesen und starten kann."
+        },
+        {
+          "id": "LG 2-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Tests zum Verstehen des Systemverhaltens schreiben, nicht nur zur Verifikation",
+          "description": "Tests sind nicht nur ein Verifikationswerkzeug — sie sind ein Erkundungswerkzeug. Tests zu schreiben, bevor man ein System vollständig versteht, zwingt dazu, Hypothesen zu bilden, tatsächliches Verhalten zu beobachten und ein Modell aufzubauen, das auf Belegen beruht statt auf Annahmen. Die Tests werden gleichzeitig zum Wissensprotokoll und zum Sicherheitsnetz.",
+          "topics": [
+            "Testen als Reverse Engineering: Hypothese aufstellen, Ausgabe beobachten, Modell verfeinern",
+            "Charakterisierungstests: festhalten, was das System tut, nicht was es tun sollte",
+            "'Tests zum Verstehen schreiben' vs. 'Tests gegen Regression schreiben' — dasselbe Artefakt, zwei Zwecke",
+            "Ein fehlschlagender Test zeigt eine falsche Annahme auf, nicht unbedingt einen Fehler",
+            "Test-Suites als Wissensartefakte teilen — Verständnis wird übertragbar"
+          ],
+          "example": "Eine Entwicklerin hat 3 Tage, um ein Steuerberechnungsmodul gut genug zu verstehen, um es zu erweitern. Sie schreibt 50 Tests: 20 schlagen fehl. Die Fehlschläge sind keine Bugs — sie sind Überraschungen, die ihr mentales Modell verfeinern. Nach 3 Tagen hat sie sowohl ein funktionierendes Verständnis als auch 50 Regressionstests, die sie der nächsten Person geben kann. Verständnis und Sicherheitsnetz sind dasselbe Artefakt."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Änderungsstrategien und strukturelle Kräfte",
+      "goals": [
+        {
+          "id": "LG 3-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Grundlegende Änderungsstrategien gegeneinander abwägen",
+          "description": "Was sind die grundsätzlichen Optionen, ein Altsystem weiterzuentwickeln oder abzulösen? Die Wahl der Strategie bestimmt Umfang, Risiko, Teamzusammensetzung und wo Agenten helfen können. Ohne diesen Vergleich fällt jede Entscheidung auf 'Refactoring' oder 'Rewrite', als ob es keine anderen Optionen gäbe.",
+          "topics": [
+            "Erhalten: so lassen, Risiken managen, gezielte Korrekturen — wenn das System stabil ist und der Änderungsaufwand den Umgehungsaufwand übersteigt",
+            "Refactoring: strukturelle Verbesserung innerhalb der bestehenden Plattform — wenn das Verhalten verstanden ist und Tests existieren",
+            "Reengineering: Verständnis zurückgewinnen, umstrukturieren, erweitern — wenn das Verhalten nicht verstanden ist oder Tests fehlen",
+            "Migration: auf neue Plattform, Sprache oder Laufzeit wechseln und dabei das Verhalten erhalten",
+            "Ersetzen: durch eine neue Implementierung oder Standardsoftware substituieren",
+            "Abschalten: außer Betrieb nehmen, wenn die Funktion nicht mehr gebraucht wird",
+            "Entscheidungskriterien: verfügbares Wissen, Testbarkeit, Risikotoleranz, Zeithorizont, Einzigartigkeit der Geschäftslogik"
+          ],
+          "example": "Ein Team steht vor einem 15 Jahre alten Abrechnungsmodul. Fünf Strategien: erhalten (einfrieren, drumherum arbeiten, Tücken dokumentieren); refactoring (umstrukturieren, wenn Tests existieren); reengineering (Regeln zurückgewinnen, Tests ergänzen, dann umstrukturieren); migration (in neuen Service extrahieren, Logik erhalten); ersetzen (Abrechnungspaket kaufen, wenn die Logik nicht einzigartig ist). Die richtige Wahl hängt davon ab, was das Team heute weiß, wie viel Risiko es tragen kann und ob die Geschäftslogik wirklich proprietär ist. Nur Reengineering gewinnt zuerst Verständnis zurück."
+        },
+        {
+          "id": "LG 3-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Das Prinzip 'Always Have a Running Version' auf inkrementelles Reengineering anwenden",
+          "description": "Der gefährlichste Moment bei Legacy-Arbeit ist, wenn das System aufhört zu laufen und niemand weiß warum. Zu jeder Zeit eine funktionsfähige, deploybare Version zu halten — durch inkrementelle Schritte, parallelen Betrieb und explizite Rückfallpfade — ist keine Vorsicht; es ist der einzige tragfähige Ansatz für umfangreiche Änderungen.",
+          "topics": [
+            "Jeder Schritt lässt das System deploybar — keine lang anhaltenden kaputten Zustände",
+            "Inkrementelle Schritte: eine Sache auf einmal ändern, vor dem nächsten Schritt verifizieren",
+            "Parallelbetrieb: alte und neue Implementierung nebeneinander betreiben, bevor umgeschaltet wird",
+            "Rückfallpfade von Anfang an einplanen, nicht nachträglich ergänzen",
+            "Das Antimuster: der langlebige parallele Rewrite-Branch, der nie gemergt werden kann"
+          ],
+          "example": "Ein Team extrahiert ein Abrechnungsmodul aus einem Monolithen. Statt eines 6-Monate-Feature-Branches halten sie jederzeit zwei deploybare Versionen: den unveränderten Monolithen und den entstehenden Service. Traffic wird am ersten Tag 95/5 aufgeteilt. Jede Woche übernimmt der neue Service mehr Last, wenn das Vertrauen wächst. Der alte Pfad wird erst entfernt, wenn der neue jeden bekannten Szenario störungsfrei abgewickelt hat. Falls etwas bricht, ist der Rollback eine Konfigurationsänderung."
+        },
+        {
+          "id": "LG 3-3",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Akkumulierte Komplexität als strukturelle Kraft erkennen, die Modernisierungsstrategien prägt",
+          "description": "Altsysteme tendieren mit der Zeit zu wachsender Komplexität und abnehmender Verständlichkeit — nicht weil Teams sorglos sind, sondern weil jede Änderung Kopplung hinzufügt, jeder Fix eine Spur hinterlässt und jede pragmatische Abkürzung sich ansammelt. Diese Tendenz ist kein Scheitern; sie ist eine vorhersehbare strukturelle Kraft, die jede Strategie einkalkulieren muss.",
+          "topics": [
+            "Komplexitätsakkumulation: jede Änderung erhöht Kopplung und kognitiven Aufwand, auch sorgfältige",
+            "Abnehmende Verständlichkeit über Zeit als natürliche, unvermeidliche Folge",
+            "Das Zusammenspiel von Komplexität und Teamwissen (Wissen verblasst, wenn Mitarbeitende gehen)",
+            "Warum strukturelle Maßnahmen — Nahtstellen, Bounded Contexts, modulare Zerlegung — dauerhafter sind als Einzelkorrekturen",
+            "Erkennen, wann akkumulierte Komplexität die Schwelle erreicht hat, ab der inkrementelle Verbesserung nicht mehr auszahlt"
+          ],
+          "example": "Ein ERP-System ist in 12 Jahren von 200k auf 2M Zeilen gewachsen. Jedes neue Feature erforderte, 5 Module zu verstehen, um 1 sicher zu ändern. Nach 12 Jahren wächst die Zeit zum Verstehen schneller als die Codebasis. Neue Entwicklerinnen und Entwickler brauchen 6 Monate, um produktiv zu werden; erfahrene gehen und nehmen implizites Wissen mit. Das ist keine Inkompetenz — es ist die strukturelle Folge akkumulierter Komplexität. Die Antwort ist nicht 'besser dokumentieren', sondern architektonisches Eingreifen."
+        },
+        {
+          "id": "LG 3-4",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Evolvability als eigenständiges Qualitätsziel begreifen",
+          "description": "Ein System, das heute funktioniert, sich aber nicht sicher ändern lässt, ist bereits ein werdendes Altsystem. Evolvability — die Fähigkeit, sich sicher, nachhaltig und zu vertretbaren Kosten zu ändern — ist ein erstklassiges Qualitätsziel, kein Nebenprodukt guter Arbeit.",
+          "topics": [
+            "Wartbarkeit, Änderbarkeit und Evolvability als verwandte, aber verschiedene Konzepte",
+            "Evolvability als beobachtbare Größe: wie wachsen die Änderungskosten über Zeit?",
+            "Der Zusammenhang zwischen Testbarkeit, Modularität und Evolvability",
+            "Warum Evolvability selten in Anforderungen steht, aber immer in den Konsequenzen des Ignorierens"
+          ],
+          "example": "Zwei Systeme erfüllen identische Anforderungen. System A: ein neues Zahlungsverfahren hinzuzufügen dauert 3 Tage, Tests laufen sofort durch. System B: dieselbe Änderung dauert 6 Wochen, erfordert Eingriffe in 14 Module und verursacht 3 Regressionsvorfälle. Das ist kein Feature-Unterschied — es ist ein Evolvability-Unterschied. System B ist nicht kaputt, aber es wird bereits zum Altsystem in dem Sinne, der wirklich zählt: Änderungskosten."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Bewertung und Investitionsentscheidungen",
+      "goals": [
+        {
+          "id": "LG 4-1",
+          "level": "R1",
+          "effortHours": 1.5,
+          "title": "Schätzungen mit Intervallen und expliziten Annahmen führen",
+          "description": "Schätzen ist kein Raten. Punktwerte sind irreführend präzise — Intervalle und explizite Annahmen machen Unsicherheit kommunizierbar und verhandelbar.",
+          "topics": [
+            "Best/Avg/Worst-Case als drei benannte Szenarien statt einer einzelnen Zahl",
+            "Die Streuung um einen Mittelwert — wie Unsicherheit tatsächlich aussieht",
+            "Annahmen explizit machen, damit sie hinterfragbar werden",
+            "Die Breite des Bereichs als eigentliches Signal kommunizieren, nicht den Mittelwert"
+          ],
+          "example": "Tech-Lead schätzt API-Migration auf 40 Tage. Besser: Best 30, wahrscheinlichster Wert 50, Worst 90 Tage, Konfidenzintervall 45–75. Annahmen: keine Datenmigration nötig, Partner-API stabil, Team bleibt bei 3 Personen. Die Breite des Intervalls ist das eigentliche Maß der Unsicherheit — und sie bestimmt, ob man das Vorhaben überhaupt starten kann."
+        },
+        {
+          "id": "LG 4-2",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Business-Case-Denken auf Modernisierungsinvestitionen anwenden",
+          "description": "Modernisierung konkurriert um Budget gegen neue Features. Ohne Business-Case-Vokabular bleiben Investitionsentscheidungen Bauchgefühl oder Hierarchiefrage — kein Evidenzbeitrag.",
+          "topics": [
+            "Direkte Kosten: Entwicklungsarbeit, Systembetrieb und Einarbeitung neuer Personen",
+            "Wie Modernisierung die Kostenstruktur verschiebt: Einmalaufwand vs. laufende Einsparungen oder Ausgaben",
+            "Die Kosten des Status quo: Wert, der verloren geht, und Optionen, die verfallen, solange das Problem bleibt",
+            "Wann sich die Investition rechnet: Amortisationsdenken und Rückzahlungshorizont"
+          ],
+          "example": "Migration von On-Premise in die Cloud: CAPEX sinkt (keine neuen Hardware-Anschaffungen), OPEX steigt (Cloud-Abonnements), aber der Cost of Delay beträgt drei verlorene Mobile-Verträge pro Jahr zu je 400.000 Euro. Break-Even in Monat 14, wenn das dreiköpfige Team stabil bleibt. Ohne diese Zahlen bleibt die Entscheidung eine Präferenz — kein Commitment."
+        },
+        {
+          "id": "LG 4-3",
+          "level": "R1",
+          "effortHours": 3,
+          "title": "Für ein reales Altsystem eine Problemlandkarte erstellen",
+          "description": "Der Transfer: Treiber des Wandels, dominante Problemkategorien und in Frage kommende Änderungsstrategien für ein reales System benennen und priorisieren. Das Ergebnis ist kein Modernisierungsplan, sondern die Grundlage, auf der ein Plan entstehen kann.",
+          "topics": [
+            "Herausfinden, wer das System nutzt, wer es wartet und wer Wissen trägt, das kein Dokument festhält",
+            "Systemgrenzen, Integrationen und Abhängigkeiten — wo das System aufhört und andere beginnen",
+            "Code- und Struktursignale: Komplexitäts-Hotspots, Kopplungscluster, Änderungshäufigkeit",
+            "Beobachtbare Systemgesundheit: wie oft Dinge brechen, wie schmerzhaft Deployments sind, wie lange Änderungen dauern",
+            "Entscheiden, wo man anfängt: was am meisten schmerzt, was am riskantesten zu ändern ist, was die größte Wirkung hätte",
+            "Probleme und Root Causes in einer Form festhalten, die geteilt und hinterfragt werden kann"
+          ],
+          "example": "4-Wochen-Assessment: Woche 1 Stakeholder-Interviews und Code-Metriken; Woche 2 Architekturreview und Runtime-Profiling; Woche 3 Entwicklungsprozess- und Vorfallanalyse; Woche 4 Synthese. Das Ergebnis ist keine 'Modernisierung', sondern eine priorisierte Liste von Problemen und Lösungsansätzen mit Intervall-Schätzungen — die Grundlage, auf der erst entschieden werden kann, welche Strategie gewählt wird, wie viel investiert wird und wo Agenten helfen können."
+        }
+      ]
+    }
+  ]
+}

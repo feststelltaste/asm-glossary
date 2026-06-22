@@ -1,0 +1,277 @@
+{
+  "schema": "curriculum-assessment/1",
+  "meta": {
+    "name": "Foundations of Software Modernization",
+    "version": "2.0-EN",
+    "source": "https://github.com/feststelltaste/asm-glossary",
+    "language": "en",
+    "description": "Competency framework for the practical foundations of software modernization and reengineering. Covers why systems need to change, how to define legacy by changeability rather than age, how to understand an unfamiliar system before touching it, and how to choose and execute a change strategy safely. Draws on the Object-Oriented Reengineering Patterns (OORP) tradition alongside established software engineering concepts. Agent-neutral; applicable to any language, platform, or modernization approach. Usable as a standalone curriculum or as a prerequisite for Agentic Software Modernization."
+  },
+  "scale": [
+    { "value": 1, "short": "Unknown",    "full": "Never heard of it" },
+    { "value": 2, "short": "Aware",      "full": "Basic idea clear" },
+    { "value": 3, "short": "Understand", "full": "Can explain" },
+    { "value": 4, "short": "Apply",      "full": "Can apply" },
+    { "value": 5, "short": "Teach",      "full": "Can teach" }
+  ],
+  "levels": [
+    { "code": "R1", "label": "Can Apply",   "expected": 4, "description": "Able to apply, assess, and adapt autonomously in real modernization situations" },
+    { "code": "R2", "label": "Understand",  "expected": 3, "description": "Able to explain relationships, mechanics, and tradeoffs" },
+    { "code": "R3", "label": "Know",        "expected": 2, "description": "Able to name and categorize terms and concepts" }
+  ],
+  "lessons": [
+    {
+      "number": 1,
+      "title": "What Legacy Is and Why Systems Need Change",
+      "goals": [
+        {
+          "id": "LG 1-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Distinguish drivers of software change",
+          "description": "Why does software need to change at all? Without separating drivers, stakeholders argue past each other and every proposed change competes on the wrong axis.",
+          "topics": [
+            "New or changed features",
+            "Changed quality goals (performance, scaling, security)",
+            "Changes in domain or technical context",
+            "Bug fixing",
+            "Compliance and legal requirements",
+            "Cost pressure (development, operations, defects)",
+            "Technology updates (OS, runtimes, libraries, frameworks)",
+            "Developer knowledge and team motivation"
+          ],
+          "example": "A credit system: EU regulation requires ESG scoring (domain context change), Java 8 reaches end-of-life (tech update), competitors decide in 3 days instead of 3 weeks (quality goal: performance), a partner API migrates from SOAP to GraphQL (external interface). Four drivers, four solutions. Whoever lumps them together loses prioritization and argues with the wrong rationale."
+        },
+        {
+          "id": "LG 1-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Define legacy systems by changeability and understandability, not by age",
+          "description": "A legacy system is code you are afraid to change — not because it is old, but because you do not understand it well enough to be confident in your changes. Age is a poor proxy; changeability and understandability are the actual criteria.",
+          "topics": [
+            "Feathers: legacy as code without tests",
+            "OORP perspective: code you are afraid to change",
+            "Lack of understanding as the defining constraint",
+            "The double bind: you cannot test it because you do not understand it; you cannot understand it without changing it",
+            "Distinction from 'old but healthy' systems with strong test coverage and living documentation"
+          ],
+          "example": "A 20-year-old COBOL core, well documented, with high test coverage and clear interfaces, is not legacy in this sense. A 3-year-old microservice landscape without integration tests, with implicit call ordering and no living documentation, already is. The criterion is not the calendar but the confidence of the person who has to change it next week."
+        },
+        {
+          "id": "LG 1-3",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Name typical problem categories in legacy systems",
+          "description": "Not every problem in a legacy system is a code problem. Separating categories ensures the remedy matches the malady — structural problems require structural solutions, knowledge problems require knowledge solutions, process problems require process solutions.",
+          "topics": [
+            "Conceptual problems: integrity violations, redundancy, wrong technology decisions",
+            "Structural problems in data: circular dependencies, data duplication, schema decay",
+            "Structural problems in code: coupling, complexity, low cohesion, poor modularity",
+            "Runtime problems: stability, performance, scaling",
+            "Knowledge problems: missing tests, undocumented intent, tacit knowledge locked in people",
+            "Process problems: release cycles, governance, team structure"
+          ],
+          "example": "A 15-year-old ERP monolith: copy-paste logic in 8 modules (conceptual), circular database dependencies (data), one God class absorbs 80 percent of bug fixes (code), the nightly batch takes 6 hours and blocks morning operations (runtime), no living documentation and the last two senior developers left last year (knowledge), releases once per quarter with manual testing (process). Each category requires a different remedy — refactoring does not help against knowledge problems."
+        },
+        {
+          "id": "LG 1-4",
+          "level": "R3",
+          "effortHours": 0.75,
+          "title": "Master basic vocabulary for change discussions",
+          "description": "Without precise shared terminology, every modernization discussion becomes vague and stakeholders talk past each other.",
+          "topics": [
+            "Problem (what is wrong) vs. proposed change (what to do about it) — keep them separate",
+            "Root cause vs. symptom",
+            "Cost of a problem vs. cost of a solution",
+            "Risk as probability times impact",
+            "One problem can have multiple solution candidates; one solution can address multiple problems"
+          ],
+          "example": "'Deployments take 4 hours and frequently abort.' Symptom: slow and unstable. Root cause: monolithic 800 MB artifact, all services start together. Solution A: deployment split, 3 months, low risk. Solution B: blue-green, 6 weeks, but data migration is critical. Cost of the problem: roughly 20 lost dev-days per month. Without this separation, stakeholders talk past each other."
+        },
+        {
+          "id": "LG 1-5",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Distinguish reengineering, refactoring, and migration as separate activities",
+          "description": "Three terms used interchangeably in practice but denoting different activities with different goals, prerequisites, and risks. Conflating them leads to wrong expectations, wrong metrics, and the wrong people on the team.",
+          "topics": [
+            "Refactoring: behavioral-preserving restructuring within a known, tested codebase",
+            "Reverse engineering: recovering knowledge and structure from existing code",
+            "Reengineering: the full cycle of reverse engineering followed by forward engineering — understand, restructure, extend",
+            "Migration: moving a system to a new platform, language, or runtime with intent to preserve behavior",
+            "Common confusion: calling a re-architecture a 'refactoring', calling a migration 'modernization'"
+          ],
+          "example": "The team says 'we are refactoring the payment service'. Closer inspection: they are extracting a microservice, changing the public interface, and deploying to a new platform. That is a migration. Meanwhile, the senior developer is 'just moving things around' — but she is adding tests as she goes, recovering design intent that was never written down. That is reengineering. Calling both 'refactoring' sets wrong expectations for the duration, the risk, and the team skills required."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Understanding Before Changing",
+      "goals": [
+        {
+          "id": "LG 2-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Apply first-contact techniques to gain rapid initial understanding of a legacy system",
+          "description": "Before you can change anything safely, you need a mental model. OORP's first-contact patterns give structured ways to build that model quickly — without reading every line of code before making any move.",
+          "topics": [
+            "Read all the code in one hour: skim for structure, not detail — package organization, module names, entry points",
+            "Skim the documentation: what does the documentation assume you already know?",
+            "Chat with the maintainers: tacit knowledge not captured in any artifact",
+            "Interview during demo: see the system in its natural habitat before analyzing it in isolation",
+            "Do a mock installation: understand the system's runtime context by deploying it"
+          ],
+          "example": "Day 1 of a legacy assessment. One hour: skim the package structure, count modules, read the top-level README and any architecture diagrams. Another hour: find the two or three people who have maintained this longest and ask 'what are the three things nobody knows about this system unless they have been burned'. This surfaces more relevant knowledge than a week of documentation reading — because it surfaces what the documentation was never written to record."
+        },
+        {
+          "id": "LG 2-2",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Recover business rules and implicit intent from existing code",
+          "description": "In long-lived systems, the most important requirements are encoded in the code itself — not in any specification. Recovering these rules is a prerequisite for any safe change, and harder than it looks.",
+          "topics": [
+            "Business rules embedded in conditionals, guard clauses, and control flow",
+            "Implicit invariants that no specification names",
+            "The difference between code that models a domain intentionally and code that accidentally encodes it",
+            "Recovery techniques: debugger-based exploration, test-driven probing, data archaeology",
+            "Recording recovered rules as executable tests — making the implicit explicit and permanent"
+          ],
+          "example": "An insurance premium calculation has a 200-line function with 40 nested conditionals. Nobody knows the business rules — the person who wrote it retired in 2011. The team recovers the rules by writing parameterized tests with 50 real claims from production history. The tests pass. The conditionals are now documented — not in a spec, but in executable form anyone on the team can read and run."
+        },
+        {
+          "id": "LG 2-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Write tests to understand system behavior, not only to verify it",
+          "description": "Tests are not only a verification tool — they are an exploration tool. Writing tests before you fully understand a system forces you to form hypotheses, observe actual behavior, and build a model grounded in evidence rather than assumption. The tests become both the record of understanding and the safety net for future change.",
+          "topics": [
+            "Testing as reverse engineering: form a hypothesis, observe the output, refine the model",
+            "Characterization tests: record what the system does, not what you think it should do",
+            "'Write Tests to Understand' vs. 'Write Tests to Prevent Regression' — the same artifact, two purposes",
+            "A failing test reveals a wrong assumption, not necessarily a bug",
+            "Sharing test suites as knowledge artifacts — understanding becomes transferable"
+          ],
+          "example": "A developer has 3 days to understand a tax calculation module well enough to extend it. She writes 50 tests: 20 fail. The failures are not bugs — they are surprises that refine her mental model. After 3 days she has both a working understanding and 50 regression tests she can hand to the next developer. Understanding and safety net are the same artifact."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Change Strategies and Structural Forces",
+      "goals": [
+        {
+          "id": "LG 3-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Weigh fundamental change strategies against each other",
+          "description": "What are the basic options for evolving or replacing a legacy system? The choice of strategy determines scope, risk, team composition, and where agents can help. Without this comparison, every decision defaults to 'refactor' or 'rewrite' as if no other options exist.",
+          "topics": [
+            "Preserve: leave as-is, manage risk, apply targeted fixes — when the system is stable and the cost of change exceeds the cost of working around it",
+            "Refactor: structural improvement within the existing platform — when behavior is understood and tests exist",
+            "Reengineer: recover understanding, restructure, extend — when behavior is not understood or tests do not exist",
+            "Migrate: move to a new platform, language, or runtime while preserving behavior",
+            "Replace: substitute with a new implementation or standard software",
+            "Retire: decommission when the function is no longer needed",
+            "Decision criteria: knowledge availability, testability, risk tolerance, time horizon, uniqueness of the business logic"
+          ],
+          "example": "A team faces a 15-year-old billing module. Five strategies: preserve it (freeze, route around it, document the gotchas); refactor it (restructure if tests exist); reengineer it (recover rules, add tests, then restructure); migrate it (extract to a new service with the same logic); replace it (buy a billing package if the logic is not unique). The right choice depends entirely on what the team knows today, how much risk they can absorb, and whether the business logic is genuinely proprietary. Only reengineering recovers understanding first."
+        },
+        {
+          "id": "LG 3-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Apply the always-have-a-running-version principle to incremental reengineering",
+          "description": "The most dangerous moment in legacy work is when the system stops working and nobody knows why. Keeping a working, deployable version at all times — through incremental steps, parallel builds, and explicit rollback paths — is not caution; it is the only viable approach to large-scale change.",
+          "topics": [
+            "Every step leaves the system in a deployable state — no long-lived broken states",
+            "Incremental steps: change one thing at a time, verify before proceeding",
+            "Parallel operation: run old and new implementations side by side before cutover",
+            "Rollback paths designed in from the start, not added as an afterthought",
+            "The anti-pattern: the long-lived parallel rewrite branch that can never be merged"
+          ],
+          "example": "A team extracts a billing module from a monolith. Instead of a 6-month feature branch, they maintain two deployable versions at all times: the unchanged monolith and the emerging service. Traffic is split 95/5 on day one. Each week, the new service handles more traffic as confidence grows. The old path is removed only when the new path has handled every known scenario without incident. If anything breaks, rollback is one configuration change."
+        },
+        {
+          "id": "LG 3-3",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Recognize accumulated complexity as a structural force that shapes modernization strategy",
+          "description": "Legacy systems tend toward increasing complexity and decreasing understandability over time — not because teams are careless but because every change adds coupling, every fix leaves a trace, and every pragmatic shortcut accumulates. This tendency is not a failure; it is a predictable structural force that strategy must account for.",
+          "topics": [
+            "Complexity accumulation: every change adds coupling and cognitive load, even careful ones",
+            "Decreasing understandability over time as a natural, unavoidable consequence",
+            "The interaction between complexity and team knowledge (knowledge decays when staff turns over)",
+            "Why structural interventions — seams, bounded contexts, modular decomposition — are more durable than point fixes",
+            "Recognizing when accumulated complexity has reached the threshold where incremental improvement stops paying off"
+          ],
+          "example": "An ERP system has grown from 200k to 2M lines over 12 years. Each new feature required understanding 5 modules to safely change 1. After 12 years, the time to understand has grown faster than the codebase. New developers take 6 months to become productive; experienced developers leave and take implicit knowledge with them. This is not incompetence — it is the structural consequence of accumulated complexity. The response is not 'better documentation' but architectural intervention."
+        },
+        {
+          "id": "LG 3-4",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Understand evolvability as a quality goal in its own right",
+          "description": "A system that works today but cannot be changed safely is already a legacy system in formation. Evolvability — the ability to change safely, sustainably, and at acceptable cost — is a first-class quality goal, not a side effect of good engineering.",
+          "topics": [
+            "Maintainability, changeability, and evolvability as related but distinct concepts",
+            "Evolvability as observable: how does the cost of change grow over time?",
+            "The relationship between testability, modularity, and evolvability",
+            "Why evolvability is rarely in requirements but always in the consequences of ignoring it"
+          ],
+          "example": "Two systems fulfill identical requirements. System A: adding a new payment method takes 3 days, tests pass immediately. System B: the same change takes 6 weeks, requires touching 14 modules, and causes 3 regression incidents. This is not a feature difference — it is an evolvability difference. System B is not broken, but it is already becoming legacy in the way that matters most: cost of change."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Assessment and Investment Decisions",
+      "goals": [
+        {
+          "id": "LG 4-1",
+          "level": "R1",
+          "effortHours": 1.5,
+          "title": "Produce estimates with intervals and explicit assumptions",
+          "description": "Estimating is not guessing. Point values are misleadingly precise — intervals and explicit assumptions make uncertainty communicable and negotiable.",
+          "topics": [
+            "Best/avg/worst case as three named scenarios, not a single number",
+            "The spread around a central estimate — what the uncertainty actually looks like",
+            "Making assumptions explicit so they can be challenged",
+            "Communicating the width of the range as the real signal, not the midpoint"
+          ],
+          "example": "A tech lead estimates an API migration at 40 days. Better: best case 30, most likely 50, worst case 90 days, confidence interval 45 to 75. Assumptions: no data migration required, partner API stable, team stays at 3 people. The width of the interval is the actual measure of uncertainty — and it determines whether the initiative can be started at all."
+        },
+        {
+          "id": "LG 4-2",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Apply business case thinking to modernization investment decisions",
+          "description": "Modernization competes for budget against new features. Without a business case vocabulary, investment decisions default to gut feel or hierarchy — not evidence.",
+          "topics": [
+            "Direct costs: development work, running the system, and onboarding people to it",
+            "How modernization shifts the cost structure: one-time investment vs. ongoing savings or expenses",
+            "The cost of staying with the status quo: value lost and options that expire while the problem persists",
+            "When the investment pays off: break-even reasoning and payback horizon"
+          ],
+          "example": "A migration from on-premise to cloud: CAPEX drops (no new hardware purchases), OPEX rises (cloud subscriptions), but the cost of delay is three lost mobile contracts per year at €400k each. Break-even at month 14, assuming a team of three stays stable. Without these numbers, the decision stays a preference — not a commitment."
+        },
+        {
+          "id": "LG 4-3",
+          "level": "R1",
+          "effortHours": 3,
+          "title": "Create a problem map for a real legacy system",
+          "description": "The transfer: name and prioritize the drivers of change, the dominant problem categories, and the candidate change strategies for a real system. The output is not a modernization plan but the foundation on which a plan can be built.",
+          "topics": [
+            "Finding who uses the system, who maintains it, and who carries knowledge no document records",
+            "System boundaries, integrations, and dependencies — where the system ends and others begin",
+            "Code and structural signals: complexity hotspots, coupling clusters, change frequency",
+            "Observable system health: how often things break, how painful deployments are, how long changes take",
+            "Deciding where to start: what hurts most, what is riskiest to change, what would have the most effect",
+            "Recording problems and root causes in a form that can be shared and challenged"
+          ],
+          "example": "A 4-week assessment: week 1 stakeholder interviews and code metrics; week 2 architecture review and runtime profiling; week 3 development process and incident analysis; week 4 synthesis. The result is not a 'modernization plan' but a prioritized list of problems and solution approaches with interval estimates — the foundation on which decisions about strategy, investment, and where agents can help can first be made."
+        }
+      ]
+    }
+  ]
+}

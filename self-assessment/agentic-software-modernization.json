@@ -1,0 +1,352 @@
+{
+  "schema": "curriculum-assessment/1",
+  "meta": {
+    "name": "Agentic Software Modernization",
+    "version": "1.0-DE",
+    "source": "https://github.com/feststelltaste/asm-glossary",
+    "language": "de",
+    "description": "Fokussierter Kompetenzrahmen zur agentengestützten Modernisierung von Legacy-Softwaresystemen. Konzentriert auf die Kernkompetenzen: was ein Agent ist, wie Kontext funktioniert, wie man Legacy-Code für Agenten analysiert, welche Transformationsmuster tragen, wie Änderungen abgesichert werden und wie agentische Arbeit kontrolliert wird. Das klassische Modernisierungsumfeld ist im separaten Curriculum „Grundlagen der Softwaremodernisierung\" abgedeckt."
+  },
+  "scale": [
+    { "value": 1, "short": "Unbekannt", "full": "Noch nie gehört" },
+    { "value": 2, "short": "Grundidee", "full": "Grundidee klar" },
+    { "value": 3, "short": "Verstehe", "full": "Kann erklären" },
+    { "value": 4, "short": "Anwenden", "full": "Kann anwenden" },
+    { "value": 5, "short": "Lehren", "full": "Kann lehren" }
+  ],
+  "levels": [
+    { "code": "R1", "label": "Anwenden können", "expected": 4, "description": "Autonom in realen Modernisierungssituationen anwenden, beurteilen und anpassen können" },
+    { "code": "R2", "label": "Verstehen", "expected": 3, "description": "Zusammenhänge, Mechanik und Tradeoffs erklären können" },
+    { "code": "R3", "label": "Kennen", "expected": 2, "description": "Begriffe und Konzepte benennen und einordnen können" }
+  ],
+  "lessons": [
+    {
+      "number": 1,
+      "title": "Agent und agentischer Zyklus",
+      "goals": [
+        {
+          "id": "LG 1-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "KI-Agent, agentischen Zyklus und Werkzeugnutzung erklären",
+          "description": "Der gemeinsame Grundbegriff. Ohne saubere Abgrenzung vermischen sich Chatbot-Erwartungen mit Agenten-Realität, und jede Folgeaussage kippt.",
+          "topics": [
+            "LLM mit Tool-Zugriff vs. reiner Chatbot",
+            "Zyklus: Planen, Handeln, Beobachten, Re-Planen",
+            "Werkzeugnutzung als Wirkhebel und Risikoquelle",
+            "Strukturierte Ausgabe als Brücke zu deterministischen Systemen"
+          ],
+          "example": "Agent bekommt „bring den Test zum Laufen\". Zyklus: (1) Read der Testdatei, (2) Beobachtung: Mock-Server auf Port 8080 erwartet, (3) Re-Plan: Mock starten, (4) Bash-Start, (5) Beobachtung: Port belegt. Ohne sauberen Zyklus wird an Schritt 3 halluziniert. Werkzeugnutzung macht den Unterschied — aber `git reset --hard` als Tool-Aufruf ist auch das, was ganze Feature-Branches killt."
+        },
+        {
+          "id": "LG 1-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Mehrschrittplanung gegen reaktives Verhalten abgrenzen",
+          "description": "Ein Agent, der immer nur den nächsten Schritt sucht, verläuft sich. Einer, der einen Plan hält und ihn anpasst, nicht. Die explizite Planung ist das, was agentische Arbeit skalierbar macht.",
+          "topics": [
+            "Explizite Planung vs. impliziter Fortschritt",
+            "Plan-Revision bei neuer Beobachtung",
+            "Abbruch bei Zieldrift"
+          ],
+          "example": "Refactoring: God-Class in drei Module extrahieren. Ohne Plan landet der Agent nach drei Stunden in einem Halbzustand, alles kompiliert, aber Tests sind weg. Mit Plan (1. Nahtstellen, 2. Tests spannen, 3. extrahieren, 4. Tests wieder grün) bleibt jederzeit nachvollziehbar, wo man steht."
+        },
+        {
+          "id": "LG 1-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Agentischen Ansatz für eine Aufgabe begründet wählen oder ablehnen",
+          "description": "Die Kernentscheidung. Agent ist nicht immer die Antwort. Ohne diese Urteilskraft wird jede Aufgabe zum Hammer-Nagel-Problem — und jede Modernisierung teurer als nötig.",
+          "topics": [
+            "Wann ein Linter, ein Script oder ein Codemod besser passt",
+            "Wann ein Agent durch Urteilsvermögen oder Recherche vorne liegt",
+            "Aufgabenzuschnitt für Agenten",
+            "Rückbezug auf klassische Change-Strategien"
+          ],
+          "example": "Aufgabe A: 300 Dateien auf neuen Lombok-Namespace umschreiben — kein Agent, sondern `sed`. Aufgabe B: einen impliziten Domänen-Begriff in 40 Dateien identifizieren und vereinheitlichen — hier passt ein Agent. Aufgabe C: VB6-Monolith zu .NET migrieren — weder Agent noch Script, das ist eine Re-Architecting-Entscheidung."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Kontext und seine Pathologien",
+      "goals": [
+        {
+          "id": "LG 2-1",
+          "level": "R2",
+          "effortHours": 2,
+          "title": "Kontextfenster-Grenzen und die drei Pathologien beherrschen",
+          "description": "Kontext ist endlich und kostet Qualität. Kontextverfall, -vergiftung und -verschmutzung sind drei verschiedene Fehlerbilder mit drei verschiedenen Gegenmaßnahmen — sie zu unterscheiden ist die Voraussetzung für alle weiteren Gegenmaßnahmen.",
+          "topics": [
+            "Kontextfenster als harte Grenze, Qualitätskurve davor",
+            "Kontextverfall: schleichender Qualitätsverlust",
+            "Kontextvergiftung: falsche oder widersprüchliche Inhalte",
+            "Kontextverschmutzung: plausible, aber irrelevante Inhalte"
+          ],
+          "example": "Nach 80 Turns erfindet der Agent Code, der nur diskutiert, nie geschrieben wurde — Verfall. Veralteter Copy-Paste-Kommentar behauptet `deprecated since v2`, die Funktion ist längst rehabilitiert — Vergiftung. Drei irrelevante README-Auszüge im Kontext führen zu falschen Schlüssen über die aktuelle Datei — Verschmutzung. Drei Bilder, drei Fixes."
+        },
+        {
+          "id": "LG 2-2",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Halluzinationen durch Verankerung und Sitzungsaufteilung eindämmen",
+          "description": "Die zwei pragmatischen Werkzeuge. Grounding an echten Artefakten statt plausibel klingender Behauptungen, und neue Sitzungen statt immer längerer Historie.",
+          "topics": [
+            "Verankerung an Dateien, Pfaden, stabilen Identifikatoren",
+            "Kontextbereinigung und Sitzungsaufteilung",
+            "Übergabeartefakte zwischen Sitzungen",
+            "Halluzination als primäres Erkennungssignal — und wie sie sich von Prompt-Abweichung unterscheidet"
+          ],
+          "example": "Statt „refaktoriere den Zahlungsservice\" besser: „in `src/payments/service.ts` Methode `processPayment` auf Typ `PaymentRequest` statt `any` umbauen\". Pfad und Typname sind Anker. Langes Refactoring wird in 3 Sitzungen mit kurzer Übergabe besser als in einer 6-Stunden-Sitzung — weil Kontextverfall messbar wird, auch wenn er sich nicht anfühlt."
+        },
+        {
+          "id": "LG 2-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Kontextstrategie für konkrete Modernisierungsaufgabe entwerfen",
+          "description": "Der Transfer. Was muss der Agent wissen, was nicht, in welcher Reihenfolge, und wann wird die Sitzung geschnitten.",
+          "topics": [
+            "Minimum Viable Context pro Teilaufgabe",
+            "Reihenfolge und Schichtung der Kontextbausteine",
+            "Grenzen der Sitzung",
+            "Verzahnung mit Slicing aus Lektion 4"
+          ],
+          "example": "Extraktion eines Zahlungsmoduls. Kontextstrategie: Sitzung 1 nur Analyse (Graph, Nahtstellen, Tests). Sitzung 2 nur Test-Extraktion. Sitzung 3 nur Code-Extraktion. Sitzung 4 Cleanup. Jede startet frisch mit definierter Kontextauswahl, nicht mit der gesamten Historie."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Legacy-Code für Agenten verfügbar machen",
+      "goals": [
+        {
+          "id": "LG 3-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Wissensrepräsentation für Agenten aufbauen",
+          "description": "Menschliches Code-Verständnis sitzt in Köpfen, Agenten brauchen Artefakte. Call-Graphen, statische Analyse und Software Analytics sind die Brücke — und gleichzeitig die Priorisierungshilfe dafür, wo der Agent überhaupt anfangen soll.",
+          "topics": [
+            "Code-Wissensgraph: Aufrufe, Imports, Abhängigkeiten",
+            "Statische Analyse: Typen, Datenflüsse, Code Smells",
+            "Software Analytics: Git-Hotspots, Change-Frequenz, Ownership",
+            "Grenzen: Reflection, dynamische Konfiguration"
+          ],
+          "example": "Hotspot-Karte kombiniert SonarQube-Findings (340 Smells) mit `git log`-Heatmap (60 % aller Commits in einer Klasse). `OrderProcessor` taucht in beiden Metriken als Ausreißer auf. Klarer Startpunkt — keine Diskussion mehr, wo der Agent ansetzen soll. Call-Graph zeigt zusätzlich die indirekten Aufrufwege, die sonst unsichtbar blieben."
+        },
+        {
+          "id": "LG 3-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Quellcodekonditionierung als Investition vor der Agentenarbeit begreifen",
+          "description": "Die Codebasis für Agenten vorbereiten, bevor man sie auf sie loslässt. Klingt nach Kosmetik, ist aber der größte Hebel für Ergebnisqualität.",
+          "topics": [
+            "Konsistente Benennung und semantische Anker",
+            "Klare Modulgrenzen",
+            "Minimale Dokumentation an der richtigen Stelle",
+            "Onboarding-Artefakte (z.B. CLAUDE.md, AGENTS.md)"
+          ],
+          "example": "Vor der Agentenarbeit zwei Tage in Umbenennung investiert: `proc1` wird `calculateTax`, `helper2` wird `normalizeAddress`. Halbiert die Fehlerrate der nachfolgenden Agentenarbeit, weil semantische Anker jetzt stehen. Investition, die sich nach einer Woche zurückzahlt."
+        },
+        {
+          "id": "LG 3-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Analysestrategie für Legacy-Codebasis entwerfen",
+          "description": "Welche Analyseartefakte in welcher Reihenfolge, für welche Modernisierungsaufgabe. Die Brücke zwischen klassischer Ist-Analyse und agentengerechter Vorbereitung.",
+          "topics": [
+            "Auswahl der Analysewerkzeuge nach Aufgabenprofil",
+            "Reihenfolge: klassisch → agentenorientiert",
+            "Priorisierung nach Hotspot und Risiko",
+            "Integration in den Modernisierungsworkflow"
+          ],
+          "example": "ERP-Modernisierung: Woche 1 klassische Ist-Analyse, Woche 2 Hotspot-Karte und Call-Graph, Woche 3 Quellcodekonditionierung der Top-5-Hotspots, Woche 4 erste Agentenaufgaben an den konditionierten Stellen. Agent kommt erst ins Spiel, wenn das Feld für ihn bereitet ist — nicht umgekehrt."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Transformationsmuster und Slicing",
+      "goals": [
+        {
+          "id": "LG 4-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Schuldenarten für agentische Arbeit differenzieren",
+          "description": "Technical Debt ist nicht alles. Kognitive, Absichts- und Verständnisschulden sind eigenständige Konzepte — und Agenten neigen dazu, technische Schulden zu senken und dabei kognitive sowie Verständnisschulden zu erzeugen. Welche Schuldenart in einem Bereich dominiert, bestimmt, welcher Slice als nächstes angegangen werden sollte und welche Absicherungen den Aufwand rechtfertigen.",
+          "topics": [
+            "Technische Schulden",
+            "Kognitive Schulden",
+            "Absichtsschulden",
+            "Verständnisschulden"
+          ],
+          "example": "Agent erzeugt 2000 Zeilen funktionierenden Code. Technische Schulden: niedrig, Tests grün. Kognitive Schulden: hoch, niemand versteht die Design-Entscheidungen. Verständnisschulden: hoch, keine ADRs. Das Paket funktioniert heute, ist in 6 Monaten unwartbar — und der Agent hat die Bilanz nicht wirklich verbessert, er hat sie nur umgeschichtet."
+        },
+        {
+          "id": "LG 4-2",
+          "level": "R2",
+          "effortHours": 2,
+          "title": "Inkrementelle Transformationsmuster sicher anwenden",
+          "description": "Die Werkzeugkiste der schrittweisen Modernisierung. Strangler Fig, Sprouting, Nahtstellen und Anti-Corruption Layer sind nicht agentenspezifisch — aber erst sie machen agentische Arbeit an realen Altsystemen überhaupt möglich, weil sie den Explosionsradius eingrenzen.",
+          "topics": [
+            "Strangler Fig Pattern",
+            "Sprouting",
+            "Nahtstellen (Seams)",
+            "Anti-Corruption Layer"
+          ],
+          "example": "Monolith-Ablösung: neuer Dienst entsteht neben dem alten (Sprout), Traffic wird schrittweise umgeleitet (Strangler), der alte Dienst bleibt hinter einer ACL, bis er sterben kann. Agent arbeitet jeweils nur an einem Stück, nicht am Ganzen — die Muster machen genau das möglich."
+        },
+        {
+          "id": "LG 4-3",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Slicing und Aufgabenzuschnitt für Agentensitzungen beherrschen",
+          "description": "Die wichtigste Einzeldisziplin. Slicing respektiert das Kontextbudget aus Lektion 2 und ist gleichzeitig die Sicherheit dafür, dass der Agent rückabwickelbar arbeitet.",
+          "topics": [
+            "Slicing nach Domänengrenzen oder Risiko",
+            "Aufgabenzuschnitt für eine einzelne Sitzung",
+            "Definition of Done pro Slice",
+            "Rückabwickelbarkeit"
+          ],
+          "example": "„Migration in 200 Mann-Tagen\" ist kein Slice, sondern ein Klumpen. Guter Slice: „Kundendaten-Lesezugriffe binnen 3 Tagen in neuen Service, Schreibzugriffe bleiben vorerst alt\". Klar, testbar, agentengerecht — und rückabwickelbar, wenn er schiefgeht. Ein großer Slice ist kein mutiger, sondern ein unsicherer."
+        },
+        {
+          "id": "LG 4-4",
+          "level": "R1",
+          "effortHours": 3,
+          "title": "Transformationsmuster und Slicing für ein Vorhaben entwerfen",
+          "description": "Der Transfer: welches Muster für welches Teilsystem, in welche Slices zerlegt, in welcher Reihenfolge — und wo der Agent überhaupt ansetzt.",
+          "topics": [
+            "Mustervergleich im konkreten Kontext",
+            "Begründete Auswahl (ADR-reif)",
+            "Slice-Reihenfolge nach Risiko",
+            "Rollback-Plan pro Slice"
+          ],
+          "example": "Reporting-Ablösung: Strangler scheidet aus (keine stabilen API-Grenzen), Sprouting passt (neues System daneben, per ETL gespeist), ACL schützt vor Kopplung. Slices: Slice 1 Tests um kritischen Pfad (niedriges Risiko, hoher Wert), Slice 14 alten Pfad entfernen (höchstes Risiko, zuletzt). Reihenfolge ist keine Kosmetik — sie ist die Wette."
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Absicherung agentischer Änderungen",
+      "goals": [
+        {
+          "id": "LG 5-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Charakterisierungstests und Fitnessfunktionen als Sicherheitsnetz einsetzen",
+          "description": "Die zwei zentralen Testformen der Modernisierung: Charakterisierungstests frieren das Ist-Verhalten ein, Fitnessfunktionen halten Architekturgrenzen im Build. Zusammen sind sie die Voraussetzung dafür, dass ein Agent überhaupt arbeiten darf.",
+          "topics": [
+            "Charakterisierungstest vs. Unit-Test",
+            "Golden Master aus echten Aufrufen",
+            "Fitnessfunktionen (Abhängigkeitsregeln, Latenz-Budgets)",
+            "Integration in CI"
+          ],
+          "example": "Untestbare Komponente bekommt 500 reale Input/Output-Paare als Golden Master. Fitnessfunktion: keine Klasse in `domain/` darf `infrastructure/` importieren. Agent refaktoriert frei — das Netz hält. Wenn er eine Grenze verletzt, bricht der Build, nicht das Produkt."
+        },
+        {
+          "id": "LG 5-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "LLM als Richter einordnen — Nutzen, Grenzen, verantwortlicher Einsatz",
+          "description": "Ein mächtiges Werkzeug dort, wo Assertions nicht reichen — und gleichzeitig eine neue Fehlerquelle. Unterscheidung zwischen zulässig, vorfiltern und unzulässig ist die Kernkompetenz.",
+          "topics": [
+            "Einsatzgebiete: Text, Stil, semantische Äquivalenz",
+            "Risiken: eigene Halluzinationen, systematische Bias",
+            "Vorfilter vs. finaler Richter",
+            "Regulatorische Grenzen"
+          ],
+          "example": "100 migrierte Funktionen, klassisch lässt sich nur Syntax prüfen. LLM-Richter bewertet idiomatische Qualität — als Vorfilter. Die auffälligen 10 % gehen an einen Menschen. Im Kreditentscheidungssystem ist ein LLM-Richter als alleiniger Prüfer ausgeschlossen, als Vorfilter aber erlaubt. Zwei Fälle, zwei Antworten."
+        },
+        {
+          "id": "LG 5-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Teststrategie für eine Modernisierungsaufgabe entwerfen",
+          "description": "Welche Tests, in welcher Reihenfolge, mit welcher Abdeckung. Das Absicherungsäquivalent zum Slicing aus Lektion 4.",
+          "topics": [
+            "Pyramide: Charakterisierung, Fitness, Unit, Integration",
+            "Rolle von LLM-Urteilen",
+            "CI-Integration",
+            "Risikoorientierung"
+          ],
+          "example": "Zahlungsdienst: Charakterisierungstests an den Außenkanten (hohe Abdeckung), Fitnessfunktionen für Architekturgrenzen, Unit-Tests für neue Logik, LLM-Richter für Lesbarkeit. Jede Schicht schützt gegen eine andere Fehlerklasse — und der Agent arbeitet nur dort, wo alle vier Schichten über ihm sind."
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Kontrolle und Betrieb",
+      "goals": [
+        {
+          "id": "LG 6-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Leitplanken, Explosionsradius und Human-in-the-Loop richtig platzieren",
+          "description": "Autonomie braucht Grenzen. Leitplanken begrenzen, was der Agent überhaupt tun darf. HITL platziert die Aufmerksamkeit des Menschen dort, wo sie zählt — und spart sie überall sonst.",
+          "topics": [
+            "Tool-, Datei- und Netzwerk-Scope",
+            "Revertierbarkeit",
+            "HITL an Entscheidungspunkten, nicht an Routinearbeit",
+            "Risikoabhängige Enge des Rahmens"
+          ],
+          "example": "Agent darf Dateien ändern, aber nicht pushen. Nicht ins Produktionssystem. Nicht auf fremde Branches. Bei der Methoden-Extraktion: HITL nicht nach jeder einzelnen Methode (Mensch wird blind), sondern nach jedem Batch mit Diff-Zusammenfassung. Platzierung ist alles."
+        },
+        {
+          "id": "LG 6-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Feedbackschleife als Produktivitätshebel gestalten",
+          "description": "Die Qualität der Schleife entscheidet über die Qualität des Ergebnisses. Kurz, aussagekräftig, automatisierbar — sonst kippt der Agent in Raten statt Wissen.",
+          "topics": [
+            "Kurze Zykluszeiten",
+            "Aussagekraft der Rückmeldung",
+            "Verschränkung mit Testrahmen aus Lektion 5"
+          ],
+          "example": "Agent ändert Code, Tests laufen in 40 Sekunden, Rückmeldung klar — produktive Schleife. Tests laufen 20 Minuten — Agent beginnt zu raten, bevor die erste Rückmeldung da ist. Produktivität kippt. Kurze Schleifen sind nicht Komfort, sondern Voraussetzung agentischer Arbeit."
+        },
+        {
+          "id": "LG 6-3",
+          "level": "R2",
+          "effortHours": 0.75,
+          "title": "Agentenmonitoring und Beobachtbarkeit für die Verbesserung des Agentenbetriebs nutzen",
+          "description": "Was tut der Agent wirklich? Monitoring macht Agentenarbeit auditierbar, deckt wiederkehrende Fehlermuster auf und hält die Kosten sichtbar. Ohne es wirkt jeder Fehler wie ein Einzelfall — und nichts verbessert sich im Maßstab.",
+          "topics": [
+            "Tool-Call-Logs, Token- und Kostentracking",
+            "Fehlermuster-Analyse über Zeit",
+            "Baselines und Abweichungsschwellenwerte festlegen",
+            "Agentenbeobachtbarkeit in bestehende Monitoring-Infrastruktur integrieren"
+          ],
+          "example": "Nach 3 Monaten Agenteneinsatz: Monitoring zeigt, 40 % aller Fehler an einer bestimmten Tool-Kombination. Werkzeug wird verbessert — ohne Monitoring hätte das Team immer nur Einzelfehler debuggt. Im Einzelfall wirkt jeder Fehler einmalig. Im Maßstab werden Muster sichtbar — und behebbar."
+        },
+        {
+          "id": "LG 6-5",
+          "level": "R2",
+          "effortHours": 0.75,
+          "title": "Spec-Driven Development einsetzen, um Absichtsdrift zu reduzieren und Entscheidungen festzuhalten",
+          "description": "Eine Spezifikation dient gleichzeitig als Vertrag für den Agenten und als dauerhaftes Entscheidungsprotokoll für das Team. Ohne sie wird „mach es besser\" zur Aufgabe — und jedes Ergebnis ist gleichzeitig richtig und nicht akzeptabel.",
+          "topics": [
+            "Spec als Vertrag: Akzeptanzkriterien, Scope-Grenzen, Done-Bedingung",
+            "Spec als Kontext-Anker: Prompt-Abweichung über Sitzungen hinweg reduzieren",
+            "Spec als Dokumentation: Absicht für zukünftige Maintainer festhalten",
+            "Absichtsschulden durch explizite Entscheidungen reduzieren"
+          ],
+          "example": "Aufgabenstellung mit 7 Akzeptanzkriterien statt „mach es besser\" — der Agent bleibt am Auftrag, und die Spec wird Teil der Dokumentation. Die Spec ist keine Bürokratie: sie ist der Unterschied zwischen einem Agenten, der kreist, und einem, der fertig wird."
+        },
+        {
+          "id": "LG 6-4",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Kontrollrahmen für konkrete Aufgabe entwerfen",
+          "description": "Das Zusammenspiel aus Leitplanken, HITL, Feedback und Monitoring. Das Risikoprofil der Aufgabe bestimmt die Enge des Rahmens — und die reife Entscheidung, wann mehr Autonomie lohnt, wann weniger.",
+          "topics": [
+            "Risikoabhängige Enge",
+            "Platzierung der HITL-Punkte",
+            "Abbruchkriterien und Eskalationspfade",
+            "Autonomie-Kontrolle-Balance über Zeit"
+          ],
+          "example": "Niedriges Risiko (Kommentare umformulieren): offenes Setup, HITL nur am Ende. Hohes Risiko (Security-Modul): enge Leitplanken, HITL vor jedem Commit, doppeltes Review, volles Log. Derselbe Agent, völlig verschiedene Rahmen. In 6 Monaten — wenn Strukturen, Monitoring und Teamreife sitzen — kann der Rahmen offener werden."
+        }
+      ]
+    }
+  ]
+}

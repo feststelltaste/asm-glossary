@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/isaqb/curriculum-assessment/v1/curriculum.schema.json",
+  "title": "Curriculum Assessment v1",
+  "description": "Schema for curricula used with the Curriculum Self-Assessment Tool. A curriculum consists of learning goals grouped into lessons, assessed against a rating scale and relevance levels. Constraints that cannot be expressed in pure JSON Schema are documented in the accompanying schema documentation.",
+  "type": "object",
+  "required": ["schema", "meta", "scale", "levels", "lessons"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "curriculum-assessment/1",
+      "description": "Schema identifier. Must equal 'curriculum-assessment/1' for this version. Forward-incompatible changes will use a new identifier (e.g. 'curriculum-assessment/2')."
+    },
+    "meta": { "$ref": "#/$defs/meta" },
+    "scale": {
+      "type": "array",
+      "minItems": 2,
+      "description": "Rating scale used for self-assessment. Typical: 5 points from 'unknown' to 'can teach'. All scale[].value must be unique within the scale.",
+      "items": { "$ref": "#/$defs/scalePoint" }
+    },
+    "levels": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Relevance levels that define the expected proficiency per goal. For iSAQB typically R1/R2/R3, but any codes are allowed. All levels[].code must be unique within the array.",
+      "items": { "$ref": "#/$defs/level" }
+    },
+    "lessons": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Learning goals grouped into lessons. Lessons are presented to users in array order.",
+      "items": { "$ref": "#/$defs/lesson" }
+    }
+  },
+  "$defs": {
+    "meta": {
+      "type": "object",
+      "required": ["name"],
+      "description": "Curriculum metadata. Shown in the tool UI and the generated report.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display name of the curriculum."
+        },
+        "version": {
+          "type": "string",
+          "description": "Optional version of the curriculum itself (e.g. '1.6.1-EN'). Independent of the schema version."
+        },
+        "source": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional URL to the original source of the curriculum."
+        },
+        "language": {
+          "type": "string",
+          "description": "Optional BCP 47 language tag for the content language (e.g. 'de', 'en', 'en-GB')."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional longer description shown in list views."
+        }
+      }
+    },
+    "scalePoint": {
+      "type": "object",
+      "required": ["value", "short"],
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Numeric value of this scale point. Typically sequential (1, 2, 3, ...). Unique within the scale."
+        },
+        "short": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 20,
+          "description": "Short label used in buttons and tight spaces."
+        },
+        "full": {
+          "type": "string",
+          "description": "Optional longer description used in the introduction screen."
+        }
+      }
+    },
+    "level": {
+      "type": "object",
+      "required": ["code", "expected"],
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12,
+          "description": "Unique identifier for this level. Referenced by goal.level. Convention: short uppercase (R1, K2, EXPERT)."
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional human-readable label (e.g. 'Anwenden können')."
+        },
+        "expected": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minimum scale value required to consider this level 'reached'. Goals rated below this are flagged as gaps in the assessment."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional longer explanation of what this level requires."
+        }
+      }
+    },
+    "lesson": {
+      "type": "object",
+      "required": ["number", "title", "goals"],
+      "properties": {
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Lesson number. Should be unique within the curriculum and typically sequential."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Lesson title."
+        },
+        "goals": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Learning goals contained in this lesson.",
+          "items": { "$ref": "#/$defs/goal" }
+        }
+      }
+    },
+    "goal": {
+      "type": "object",
+      "required": ["id", "level", "title"],
+      "description": "A single learning goal. Additional properties are allowed for tool-specific extensions but may be ignored by the reference implementation.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for this goal across the entire curriculum. Used to track ratings and referenced in reports. Convention: 'LG <lesson>-<index>' (e.g. 'LG 1-1')."
+        },
+        "level": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relevance level for this goal. Must exactly match one of the level.code values defined in the top-level 'levels' array."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Short, action-oriented title of the goal (e.g. 'Gründe für Software-Änderungen kennen und erklären')."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional 1–2 sentence framing. Answers the question: why does this goal matter?"
+        },
+        "topics": {
+          "type": "array",
+          "description": "Optional list of sub-topics covered by this goal. Rendered as a bullet list.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "example": {
+          "type": "string",
+          "description": "Optional concrete example scenario that makes the goal tangible. Newlines (\\n) are rendered as line breaks by the reference implementation."
+        },
+        "effortHours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Optional estimated learning effort for this goal, in hours. Used to compute total curriculum effort and the effort needed to close assessed gaps."
+        }
+      }
+    }
+  }
+}

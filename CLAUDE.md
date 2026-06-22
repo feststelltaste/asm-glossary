@@ -7,6 +7,9 @@ A glossary of terms related to agent-assisted software modernization.
 - `docs/` – English term files, one per concept, organized by category
 - `docs/de/` – German term files, mirroring the same structure
 - `CONCEPT_MAP.md` – Mermaid concept maps showing relationships between terms
+- `self-assessment/` – Standalone self-assessment tool (single HTML file + curriculum JSON files)
+  - `self-assessment/index.html` – The assessment app (open directly in a browser, no build step needed)
+  - `self-assessment/*.json` – Curriculum definitions (EN and DE pairs) loaded by the app
 
 English and German content must always be kept in sync. Every new or updated term needs a file in both `docs/<category>/` and `docs/de/<category>/`. English filenames use a slug derived from the English term heading. German filenames use a slug derived from their German term heading (e.g., `context-rot.md` in English, `kontextverfall.md` in German).
 

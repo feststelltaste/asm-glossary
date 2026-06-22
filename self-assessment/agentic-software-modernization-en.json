@@ -1,0 +1,352 @@
+{
+  "schema": "curriculum-assessment/1",
+  "meta": {
+    "name": "Agentic Software Modernization",
+    "version": "1.0-EN",
+    "source": "https://github.com/feststelltaste/asm-glossary",
+    "language": "en",
+    "description": "Focused competency framework for agent-assisted modernization of legacy software systems. Concentrated on the core competencies: what an agent is, how context works, how to analyze legacy code for agents, which transformation patterns hold up, how to safeguard changes, and how to control agentic work. The classic modernization environment is covered in the separate curriculum \"Fundamentals of Software Modernization\"."
+  },
+  "scale": [
+    { "value": 1, "short": "Unknown", "full": "Never heard of it" },
+    { "value": 2, "short": "Aware", "full": "Basic idea clear" },
+    { "value": 3, "short": "Understand", "full": "Can explain" },
+    { "value": 4, "short": "Apply", "full": "Can apply" },
+    { "value": 5, "short": "Teach", "full": "Can teach" }
+  ],
+  "levels": [
+    { "code": "R1", "label": "Can Apply", "expected": 4, "description": "Able to apply, judge, and adapt autonomously in real modernization situations" },
+    { "code": "R2", "label": "Understand", "expected": 3, "description": "Able to explain relationships, mechanics, and tradeoffs" },
+    { "code": "R3", "label": "Know", "expected": 2, "description": "Able to name and classify terms and concepts" }
+  ],
+  "lessons": [
+    {
+      "number": 1,
+      "title": "Agent and Agentic Loop",
+      "goals": [
+        {
+          "id": "LG 1-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Explain AI agent, agentic loop, and tool use",
+          "description": "The shared foundational concept. Without a clear distinction, chatbot expectations get mixed with agent reality, and every subsequent statement falls apart.",
+          "topics": [
+            "LLM with tool access vs. pure chatbot",
+            "Loop: plan, act, observe, re-plan",
+            "Tool use as a lever for impact and a source of risk",
+            "Structured output as a bridge to deterministic systems"
+          ],
+          "example": "Agent receives \"get the test to pass\". Loop: (1) read the test file, (2) observation: mock server expected on port 8080, (3) re-plan: start mock, (4) bash start, (5) observation: port occupied. Without a clean loop, step 3 leads to hallucination. Tool use makes the difference — but `git reset --hard` as a tool call is also what kills entire feature branches."
+        },
+        {
+          "id": "LG 1-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Distinguish multi-step planning from reactive behavior",
+          "description": "An agent that only ever looks for the next step gets lost. One that maintains a plan and adjusts it does not. Explicit planning is what makes agentic work scalable.",
+          "topics": [
+            "Explicit planning vs. implicit progress",
+            "Plan revision upon new observation",
+            "Abort on goal drift"
+          ],
+          "example": "Refactoring: extract a God class into three modules. Without a plan, the agent ends up after three hours in a half-finished state — everything compiles, but the tests are gone. With a plan (1. identify seams, 2. write tests, 3. extract, 4. get tests green again) it remains clear at any point where things stand."
+        },
+        {
+          "id": "LG 1-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Make a reasoned decision to choose or reject an agentic approach for a task",
+          "description": "The core decision. Agent is not always the answer. Without this judgment, every task becomes a hammer-and-nail problem — and every modernization becomes more expensive than necessary.",
+          "topics": [
+            "When a linter, a script, or a codemod is a better fit",
+            "When an agent leads through judgment or research",
+            "Task scoping for agents",
+            "Reference back to classical change strategies"
+          ],
+          "example": "Task A: rewrite 300 files to a new Lombok namespace — not an agent, use `sed`. Task B: identify and unify an implicit domain concept across 40 files — an agent fits here. Task C: migrate a VB6 monolith to .NET — neither agent nor script, that is a re-architecting decision."
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Context and Its Pathologies",
+      "goals": [
+        {
+          "id": "LG 2-1",
+          "level": "R2",
+          "effortHours": 2,
+          "title": "Master context window limits and the three pathologies",
+          "description": "Context is finite and costs quality. Context rot, context poisoning, and context pollution are three different failure modes with three different countermeasures — distinguishing them is the prerequisite for all further remediation.",
+          "topics": [
+            "Context window as a hard limit, quality curve before it",
+            "Context rot: gradual quality loss",
+            "Context poisoning: false or contradictory content",
+            "Context pollution: plausible but irrelevant content"
+          ],
+          "example": "After 80 turns the agent invents code that was only discussed, never written — rot. An outdated copy-paste comment claims `deprecated since v2`, but the function has long since been rehabilitated — poisoning. Three irrelevant README excerpts in context lead to wrong conclusions about the current file — pollution. Three pictures, three fixes."
+        },
+        {
+          "id": "LG 2-2",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Contain hallucinations through grounding and session splitting",
+          "description": "The two pragmatic tools. Grounding on real artifacts rather than plausible-sounding claims, and new sessions instead of ever-longer histories.",
+          "topics": [
+            "Grounding on files, paths, stable identifiers",
+            "Context pruning and session splitting",
+            "Handover artifacts between sessions",
+            "Hallucination as the primary signal — and how it differs from prompt drift"
+          ],
+          "example": "Instead of \"refactor the payment service\", better: \"in `src/payments/service.ts` change method `processPayment` to use type `PaymentRequest` instead of `any`\". Path and type name are anchors. A long refactoring works better split across 3 sessions with a short handover than in one 6-hour session — because context rot becomes measurable, even when it does not feel that way."
+        },
+        {
+          "id": "LG 2-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Design a context strategy for a concrete modernization task",
+          "description": "The transfer. What must the agent know, what not, in what order, and when is the session cut.",
+          "topics": [
+            "Minimum viable context per subtask",
+            "Order and layering of context components",
+            "Session boundaries",
+            "Interplay with slicing from lesson 4"
+          ],
+          "example": "Extraction of a payment module. Context strategy: session 1 analysis only (graph, seams, tests). Session 2 test extraction only. Session 3 code extraction only. Session 4 cleanup. Each starts fresh with a defined context selection, not with the entire history."
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Making Legacy Code Available to Agents",
+      "goals": [
+        {
+          "id": "LG 3-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Build knowledge representations for agents",
+          "description": "Human code understanding lives in people's heads; agents need artifacts. Call graphs, static analysis, and software analytics are the bridge — and at the same time the prioritization aid for where the agent should even begin.",
+          "topics": [
+            "Code knowledge graph: calls, imports, dependencies",
+            "Static analysis: types, data flows, code smells",
+            "Software analytics: git hotspots, change frequency, ownership",
+            "Limits: reflection, dynamic configuration"
+          ],
+          "example": "A hotspot map combines SonarQube findings (340 smells) with a `git log` heatmap (60% of all commits in one class). `OrderProcessor` appears as an outlier in both metrics. Clear starting point — no more discussion about where the agent should begin. The call graph additionally reveals the indirect call paths that would otherwise remain invisible."
+        },
+        {
+          "id": "LG 3-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Understand codebase conditioning as an investment before agentic work",
+          "description": "Preparing the codebase for agents before unleashing them on it. Sounds like cosmetics, but it is the biggest lever for result quality.",
+          "topics": [
+            "Consistent naming and semantic anchors",
+            "Clear module boundaries",
+            "Minimal documentation in the right place",
+            "Onboarding artifacts (e.g., CLAUDE.md, AGENTS.md)"
+          ],
+          "example": "Two days invested in renaming before agentic work: `proc1` becomes `calculateTax`, `helper2` becomes `normalizeAddress`. Halves the error rate of the subsequent agentic work, because semantic anchors are now in place. An investment that pays off within a week."
+        },
+        {
+          "id": "LG 3-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Design an analysis strategy for a legacy codebase",
+          "description": "Which analysis artifacts in which order, for which modernization task. The bridge between classical as-is analysis and agent-ready preparation.",
+          "topics": [
+            "Selection of analysis tools by task profile",
+            "Order: classical then agent-oriented",
+            "Prioritization by hotspot and risk",
+            "Integration into the modernization workflow"
+          ],
+          "example": "ERP modernization: week 1 classical as-is analysis, week 2 hotspot map and call graph, week 3 codebase conditioning of the top 5 hotspots, week 4 first agentic tasks on the conditioned areas. The agent enters the picture only when the field is prepared for it — not the other way around."
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Transformation Patterns and Slicing",
+      "goals": [
+        {
+          "id": "LG 4-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Differentiate debt types for agentic work",
+          "description": "Technical debt is not everything. Cognitive debt, intent debt, and comprehension debt are independent concepts — and agents tend to lower technical debt while introducing cognitive and comprehension debt. Knowing which debt type dominates a given area informs which slice to tackle next and which safeguards are worth the investment.",
+          "topics": [
+            "Technical debt",
+            "Cognitive debt",
+            "Intentional debt",
+            "Comprehension debt"
+          ],
+          "example": "Agent produces 2000 lines of working code. Technical debt: low, tests green. Cognitive debt: high, nobody understands the design decisions. Comprehension debt: high, no ADRs. The package works today but will be unmaintainable in 6 months — and the agent has not really improved the balance sheet, it has only shifted it."
+        },
+        {
+          "id": "LG 4-2",
+          "level": "R2",
+          "effortHours": 2,
+          "title": "Apply incremental transformation patterns safely",
+          "description": "The toolbox of incremental modernization. Strangler Fig, Sprouting, Seams, and Anti-Corruption Layer are not agent-specific — but they are what makes agentic work on real legacy systems possible at all, because they limit the blast radius.",
+          "topics": [
+            "Strangler Fig Pattern",
+            "Sprouting",
+            "Seams",
+            "Anti-Corruption Layer"
+          ],
+          "example": "Monolith replacement: a new service is created alongside the old one (Sprout), traffic is redirected incrementally (Strangler), the old service stays behind an Anti-Corruption Layer until it can be retired. The agent works on one piece at a time, not on the whole — the patterns make exactly that possible."
+        },
+        {
+          "id": "LG 4-3",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Master slicing and task scoping for agent sessions",
+          "description": "The single most important discipline. Slicing respects the context budget from lesson 2 and at the same time ensures that the agent works in a reversible manner.",
+          "topics": [
+            "Slicing along domain boundaries or risk",
+            "Task scoping for a single session",
+            "Definition of done per slice",
+            "Reversibility"
+          ],
+          "example": "\"Migration in 200 person-days\" is not a slice, it is a lump. A good slice: \"customer data read access moved to new service within 3 days, write access stays in the old system for now\". Clear, testable, agent-ready — and reversible if it goes wrong. A large slice is not a brave one, it is an unsafe one."
+        },
+        {
+          "id": "LG 4-4",
+          "level": "R1",
+          "effortHours": 3,
+          "title": "Design transformation patterns and slicing for a project",
+          "description": "The transfer: which pattern for which subsystem, broken down into which slices, in which order — and where the agent even starts.",
+          "topics": [
+            "Pattern comparison in concrete context",
+            "Reasoned selection (ADR-ready)",
+            "Slice order by risk",
+            "Rollback plan per slice"
+          ],
+          "example": "Reporting replacement: Strangler Fig does not apply (no stable API boundaries), Sprouting fits (new system alongside, fed via ETL), Anti-Corruption Layer protects against coupling. Slices: slice 1 tests around the critical path (low risk, high value), slice 14 remove old path (highest risk, last). Order is not cosmetics — it is the bet."
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Safeguarding Agentic Changes",
+      "goals": [
+        {
+          "id": "LG 5-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Use characterization tests and fitness functions as a safety net",
+          "description": "The two central test forms of modernization: characterization tests freeze the current behavior, fitness functions keep architectural boundaries in the build. Together they are the prerequisite for an agent being allowed to work at all.",
+          "topics": [
+            "Characterization test vs. unit test",
+            "Golden master from real invocations",
+            "Fitness functions (dependency rules, latency budgets)",
+            "Integration into CI"
+          ],
+          "example": "An untestable component receives 500 real input/output pairs as a golden master. Fitness function: no class in `domain/` may import from `infrastructure/`. The agent refactors freely — the net holds. If it violates a boundary, the build breaks, not the product."
+        },
+        {
+          "id": "LG 5-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Understand the LLM as a judge — benefits, limits, and responsible use",
+          "description": "A powerful tool where assertions are not enough — and at the same time a new source of error. Distinguishing between permissible, pre-filter, and impermissible is the core competency.",
+          "topics": [
+            "Use cases: text, style, semantic equivalence",
+            "Risks: own hallucinations, systematic bias",
+            "Pre-filter vs. final judge",
+            "Regulatory limits"
+          ],
+          "example": "100 migrated functions; classically only syntax can be checked. An LLM judge evaluates idiomatic quality — as a pre-filter. The notable 10% go to a human. In a credit-decision system, an LLM judge as the sole reviewer is ruled out, but as a pre-filter it is permitted. Two cases, two answers."
+        },
+        {
+          "id": "LG 5-3",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Design a test strategy for a modernization task",
+          "description": "Which tests, in which order, with which coverage. The safeguarding equivalent of the slicing from lesson 4.",
+          "topics": [
+            "Pyramid: characterization, fitness, unit, integration",
+            "Role of LLM judgments",
+            "CI integration",
+            "Risk orientation"
+          ],
+          "example": "Payment service: characterization tests at the outer edges (high coverage), fitness functions for architectural boundaries, unit tests for new logic, LLM judge for readability. Each layer protects against a different class of error — and the agent only works where all four layers are above it."
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Control and Operations",
+      "goals": [
+        {
+          "id": "LG 6-1",
+          "level": "R2",
+          "effortHours": 1.5,
+          "title": "Place guardrails, blast radius, and Human-in-the-Loop correctly",
+          "description": "Autonomy needs boundaries. Guardrails limit what the agent is allowed to do at all. Human-in-the-Loop places human attention where it matters — and saves it everywhere else.",
+          "topics": [
+            "Tool, file, and network scope",
+            "Reversibility",
+            "Human-in-the-Loop at decision points, not at routine work",
+            "Risk-dependent tightness of the framework"
+          ],
+          "example": "Agent may change files but not push. Not to the production system. Not to foreign branches. During method extraction: Human-in-the-Loop not after every single method (the human goes blind), but after each batch with a diff summary. Placement is everything."
+        },
+        {
+          "id": "LG 6-2",
+          "level": "R2",
+          "effortHours": 1,
+          "title": "Design the feedback loop as a productivity lever",
+          "description": "The quality of the loop determines the quality of the result. Short, meaningful, automatable — otherwise the agent guesses instead of learns.",
+          "topics": [
+            "Short cycle times",
+            "Meaningfulness of feedback",
+            "Interplay with test harness from lesson 5"
+          ],
+          "example": "Agent changes code, tests run in 40 seconds, feedback is clear — a productive loop. Tests take 20 minutes — the agent starts guessing before the first feedback arrives. Productivity collapses. Short loops are not comfort, they are a prerequisite for agentic work."
+        },
+        {
+          "id": "LG 6-3",
+          "level": "R2",
+          "effortHours": 0.75,
+          "title": "Use agent monitoring and observability to improve agentic operations over time",
+          "description": "What is the agent actually doing? Monitoring makes agentic work auditable, surfaces recurring failure patterns, and tracks cost. Without it, every error appears unique and nothing improves at scale.",
+          "topics": [
+            "Tool call logs, token and cost tracking",
+            "Error pattern analysis over time",
+            "Establishing baselines and deviation thresholds",
+            "Integrating agent observability into existing monitoring infrastructure"
+          ],
+          "example": "After 3 months of agent use: monitoring shows 40% of all errors occur at a specific tool combination. The tool is improved — without monitoring, the team would have debugged only individual errors. In isolation, every failure looks like a one-off. At scale, patterns become visible — and fixable."
+        },
+        {
+          "id": "LG 6-5",
+          "level": "R2",
+          "effortHours": 0.75,
+          "title": "Apply spec-driven development to reduce intent drift and document decisions",
+          "description": "A specification serves as both the contract for the agent and a durable decision record for the team. Without it, 'make it better' becomes the task — and every outcome is simultaneously correct and unacceptable.",
+          "topics": [
+            "Spec as a contract: acceptance criteria, scope boundaries, done condition",
+            "Spec as a context anchor: reducing prompt drift across sessions",
+            "Spec as documentation: capturing intent for future maintainers",
+            "Reducing intent debt through explicit decisions"
+          ],
+          "example": "Task description with 7 acceptance criteria instead of 'make it better' — the agent stays on task, and the spec becomes part of the documentation. The spec is not bureaucracy: it is the difference between an agent that circles and one that finishes."
+        },
+        {
+          "id": "LG 6-4",
+          "level": "R1",
+          "effortHours": 2,
+          "title": "Design a control framework for a concrete task",
+          "description": "The interplay of guardrails, Human-in-the-Loop, feedback, and monitoring. The risk profile of the task determines the tightness of the framework — and the mature decision of when more autonomy is worthwhile and when less.",
+          "topics": [
+            "Risk-dependent tightness",
+            "Placement of Human-in-the-Loop points",
+            "Abort criteria and escalation paths",
+            "Autonomy-control balance over time"
+          ],
+          "example": "Low risk (reformulating comments): open setup, Human-in-the-Loop only at the end. High risk (security module): tight guardrails, Human-in-the-Loop before every commit, double review, full log. The same agent, completely different frameworks. In 6 months — once structures, monitoring, and team maturity are in place — the framework can be opened up."
+        }
+      ]
+    }
+  ]
+}
