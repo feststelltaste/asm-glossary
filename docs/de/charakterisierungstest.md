@@ -7,6 +7,8 @@ translation_en_title: Characterization Test
 
 # Charakterisierungstest
 
+![charakterisierungstest](assets/images/charakterisierungstest.png)
+
 > Ein Test, der das aktuelle Verhalten eines Legacy-Systems aufzeichnet, ohne es zu verstehen. Auch als "Golden Master Testing" bekannt, gibt dieser dem Agent ein Sicherheitsnetz, auch wenn keine Spezifikation existiert. Der Characterization Test wird vor der Modernisierung erstellt und dient als Referenz: Jede Änderung, die das aufgezeichnete Verhalten verändert, muss bewusst entschieden werden.
 
 **Siehe auch:** [Testrahmen](testrahmen.md) · [Abweichungserkennung](abweichungserkennung.md) · [Human-in-the-Loop](human-in-the-loop.md)
