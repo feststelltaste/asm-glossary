@@ -54,16 +54,23 @@ Interactive workflow for adding new definitions to the Agentic Software Moderniz
      ```
    - "See also" links use bare filenames in the same language (e.g., `guardrails.md` in English files, `leitplanken.md` in German files).
 
-6. **Update metadata**:
+6. **Generate image variants**: Run `python scripts/generate_images.py --term <en-slug> --variations 3` to generate three illustration variants.
+   - Check first whether `GEMINI_API_KEY` is set in the environment. If it is not set, inform the user, skip this step, and note they can run the script manually later.
+   - The script saves `raw-assets/images/<en-slug>-1.png`, `-2.png`, `-3.png` and auto-places variation 1 as the active image (resized, compressed, injected into both EN and DE term files).
+   - Ask the user to review the three raw variants and tell you which number they prefer (1, 2, or 3).
+   - If the user picks variation 1, no further action is needed for the image.
+   - If the user picks variation 2 or 3, invoke the `add-image` skill with `raw-assets/images/<en-slug>-<chosen>.png` to replace the placed image with their preferred variant.
+
+7. **Update metadata**:
    - Run `python scripts/update_overview.py`
    - Add the term to the mindmap in `CONCEPT_MAP.md` under the right category
 
-7. **Commit and push**:
+8. **Commit and push**:
    - Stage only the changed files
    - Commit with message: `Add glossary term: <Term Name>`
    - Push to the current branch
 
-8. **Suggest next terms**: After finishing, suggest 3-5 terms that are not yet in the glossary but would complement the one just added. Check existing files before suggesting.
+9. **Suggest next terms**: After finishing, suggest 3-5 terms that are not yet in the glossary but would complement the one just added. Check existing files before suggesting.
 
 ## Rules
 
