@@ -16,3 +16,4 @@ Techniken und Werkzeuge zum Verstehen und Repräsentieren von Legacy-Codebasen.
 - [Semantische Anker](../semantische-anker.md)
 - [Software Analytics](../software-analytics.md)
 - [Statische Analyse](../statische-analyse.md)
+- [Tree-sitter](../tree-sitter.md)

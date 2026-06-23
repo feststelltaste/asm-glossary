@@ -85,6 +85,7 @@ nav:
   - Semantic Anchors: semantic-anchors.md
   - Software Analytics: software-analytics.md
   - Static Analysis: static-analysis.md
+  - Tree-sitter: tree-sitter.md
 - Modernization:
   - modernization/index.md
   - Anti-Corruption Layer (ACL): anti-corruption-layer.md

@@ -211,6 +211,7 @@ mindmap
       Semantic Anchors
       Software Analytics
       Static Analysis
+      Tree-sitter
     Modernization
       Anti-Corruption Layer (ACL)
       Automated Refactoring

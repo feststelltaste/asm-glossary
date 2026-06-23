@@ -136,6 +136,7 @@ nav:
   - Semantische Anker: semantische-anker.md
   - Software Analytics: software-analytics.md
   - Statische Analyse: statische-analyse.md
+  - Tree-sitter: tree-sitter.md
 - Modernisierung:
   - modernization/index.md
   - Absichtsschulden: absichtsschulden.md

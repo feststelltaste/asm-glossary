@@ -244,6 +244,7 @@ mindmap
       Code Knowledge Graph
       Static Analysis
       Language Server Protocol (LSP)
+      Tree-sitter
       Drift Detection
       Guided AI
       Codebase Conditioning

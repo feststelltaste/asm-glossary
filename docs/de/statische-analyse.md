@@ -13,5 +13,5 @@ translation_en_title: Static Analysis
 
 ---
 
-**Siehe auch:** [Agentischer Zyklus](agentischer-zyklus.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [Abweichungserkennung](abweichungserkennung.md)
+**Siehe auch:** [Agentischer Zyklus](agentischer-zyklus.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [Abweichungserkennung](abweichungserkennung.md) · [Tree-sitter](tree-sitter.md)
 { .see-also }

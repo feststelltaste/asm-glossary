@@ -16,3 +16,4 @@ Tools and techniques for understanding and representing legacy codebases.
 - [Semantic Anchors](../semantic-anchors.md)
 - [Software Analytics](../software-analytics.md)
 - [Static Analysis](../static-analysis.md)
+- [Tree-sitter](../tree-sitter.md)

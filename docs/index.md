@@ -19,7 +19,7 @@ The approach combines established modernization patterns (such as [Strangler Fig
 
 ## Analysis & Knowledge
 
-[Code Comprehension](code-comprehension.md) · [Code Knowledge Graph](code-knowledge-graph.md) · [Codebase Conditioning](codebase-conditioning.md) · [Dark Code](dark-code.md) · [Drift Detection](drift-detection.md) · [Guided AI](guided-ai.md) · [Language Server Protocol (LSP)](language-server-protocol.md) · [Semantic Anchors](semantic-anchors.md) · [Software Analytics](software-analytics.md) · [Static Analysis](static-analysis.md)
+[Code Comprehension](code-comprehension.md) · [Code Knowledge Graph](code-knowledge-graph.md) · [Codebase Conditioning](codebase-conditioning.md) · [Dark Code](dark-code.md) · [Drift Detection](drift-detection.md) · [Guided AI](guided-ai.md) · [Language Server Protocol (LSP)](language-server-protocol.md) · [Semantic Anchors](semantic-anchors.md) · [Software Analytics](software-analytics.md) · [Static Analysis](static-analysis.md) · [Tree-sitter](tree-sitter.md)
 
 ## Modernization
 
