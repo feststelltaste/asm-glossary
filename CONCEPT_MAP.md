@@ -282,6 +282,7 @@ mindmap
       Spec-Driven Development
       Guardrails
       Human-in-the-Loop
+      Variant Generation
       Review Fatigue
       Pattern Diffing
       Feedback Loop

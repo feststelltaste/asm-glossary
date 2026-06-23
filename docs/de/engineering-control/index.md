@@ -17,3 +17,4 @@ Mechanismen zur menschlichen Steuerung, Absicherung und Lenkung von Agenten.
 - [Review-Müdigkeit](../review-muedigkeit.md)
 - [Sitzungsaufteilung](../sitzungsaufteilung.md)
 - [Spec-Driven Development](../spec-driven-development.md)
+- [Variantengeneration](../variantengeneration.md)

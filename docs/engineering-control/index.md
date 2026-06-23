@@ -17,3 +17,4 @@ Infrastructure, discipline, and oversight patterns that keep agent-driven modern
 - [Review Fatigue](../review-fatigue.md)
 - [Session Segmentation](../session-segmentation.md)
 - [Spec-Driven Development](../spec-driven-development.md)
+- [Variant Generation](../variant-generation.md)

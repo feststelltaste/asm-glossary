@@ -126,6 +126,7 @@ nav:
   - Review Fatigue: review-fatigue.md
   - Session Segmentation: session-segmentation.md
   - Spec-Driven Development: spec-driven-development.md
+  - Variant Generation: variant-generation.md
 - Infrastructure:
   - agent-infrastructure/index.md
   - Agent Runbook: agent-runbook.md

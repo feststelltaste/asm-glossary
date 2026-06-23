@@ -177,6 +177,7 @@ nav:
   - Review-Müdigkeit: review-muedigkeit.md
   - Sitzungsaufteilung: sitzungsaufteilung.md
   - Spec-Driven Development: spec-driven-development.md
+  - Variantengeneration: variantengeneration.md
 - Infrastruktur:
   - agent-infrastructure/index.md
   - Agent Runbook: agent-runbook.md

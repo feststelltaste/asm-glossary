@@ -249,6 +249,7 @@ mindmap
       Review Fatigue
       Session Segmentation
       Spec-Driven Development
+      Variant Generation
     Infrastructure
       Agent Runbook
       Agent Teams
