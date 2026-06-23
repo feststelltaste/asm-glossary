@@ -61,16 +61,18 @@ Interactive workflow for adding new definitions to the Agentic Software Moderniz
    - If the user picks variation 1, no further action is needed for the image.
    - If the user picks variation 2 or 3, invoke the `add-image` skill with `raw-assets/images/<en-slug>-<chosen>.png` to replace the placed image with their preferred variant.
 
-7. **Update metadata**:
+7. **Add back-references**: For each term listed in the new term's "See also", check whether the new term deserves a reciprocal link in that term's "See also" section. If yes, add it to both the English and German versions of that term file. Only add a back-reference when the relationship is genuinely bidirectional and the "See also" list does not already contain it.
+
+8. **Update metadata**:
    - Run `python scripts/update_overview.py`
    - Add the term to the mindmap in `CONCEPT_MAP.md` under the right category
 
-8. **Commit and push**:
+9. **Commit and push**:
    - Stage only the changed files
    - Commit with message: `Add glossary term: <Term Name>`
    - Push to the current branch
 
-9. **Suggest next terms**: After finishing, suggest 3-5 terms that are not yet in the glossary but would complement the one just added. Check existing files before suggesting.
+10. **Suggest next terms**: After finishing, suggest 3-5 terms that are not yet in the glossary but would complement the one just added. Check existing files before suggesting.
 
 ## Rules
 

@@ -11,6 +11,7 @@ Techniken und Werkzeuge zum Verstehen und Repräsentieren von Legacy-Codebasen.
 - [Code-Wissensgraph](../code-wissensgraph.md)
 - [Dark Code](../dark-code.md)
 - [Geführte KI](../gefuehrte-ki.md)
+- [Language Server Protocol (LSP)](../language-server-protocol.md)
 - [Quellcodekonditionierung](../quellcodekonditionierung.md)
 - [Semantische Anker](../semantische-anker.md)
 - [Software Analytics](../software-analytics.md)

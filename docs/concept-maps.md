@@ -207,6 +207,7 @@ mindmap
       Dark Code
       Drift Detection
       Guided AI
+      Language Server Protocol (LSP)
       Semantic Anchors
       Software Analytics
       Static Analysis

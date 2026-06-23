@@ -243,6 +243,7 @@ mindmap
       Code Comprehension
       Code Knowledge Graph
       Static Analysis
+      Language Server Protocol (LSP)
       Drift Detection
       Guided AI
       Codebase Conditioning

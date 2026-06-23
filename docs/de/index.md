@@ -17,7 +17,7 @@ hide:
 
 ## Analyse & Wissen
 
-[Abweichungserkennung](abweichungserkennung.md) · [Code-Verständnis](code-verstaendnis.md) · [Code-Wissensgraph](code-wissensgraph.md) · [Dark Code](dark-code.md) · [Geführte KI](gefuehrte-ki.md) · [Quellcodekonditionierung](quellcodekonditionierung.md) · [Semantische Anker](semantische-anker.md) · [Software Analytics](software-analytics.md) · [Statische Analyse](statische-analyse.md)
+[Abweichungserkennung](abweichungserkennung.md) · [Code-Verständnis](code-verstaendnis.md) · [Code-Wissensgraph](code-wissensgraph.md) · [Dark Code](dark-code.md) · [Geführte KI](gefuehrte-ki.md) · [Language Server Protocol (LSP)](language-server-protocol.md) · [Quellcodekonditionierung](quellcodekonditionierung.md) · [Semantische Anker](semantische-anker.md) · [Software Analytics](software-analytics.md) · [Statische Analyse](statische-analyse.md)
 
 ## Modernisierung
 

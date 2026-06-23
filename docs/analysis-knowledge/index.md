@@ -12,6 +12,7 @@ Tools and techniques for understanding and representing legacy codebases.
 - [Dark Code](../dark-code.md)
 - [Drift Detection](../drift-detection.md)
 - [Guided AI](../guided-ai.md)
+- [Language Server Protocol (LSP)](../language-server-protocol.md)
 - [Semantic Anchors](../semantic-anchors.md)
 - [Software Analytics](../software-analytics.md)
 - [Static Analysis](../static-analysis.md)

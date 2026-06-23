@@ -11,5 +11,5 @@ translation_en_title: Agentic Search
 
 > Das Navigieren einer Codebasis, indem ein Agent iterativ Such- und Datei-Explorations-Werkzeuge einsetzt, etwa Glob-Muster und Grep, um relevante Dateien, Symbole oder Code-Stellen zu finden. Ein griffiger Name für das, was im Kern eine strukturierte, werkzeuggestützte Traversierung eines Repositories ist. Das „agentische" Framing beschreibt im Wesentlichen nur, dass ein Sprachmodell entscheidet, wonach als nächstes gesucht wird.
 
-**Siehe auch:** [Werkzeugnutzung](werkzeugnutzung.md) · [Code-Verständnis](code-verstaendnis.md)
+**Siehe auch:** [Werkzeugnutzung](werkzeugnutzung.md) · [Code-Verständnis](code-verstaendnis.md) · [Language Server Protocol (LSP)](language-server-protocol.md)
 { .see-also }
