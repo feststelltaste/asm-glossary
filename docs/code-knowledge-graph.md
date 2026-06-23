@@ -3,6 +3,7 @@ title: Code Knowledge Graph
 category: Analysis & Knowledge
 translation_de: code-wissensgraph
 translation_de_title: Code-Wissensgraph
+image: assets/images/en/code-knowledge-graph.png
 ---
 
 # Code Knowledge Graph

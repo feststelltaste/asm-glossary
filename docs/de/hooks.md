@@ -3,6 +3,7 @@ title: Hooks
 category: Infrastruktur
 translation_en: hooks
 translation_en_title: Hooks
+image: assets/images/hooks.png
 ---
 
 # Hooks

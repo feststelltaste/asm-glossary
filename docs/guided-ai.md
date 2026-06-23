@@ -3,6 +3,7 @@ title: Guided AI
 category: Analysis & Knowledge
 translation_de: gefuehrte-ki
 translation_de_title: Geführte KI
+image: assets/images/en/guided-ai.png
 ---
 
 # Guided AI

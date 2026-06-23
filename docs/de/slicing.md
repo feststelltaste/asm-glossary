@@ -3,6 +3,7 @@ title: Slicing
 category: Modernisierung
 translation_en: slicing
 translation_en_title: Slicing
+image: assets/images/slicing.png
 ---
 
 # Slicing

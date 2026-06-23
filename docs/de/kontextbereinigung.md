@@ -3,6 +3,7 @@ title: Kontextbereinigung
 category: Grundlagen
 translation_en: context-pruning
 translation_en_title: Context Pruning
+image: assets/images/kontextbereinigung.png
 ---
 
 # Kontextbereinigung

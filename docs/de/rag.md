@@ -3,6 +3,7 @@ title: RAG (Retrieval-Augmented Generation)
 category: Infrastruktur
 translation_en: rag
 translation_en_title: RAG (Retrieval-Augmented Generation)
+image: assets/images/rag.png
 ---
 
 # RAG (Retrieval-Augmented Generation)

@@ -3,6 +3,7 @@ title: Absichtsschulden
 category: Modernisierung
 translation_en: intent-debt
 translation_en_title: Intent Debt
+image: assets/images/absichtsschulden.png
 ---
 
 # Absichtsschulden

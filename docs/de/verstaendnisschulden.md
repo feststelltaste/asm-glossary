@@ -3,6 +3,7 @@ title: Verständnisschulden
 category: Modernisierung
 translation_en: comprehension-debt
 translation_en_title: Comprehension Debt
+image: assets/images/verstaendnisschulden.png
 ---
 
 # Verständnisschulden

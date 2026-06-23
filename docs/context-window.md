@@ -3,6 +3,7 @@ title: Context Window
 category: Fundamentals
 translation_de: kontextfenster
 translation_de_title: Kontextfenster
+image: assets/images/en/context-window.png
 ---
 
 # Context Window

@@ -3,6 +3,7 @@ title: Blast Radius
 category: Engineering & Control
 translation_de: explosionsradius
 translation_de_title: Explosionsradius
+image: assets/images/en/blast-radius.png
 ---
 
 # Blast Radius

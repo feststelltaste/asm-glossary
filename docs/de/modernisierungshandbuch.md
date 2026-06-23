@@ -3,6 +3,7 @@ title: Modernisierungshandbuch
 category: Modernisierung
 translation_en: modernization-playbook
 translation_en_title: Modernization Playbook
+image: assets/images/modernisierungshandbuch.png
 ---
 
 # Modernisierungshandbuch

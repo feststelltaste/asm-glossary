@@ -3,6 +3,7 @@ title: Pattern Diffing
 category: Engineering & Control
 translation_de: musterbasierter-vergleich
 translation_de_title: Musterbasierter Vergleich
+image: assets/images/en/pattern-diffing.png
 ---
 
 # Pattern Diffing

@@ -3,6 +3,7 @@ title: MCP (Model Context Protocol)
 category: Infrastructure
 translation_de: mcp
 translation_de_title: MCP (Model Context Protocol)
+image: assets/images/en/mcp.png
 ---
 
 # MCP (Model Context Protocol)

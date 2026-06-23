@@ -3,6 +3,7 @@ title: Leitplanken
 category: Entwicklung & Kontrolle
 translation_en: guardrails
 translation_en_title: Guardrails
+image: assets/images/leitplanken.png
 ---
 
 # Leitplanken

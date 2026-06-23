@@ -3,6 +3,7 @@ title: Musterbasierter Vergleich
 category: Entwicklung & Kontrolle
 translation_en: pattern-diffing
 translation_en_title: Pattern Diffing
+image: assets/images/musterbasierter-vergleich.png
 ---
 
 # Musterbasierter Vergleich

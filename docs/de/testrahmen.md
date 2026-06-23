@@ -3,6 +3,7 @@ title: Testrahmen
 category: Testing & Absicherung
 translation_en: test-harness
 translation_en_title: Test Harness
+image: assets/images/testrahmen.png
 ---
 
 # Testrahmen

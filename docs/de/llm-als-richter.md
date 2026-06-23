@@ -3,6 +3,7 @@ title: LLM als Richter
 category: Testing & Absicherung
 translation_en: llm-as-a-judge
 translation_en_title: LLM as a Judge
+image: assets/images/llm-als-richter.png
 ---
 
 # LLM als Richter

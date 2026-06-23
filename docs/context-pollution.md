@@ -3,6 +3,7 @@ title: Context Pollution
 category: Fundamentals
 translation_de: kontextverschmutzung
 translation_de_title: Kontextverschmutzung
+image: assets/images/en/context-pollution.png
 ---
 
 # Context Pollution

@@ -3,6 +3,7 @@ title: Intent Engineering
 category: Entwicklung & Kontrolle
 translation_en: intent-engineering
 translation_en_title: Intent Engineering
+image: assets/images/intent-engineering.png
 ---
 
 # Intent Engineering

@@ -3,6 +3,7 @@ title: Agent Workflow Framework
 category: Infrastructure
 translation_de: agentenworkflow-framework
 translation_de_title: Agentenworkflow-Framework
+image: assets/images/en/agent-workflow-framework.png
 ---
 
 # Agent Workflow Framework

@@ -3,6 +3,7 @@ title: Structured Output
 category: Fundamentals
 translation_de: strukturierte-ausgabe
 translation_de_title: Strukturierte Ausgabe
+image: assets/images/en/structured-output.png
 ---
 
 # Structured Output

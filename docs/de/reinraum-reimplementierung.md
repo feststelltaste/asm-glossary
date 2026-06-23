@@ -3,6 +3,7 @@ title: Reinraum-Reimplementierung
 category: Modernisierung
 translation_en: clean-room-rewrite
 translation_en_title: Clean Room Rewrite
+image: assets/images/reinraum-reimplementierung.png
 ---
 
 # Reinraum-Reimplementierung

@@ -3,6 +3,7 @@ title: Vibe Coding
 category: Grundlagen
 translation_en: vibe-coding
 translation_en_title: Vibe Coding
+image: assets/images/vibe-coding.png
 ---
 
 # Vibe Coding

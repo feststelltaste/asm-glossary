@@ -3,6 +3,7 @@ title: Feature Toggle
 category: Modernisierung
 translation_en: feature-toggle
 translation_en_title: Feature Toggle
+image: assets/images/feature-toggle.png
 ---
 
 # Feature Toggle

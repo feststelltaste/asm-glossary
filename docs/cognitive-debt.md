@@ -3,6 +3,7 @@ title: Cognitive Debt
 category: Modernization
 translation_de: kognitive-schulden
 translation_de_title: Kognitive Schulden
+image: assets/images/en/cognitive-debt.png
 ---
 
 # Cognitive Debt

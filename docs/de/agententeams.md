@@ -3,6 +3,7 @@ title: Agententeams
 category: Infrastruktur
 translation_en: agent-teams
 translation_en_title: Agent Teams
+image: assets/images/agententeams.png
 ---
 
 # Agententeams

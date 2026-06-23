@@ -3,6 +3,7 @@ title: Dark Code
 category: Analyse & Wissen
 translation_en: dark-code
 translation_en_title: Dark Code
+image: assets/images/dark-code.png
 ---
 
 # Dark Code

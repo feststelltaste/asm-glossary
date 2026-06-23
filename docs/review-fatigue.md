@@ -3,6 +3,7 @@ title: Review Fatigue
 category: Engineering & Control
 translation_de: review-muedigkeit
 translation_de_title: Review-Müdigkeit
+image: assets/images/en/review-fatigue.png
 ---
 
 # Review Fatigue

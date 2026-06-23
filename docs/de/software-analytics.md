@@ -3,6 +3,7 @@ title: Software Analytics
 category: Analyse & Wissen
 translation_en: software-analytics
 translation_en_title: Software Analytics
+image: assets/images/software-analytics.png
 ---
 
 # Software Analytics

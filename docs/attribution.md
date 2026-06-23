@@ -3,6 +3,7 @@ title: Attribution
 category: Fundamentals
 translation_de: quellennachweis
 translation_de_title: Quellennachweis
+image: assets/images/en/attribution.png
 ---
 
 # Attribution

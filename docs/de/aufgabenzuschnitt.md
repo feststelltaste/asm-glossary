@@ -3,6 +3,7 @@ title: Aufgabenzuschnitt
 category: Modernisierung
 translation_en: workload-design
 translation_en_title: Workload Design
+image: assets/images/aufgabenzuschnitt.png
 ---
 
 # Aufgabenzuschnitt

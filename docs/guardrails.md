@@ -3,6 +3,7 @@ title: Guardrails
 category: Engineering & Control
 translation_de: leitplanken
 translation_de_title: Leitplanken
+image: assets/images/en/guardrails.png
 ---
 
 # Guardrails

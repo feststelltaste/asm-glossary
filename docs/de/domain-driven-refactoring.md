@@ -3,6 +3,7 @@ title: Domain-Driven Refactoring
 category: Modernisierung
 translation_en: domain-driven-refactoring
 translation_en_title: Domain-Driven Refactoring
+image: assets/images/domain-driven-refactoring.png
 ---
 
 # Domain-Driven Refactoring

@@ -3,6 +3,7 @@ title: Agent Runbook
 category: Infrastruktur
 translation_en: agent-runbook
 translation_en_title: Agent Runbook
+image: assets/images/agent-runbook.png
 ---
 
 # Agent Runbook

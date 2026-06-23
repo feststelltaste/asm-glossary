@@ -3,6 +3,7 @@ title: Variantengeneration
 category: Entwicklung & Kontrolle
 translation_en: variant-generation
 translation_en_title: Variant Generation
+image: assets/images/variantengeneration.png
 ---
 
 # Variantengeneration

@@ -110,6 +110,21 @@ def image_already_linked(text: str, slug: str) -> bool:
     return f"![" in text and slug in text
 
 
+def inject_image_frontmatter(md_path: Path, img_rel_path: str) -> None:
+    """Add image: field to YAML front matter if not already present."""
+    text = md_path.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        return
+    end = text.find("---", 3)
+    if end == -1:
+        return
+    if "image:" in text[3:end]:
+        return
+    new_text = text[:end] + f"image: {img_rel_path}\n" + text[end:]
+    md_path.write_text(new_text, encoding="utf-8")
+    print(f"  Injected image frontmatter into {md_path.relative_to(REPO_ROOT)}")
+
+
 def inject_image_into_md(md_path: Path, img_rel_path: str, slug: str) -> None:
     """Insert an image reference after the first heading in the markdown file."""
     text = md_path.read_text(encoding="utf-8")
@@ -274,6 +289,7 @@ def process_term(md_path: Path, client: genai.Client, model: str, variations: in
 
     # --- Inject into English term file ---
     inject_image_into_md(md_path, f"assets/images/en/{en_slug}.png", en_slug)
+    inject_image_frontmatter(md_path, f"assets/images/en/{en_slug}.png")
 
     # --- German counterpart ---
     de_md = find_de_file(fm)
@@ -284,6 +300,7 @@ def process_term(md_path: Path, client: genai.Client, model: str, variations: in
         shutil.copy2(en_img_dest, de_img_dest)
         print(f"  Copied {de_img_dest.relative_to(REPO_ROOT)}")
         inject_image_into_md(de_md, f"assets/images/{de_slug}.png", de_slug)
+        inject_image_frontmatter(de_md, f"assets/images/{de_slug}.png")
     else:
         print(f"  WARNING: no German counterpart found for {en_slug}")
 
@@ -298,6 +315,7 @@ def main() -> None:
         help="Process only the next N terms that have no image yet",
     )
     parser.add_argument("--dry-run", action="store_true", help="Parse terms but skip API calls")
+    parser.add_argument("--backfill", action="store_true", help="Add image: front matter to all term files that have an image but no image: meta")
     parser.add_argument(
         "--model",
         choices=list(MODELS.keys()),
@@ -318,6 +336,26 @@ def main() -> None:
         sys.exit("ERROR: --variations must be at least 1.")
     if args.next is not None and args.next < 1:
         sys.exit("ERROR: --next must be at least 1.")
+
+    if args.backfill:
+        excluded = {"index.md", "about.md", "concept-maps.md"}
+        count = 0
+        for md_path in sorted(DOCS_EN.rglob("*.md")):
+            if md_path.name in excluded or "de/" in str(md_path.relative_to(REPO_ROOT)):
+                continue
+            en_slug = md_path.stem
+            en_img = EN_IMG_DIR / f"{en_slug}.png"
+            if not en_img.exists():
+                continue
+            inject_image_frontmatter(md_path, f"assets/images/en/{en_slug}.png")
+            fm = parse_frontmatter(md_path.read_text(encoding="utf-8"))
+            de_md = find_de_file(fm)
+            if de_md:
+                de_slug = de_md.stem
+                inject_image_frontmatter(de_md, f"assets/images/{de_slug}.png")
+            count += 1
+        print(f"Backfilled {count} term(s).")
+        return
 
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key and not args.dry_run:

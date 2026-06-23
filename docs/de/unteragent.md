@@ -3,6 +3,7 @@ title: Unteragent
 category: Infrastruktur
 translation_en: sub-agent
 translation_en_title: Sub Agent
+image: assets/images/unteragent.png
 ---
 
 # Unteragent

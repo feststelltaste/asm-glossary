@@ -3,6 +3,7 @@ title: Quellennachweis
 category: Grundlagen
 translation_en: attribution
 translation_en_title: Attribution
+image: assets/images/quellennachweis.png
 ---
 
 # Quellennachweis

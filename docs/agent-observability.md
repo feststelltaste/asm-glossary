@@ -3,6 +3,7 @@ title: Agent Observability
 category: Engineering & Control
 translation_de: agentenmonitoring
 translation_de_title: Agentenmonitoring
+image: assets/images/en/agent-observability.png
 ---
 
 # Agent Observability

@@ -3,6 +3,7 @@ title: Spec-Driven Development
 category: Engineering & Control
 translation_de: spec-driven-development
 translation_de_title: Spec-Driven Development
+image: assets/images/en/spec-driven-development.png
 ---
 
 # Spec-Driven Development

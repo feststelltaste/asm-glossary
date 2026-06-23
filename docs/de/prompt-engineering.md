@@ -3,6 +3,7 @@ title: Prompt Engineering
 category: Infrastruktur
 translation_en: prompt-engineering
 translation_en_title: Prompt Engineering
+image: assets/images/prompt-engineering.png
 ---
 
 # Prompt Engineering

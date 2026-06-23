@@ -3,6 +3,7 @@ title: Agentengedächtnis
 category: Grundlagen
 translation_en: agent-memory
 translation_en_title: Agent Memory
+image: assets/images/agentengedaechtnis.png
 ---
 
 # Agentengedächtnis

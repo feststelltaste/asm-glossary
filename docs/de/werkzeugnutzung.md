@@ -3,6 +3,7 @@ title: Werkzeugnutzung
 category: Grundlagen
 translation_en: tool-use
 translation_en_title: Tool Use
+image: assets/images/werkzeugnutzung.png
 ---
 
 # Werkzeugnutzung

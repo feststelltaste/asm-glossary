@@ -3,6 +3,7 @@ title: Anti-Corruption Layer (ACL)
 category: Modernisierung
 translation_en: anti-corruption-layer
 translation_en_title: Anti-Corruption Layer (ACL)
+image: assets/images/anti-corruption-layer.png
 ---
 
 # Anti-Corruption Layer (ACL)

@@ -3,6 +3,7 @@ title: Horseshoe Model
 category: Modernization
 translation_de: hufeisen-modell
 translation_de_title: Hufeisen-Modell
+image: assets/images/en/horseshoe-model.png
 ---
 
 # Horseshoe Model

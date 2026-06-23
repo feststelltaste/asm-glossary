@@ -3,6 +3,7 @@ title: Quellcodekonditionierung
 category: Analyse & Wissen
 translation_en: codebase-conditioning
 translation_en_title: Codebase Conditioning
+image: assets/images/quellcodekonditionierung.png
 ---
 
 # Quellcodekonditionierung

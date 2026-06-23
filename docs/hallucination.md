@@ -3,6 +3,7 @@ title: Hallucination
 category: Fundamentals
 translation_de: halluzination
 translation_de_title: Halluzination
+image: assets/images/en/hallucination.png
 ---
 
 # Hallucination

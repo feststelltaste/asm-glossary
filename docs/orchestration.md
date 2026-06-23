@@ -3,6 +3,7 @@ title: Orchestration
 category: Infrastructure
 translation_de: orchestrierung
 translation_de_title: Orchestrierung
+image: assets/images/en/orchestration.png
 ---
 
 # Orchestration

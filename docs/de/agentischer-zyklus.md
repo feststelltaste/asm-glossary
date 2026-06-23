@@ -3,6 +3,7 @@ title: Agentischer Zyklus
 category: Grundlagen
 translation_en: agentic-loop
 translation_en_title: Agentic Loop
+image: assets/images/agentischer-zyklus.png
 ---
 
 # Agentischer Zyklus

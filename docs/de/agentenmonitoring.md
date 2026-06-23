@@ -3,6 +3,7 @@ title: Agentenmonitoring
 category: Entwicklung & Kontrolle
 translation_en: agent-observability
 translation_en_title: Agent Observability
+image: assets/images/agentenmonitoring.png
 ---
 
 # Agentenmonitoring

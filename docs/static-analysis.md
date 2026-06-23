@@ -3,6 +3,7 @@ title: Static Analysis
 category: Analysis & Knowledge
 translation_de: statische-analyse
 translation_de_title: Statische Analyse
+image: assets/images/en/static-analysis.png
 ---
 
 # Static Analysis

@@ -3,6 +3,7 @@ title: Language Server Protocol (LSP)
 category: Analysis & Knowledge
 translation_de: language-server-protocol
 translation_de_title: Language Server Protocol (LSP)
+image: assets/images/en/language-server-protocol.png
 ---
 
 # Language Server Protocol (LSP)

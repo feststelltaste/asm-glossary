@@ -3,6 +3,7 @@ title: Dark Factory
 category: Infrastruktur
 translation_en: dark-factory
 translation_en_title: Dark Factory
+image: assets/images/dark-factory.png
 ---
 
 # Dark Factory

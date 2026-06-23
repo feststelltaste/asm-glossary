@@ -3,6 +3,7 @@ title: Semantic Anchors
 category: Analysis & Knowledge
 translation_de: semantische-anker
 translation_de_title: Semantische Anker
+image: assets/images/en/semantic-anchors.png
 ---
 
 # Semantic Anchors

@@ -3,6 +3,7 @@ title: Multi-Step Planning
 category: Fundamentals
 translation_de: mehrschrittplanung
 translation_de_title: Mehrschrittplanung
+image: assets/images/en/multi-step-planning.png
 ---
 
 # Multi-Step Planning

@@ -3,6 +3,7 @@ title: Automated Refactoring
 category: Modernization
 translation_de: automatisiertes-refactoring
 translation_de_title: Automatisiertes Refactoring
+image: assets/images/en/automated-refactoring.png
 ---
 
 # Automated Refactoring

@@ -3,6 +3,7 @@ title: Commands
 category: Infrastructure
 translation_de: befehle
 translation_de_title: Befehle
+image: assets/images/en/commands.png
 ---
 
 # Commands

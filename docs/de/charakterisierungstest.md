@@ -3,6 +3,7 @@ title: Charakterisierungstest
 category: Testing & Absicherung
 translation_en: characterization-test
 translation_en_title: Characterization Test
+image: assets/images/charakterisierungstest.png
 ---
 
 # Charakterisierungstest

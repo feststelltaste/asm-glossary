@@ -3,6 +3,7 @@ title: Feedback Loop
 category: Engineering & Control
 translation_de: feedbackschleife
 translation_de_title: Feedbackschleife
+image: assets/images/en/feedback-loop.png
 ---
 
 # Feedback Loop

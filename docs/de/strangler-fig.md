@@ -3,6 +3,7 @@ title: Strangler Fig Pattern
 category: Modernisierung
 translation_en: strangler-fig
 translation_en_title: Strangler Fig Pattern
+image: assets/images/strangler-fig.png
 ---
 
 # Strangler Fig Pattern

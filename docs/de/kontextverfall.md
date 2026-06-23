@@ -3,6 +3,7 @@ title: Kontextverfall
 category: Grundlagen
 translation_en: context-rot
 translation_en_title: Context Rot
+image: assets/images/kontextverfall.png
 ---
 
 # Kontextverfall

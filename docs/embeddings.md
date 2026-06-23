@@ -3,6 +3,7 @@ title: Embeddings
 category: Infrastructure
 translation_de: embeddings
 translation_de_title: Embeddings
+image: assets/images/en/embeddings.png
 ---
 
 # Embeddings

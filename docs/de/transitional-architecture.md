@@ -3,6 +3,7 @@ title: Transitional Architecture
 category: Modernisierung
 translation_en: transitional-architecture
 translation_en_title: Transitional Architecture
+image: assets/images/transitional-architecture.png
 ---
 
 # Transitional Architecture

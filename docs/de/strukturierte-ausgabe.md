@@ -3,6 +3,7 @@ title: Strukturierte Ausgabe
 category: Grundlagen
 translation_en: structured-output
 translation_en_title: Structured Output
+image: assets/images/strukturierte-ausgabe.png
 ---
 
 # Strukturierte Ausgabe

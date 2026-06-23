@@ -3,6 +3,7 @@ title: Session Segmentation
 category: Engineering & Control
 translation_de: sitzungsaufteilung
 translation_de_title: Sitzungsaufteilung
+image: assets/images/en/session-segmentation.png
 ---
 
 # Session Segmentation

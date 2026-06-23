@@ -3,6 +3,7 @@ title: Technical Debt
 category: Modernization
 translation_de: technische-schulden
 translation_de_title: Technische Schulden
+image: assets/images/en/technical-debt.png
 ---
 
 # Technical Debt

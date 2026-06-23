@@ -3,6 +3,7 @@ title: Konzeptionelle Umstrukturierung
 category: Modernisierung
 translation_en: conceptual-refactoring
 translation_en_title: Conceptual Refactoring
+image: assets/images/konzeptionelle-umstrukturierung.png
 ---
 
 # Konzeptionelle Umstrukturierung

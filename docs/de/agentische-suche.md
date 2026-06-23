@@ -3,6 +3,7 @@ title: Agentische Suche
 category: Grundlagen
 translation_en: agentic-search
 translation_en_title: Agentic Search
+image: assets/images/agentische-suche.png
 ---
 
 # Agentische Suche

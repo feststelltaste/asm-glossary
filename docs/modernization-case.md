@@ -3,6 +3,7 @@ title: Modernization Case
 category: Modernization
 translation_de: modernisierungsfall
 translation_de_title: Modernisierungsfall
+image: assets/images/en/modernization-case.png
 ---
 
 # Modernization Case

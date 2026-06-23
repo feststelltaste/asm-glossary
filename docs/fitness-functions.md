@@ -3,6 +3,7 @@ title: Fitness Functions
 category: Testing & Verification
 translation_de: fitnessfunktionen
 translation_de_title: Fitnessfunktionen
+image: assets/images/en/fitness-functions.png
 ---
 
 # Fitness Functions

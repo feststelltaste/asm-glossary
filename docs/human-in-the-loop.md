@@ -3,6 +3,7 @@ title: Human-in-the-Loop
 category: Engineering & Control
 translation_de: human-in-the-loop
 translation_de_title: Human-in-the-Loop
+image: assets/images/en/human-in-the-loop.png
 ---
 
 # Human-in-the-Loop

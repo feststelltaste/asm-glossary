@@ -3,6 +3,7 @@ title: Idiomatische Transpilation
 category: Modernisierung
 translation_en: idiomatic-transpilation
 translation_en_title: Idiomatic Transpilation
+image: assets/images/idiomatische-transpilation.png
 ---
 
 # Idiomatische Transpilation

@@ -3,6 +3,7 @@ title: Verankerung
 category: Grundlagen
 translation_en: grounding
 translation_en_title: Grounding
+image: assets/images/verankerung.png
 ---
 
 # Verankerung

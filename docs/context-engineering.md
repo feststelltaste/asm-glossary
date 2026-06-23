@@ -3,6 +3,7 @@ title: Context Engineering
 category: Infrastructure
 translation_de: context-engineering
 translation_de_title: Context Engineering
+image: assets/images/en/context-engineering.png
 ---
 
 # Context Engineering

@@ -3,6 +3,7 @@ title: Code Comprehension
 category: Analysis & Knowledge
 translation_de: code-verstaendnis
 translation_de_title: Code-Verständnis
+image: assets/images/en/code-comprehension.png
 ---
 
 # Code Comprehension

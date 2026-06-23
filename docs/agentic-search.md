@@ -3,6 +3,7 @@ title: Agentic Search
 category: Fundamentals
 translation_de: agentische-suche
 translation_de_title: Agentische Suche
+image: assets/images/en/agentic-search.png
 ---
 
 # Agentic Search

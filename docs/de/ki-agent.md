@@ -3,6 +3,7 @@ title: KI-Agent
 category: Grundlagen
 translation_en: ai-agent
 translation_en_title: AI Agent
+image: assets/images/ki-agent.png
 ---
 
 # KI-Agent

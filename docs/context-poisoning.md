@@ -3,6 +3,7 @@ title: Context Poisoning
 category: Fundamentals
 translation_de: kontextvergiftung
 translation_de_title: Kontextvergiftung
+image: assets/images/en/context-poisoning.png
 ---
 
 # Context Poisoning

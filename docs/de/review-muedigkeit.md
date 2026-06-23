@@ -3,6 +3,7 @@ title: Review-Müdigkeit
 category: Entwicklung & Kontrolle
 translation_en: review-fatigue
 translation_en_title: Review Fatigue
+image: assets/images/review-muedigkeit.png
 ---
 
 # Review-Müdigkeit

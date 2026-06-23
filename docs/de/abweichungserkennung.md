@@ -3,6 +3,7 @@ title: Abweichungserkennung
 category: Analyse & Wissen
 translation_en: drift-detection
 translation_en_title: Drift Detection
+image: assets/images/abweichungserkennung.png
 ---
 
 # Abweichungserkennung

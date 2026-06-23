@@ -3,6 +3,7 @@ title: Skills
 category: Infrastructure
 translation_de: skills
 translation_de_title: Skills
+image: assets/images/en/skills.png
 ---
 
 # Skills

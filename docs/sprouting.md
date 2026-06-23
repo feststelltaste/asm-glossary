@@ -3,6 +3,7 @@ title: Sprouting
 category: Modernization
 translation_de: sprouting
 translation_de_title: Sprouting
+image: assets/images/en/sprouting.png
 ---
 
 # Sprouting

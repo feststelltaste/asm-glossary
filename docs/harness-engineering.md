@@ -3,6 +3,7 @@ title: Harness Engineering
 category: Engineering & Control
 translation_de: harness-engineering
 translation_de_title: Harness Engineering
+image: assets/images/en/harness-engineering.png
 ---
 
 # Harness Engineering

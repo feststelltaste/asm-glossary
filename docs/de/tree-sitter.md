@@ -3,6 +3,7 @@ title: Tree-sitter
 category: Analyse & Wissen
 translation_en: tree-sitter
 translation_en_title: Tree-sitter
+image: assets/images/tree-sitter.png
 ---
 
 # Tree-sitter

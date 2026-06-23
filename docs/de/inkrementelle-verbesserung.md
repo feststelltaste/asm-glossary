@@ -3,6 +3,7 @@ title: Inkrementelle Verbesserung
 category: Modernisierung
 translation_en: incremental-improvement
 translation_en_title: Incremental Improvement
+image: assets/images/inkrementelle-verbesserung.png
 ---
 
 # Inkrementelle Verbesserung

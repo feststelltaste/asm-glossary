@@ -3,6 +3,7 @@ title: Seams
 category: Modernization
 translation_de: nahtstellen
 translation_de_title: Nahtstellen
+image: assets/images/en/seams.png
 ---
 
 # Seams

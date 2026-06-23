@@ -3,6 +3,7 @@ title: Sitzungsaufteilung
 category: Entwicklung & Kontrolle
 translation_en: session-segmentation
 translation_en_title: Session Segmentation
+image: assets/images/sitzungsaufteilung.png
 ---
 
 # Sitzungsaufteilung

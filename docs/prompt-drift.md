@@ -3,6 +3,7 @@ title: Prompt Drift
 category: Fundamentals
 translation_de: prompt-abweichung
 translation_de_title: Prompt-Abweichung
+image: assets/images/en/prompt-drift.png
 ---
 
 # Prompt Drift
