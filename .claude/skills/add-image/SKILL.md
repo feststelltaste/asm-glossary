@@ -9,6 +9,8 @@ allowed-tools: Read Write Edit Bash Glob Grep
 
 Workflow for processing a raw image and wiring it into the correct term files.
 
+> If no raw image exists yet and one needs to be generated from scratch (e.g. "generate the missing image for term X"), use `scripts/generate_images.py` instead — it calls the Gemini image API directly and performs this entire workflow (generate, resize, compress, copy, link) end to end. Requires `GEMINI_API_KEY` to be set. Run it with `python scripts/generate_images.py --term <slug>`. Only fall back to the manual steps below if that script is unavailable or fails.
+
 ## Input
 
 `$ARGUMENTS` contains a raw image filename and the term it illustrates, e.g.:
