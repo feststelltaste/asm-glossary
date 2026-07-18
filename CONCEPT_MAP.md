@@ -225,12 +225,15 @@ mindmap
       Context Pollution
       Context Pruning
       Prompt Drift
+      Attention Dilution
+      Lost in the Middle
       Grounding
       Attribution
       Vibe Coding
     Infrastructure
       MCP
       Orchestration
+      Hub-and-Spoke Orchestration
       Agent Workflow Framework
       Sub Agent
       Agent Teams
@@ -288,6 +291,7 @@ mindmap
       Human-in-the-Loop
       Variant Generation
       Review Fatigue
+      Self-Review Bias
       Pattern Diffing
       Feedback Loop
       Session Segmentation

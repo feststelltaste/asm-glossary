@@ -15,6 +15,7 @@ Mechanismen zur menschlichen Steuerung, Absicherung und Lenkung von Agenten.
 - [Leitplanken](../leitplanken.md)
 - [Musterbasierter Vergleich](../musterbasierter-vergleich.md)
 - [Review-Müdigkeit](../review-muedigkeit.md)
+- [Self-Review Bias](../self-review-bias.md)
 - [Sitzungsaufteilung](../sitzungsaufteilung.md)
 - [Spec-Driven Development](../spec-driven-development.md)
 - [Variantengeneration](../variantengeneration.md)

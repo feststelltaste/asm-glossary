@@ -13,7 +13,7 @@ hide:
 
 ## Grundlagen
 
-[Agentengedächtnis](agentengedaechtnis.md) · [Agentische Suche](agentische-suche.md) · [Agentischer Zyklus](agentischer-zyklus.md) · [Halluzination](halluzination.md) · [KI-Agent](ki-agent.md) · [Kontextbereinigung](kontextbereinigung.md) · [Kontextfenster](kontextfenster.md) · [Kontextverfall](kontextverfall.md) · [Kontextvergiftung](kontextvergiftung.md) · [Kontextverschmutzung](kontextverschmutzung.md) · [Mehrschrittplanung](mehrschrittplanung.md) · [Prompt-Abweichung](prompt-abweichung.md) · [Quellennachweis](quellennachweis.md) · [Scratchbook](scratchbook.md) · [Strukturierte Ausgabe](strukturierte-ausgabe.md) · [Verankerung](verankerung.md) · [Vibe Coding](vibe-coding.md) · [Werkzeugnutzung](werkzeugnutzung.md)
+[Agentengedächtnis](agentengedaechtnis.md) · [Agentische Suche](agentische-suche.md) · [Agentischer Zyklus](agentischer-zyklus.md) · [Aufmerksamkeitsverwässerung](aufmerksamkeitsverwaesserung.md) · [Halluzination](halluzination.md) · [KI-Agent](ki-agent.md) · [Kontextbereinigung](kontextbereinigung.md) · [Kontextfenster](kontextfenster.md) · [Kontextverfall](kontextverfall.md) · [Kontextvergiftung](kontextvergiftung.md) · [Kontextverschmutzung](kontextverschmutzung.md) · [Lost in the Middle](lost-in-the-middle.md) · [Mehrschrittplanung](mehrschrittplanung.md) · [Prompt-Abweichung](prompt-abweichung.md) · [Quellennachweis](quellennachweis.md) · [Scratchbook](scratchbook.md) · [Strukturierte Ausgabe](strukturierte-ausgabe.md) · [Verankerung](verankerung.md) · [Vibe Coding](vibe-coding.md) · [Werkzeugnutzung](werkzeugnutzung.md)
 
 ## Analyse & Wissen
 
@@ -29,8 +29,8 @@ hide:
 
 ## Entwicklung & Kontrolle
 
-[Agentenmonitoring](agentenmonitoring.md) · [Explosionsradius](explosionsradius.md) · [Feedbackschleife](feedbackschleife.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Leitplanken](leitplanken.md) · [Musterbasierter Vergleich](musterbasierter-vergleich.md) · [Review-Müdigkeit](review-muedigkeit.md) · [Sitzungsaufteilung](sitzungsaufteilung.md) · [Spec-Driven Development](spec-driven-development.md) · [Variantengeneration](variantengeneration.md)
+[Agentenmonitoring](agentenmonitoring.md) · [Explosionsradius](explosionsradius.md) · [Feedbackschleife](feedbackschleife.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Leitplanken](leitplanken.md) · [Musterbasierter Vergleich](musterbasierter-vergleich.md) · [Review-Müdigkeit](review-muedigkeit.md) · [Self-Review Bias](self-review-bias.md) · [Sitzungsaufteilung](sitzungsaufteilung.md) · [Spec-Driven Development](spec-driven-development.md) · [Variantengeneration](variantengeneration.md)
 
 ## Infrastruktur
 
-[Agent Runbook](agent-runbook.md) · [Agententeams](agententeams.md) · [Agentenworkflow-Framework](agentenworkflow-framework.md) · [Befehle](befehle.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestrierung](orchestrierung.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Unteragent](unteragent.md)
+[Agent Runbook](agent-runbook.md) · [Agententeams](agententeams.md) · [Agentenworkflow-Framework](agentenworkflow-framework.md) · [Befehle](befehle.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [Hub-and-Spoke-Orchestrierung](hub-and-spoke-orchestrierung.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestrierung](orchestrierung.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Unteragent](unteragent.md)

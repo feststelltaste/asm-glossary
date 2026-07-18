@@ -14,6 +14,7 @@ Werkzeuge, Protokolle und Muster, die Agenten in einer Softwareentwicklungsumgeb
 - [Dark Factory](../dark-factory.md)
 - [Embeddings](../embeddings.md)
 - [Hooks](../hooks.md)
+- [Hub-and-Spoke-Orchestrierung](../hub-and-spoke-orchestrierung.md)
 - [MCP (Model Context Protocol)](../mcp.md)
 - [Orchestrierung](../orchestrierung.md)
 - [Prompt Engineering](../prompt-engineering.md)

@@ -187,6 +187,7 @@ mindmap
       Agent Memory
       Agentic Loop
       Agentic Search
+      Attention Dilution
       Attribution
       Context Poisoning
       Context Pollution
@@ -195,6 +196,7 @@ mindmap
       Context Window
       Grounding
       Hallucination
+      Lost in the Middle
       Multi-Step Planning
       Prompt Drift
       Scratchbook
@@ -250,6 +252,7 @@ mindmap
       Intent Engineering
       Pattern Diffing
       Review Fatigue
+      Self-Review Bias
       Session Segmentation
       Spec-Driven Development
       Variant Generation
@@ -262,6 +265,7 @@ mindmap
       Dark Factory
       Embeddings
       Hooks
+      Hub-and-Spoke Orchestration
       MCP (Model Context Protocol)
       Orchestration
       Prompt Engineering

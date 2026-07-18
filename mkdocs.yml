@@ -58,6 +58,7 @@ nav:
   - Agent Memory: agent-memory.md
   - Agentic Loop: agentic-loop.md
   - Agentic Search: agentic-search.md
+  - Attention Dilution: attention-dilution.md
   - Attribution: attribution.md
   - Context Poisoning: context-poisoning.md
   - Context Pollution: context-pollution.md
@@ -66,6 +67,7 @@ nav:
   - Context Window: context-window.md
   - Grounding: grounding.md
   - Hallucination: hallucination.md
+  - Lost in the Middle: lost-in-the-middle.md
   - Multi-Step Planning: multi-step-planning.md
   - Prompt Drift: prompt-drift.md
   - Scratchbook: scratchbook.md
@@ -125,6 +127,7 @@ nav:
   - Intent Engineering: intent-engineering.md
   - Pattern Diffing: pattern-diffing.md
   - Review Fatigue: review-fatigue.md
+  - Self-Review Bias: self-review-bias.md
   - Session Segmentation: session-segmentation.md
   - Spec-Driven Development: spec-driven-development.md
   - Variant Generation: variant-generation.md
@@ -138,6 +141,7 @@ nav:
   - Dark Factory: dark-factory.md
   - Embeddings: embeddings.md
   - Hooks: hooks.md
+  - Hub-and-Spoke Orchestration: hub-and-spoke-orchestration.md
   - MCP (Model Context Protocol): mcp.md
   - Orchestration: orchestration.md
   - Prompt Engineering: prompt-engineering.md

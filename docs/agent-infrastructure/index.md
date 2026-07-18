@@ -14,6 +14,7 @@ Tools, protocols, and patterns that enable agents to operate within a software d
 - [Dark Factory](../dark-factory.md)
 - [Embeddings](../embeddings.md)
 - [Hooks](../hooks.md)
+- [Hub-and-Spoke Orchestration](../hub-and-spoke-orchestration.md)
 - [MCP (Model Context Protocol)](../mcp.md)
 - [Orchestration](../orchestration.md)
 - [Prompt Engineering](../prompt-engineering.md)

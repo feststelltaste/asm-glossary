@@ -15,6 +15,7 @@ Infrastructure, discipline, and oversight patterns that keep agent-driven modern
 - [Intent Engineering](../intent-engineering.md)
 - [Pattern Diffing](../pattern-diffing.md)
 - [Review Fatigue](../review-fatigue.md)
+- [Self-Review Bias](../self-review-bias.md)
 - [Session Segmentation](../session-segmentation.md)
 - [Spec-Driven Development](../spec-driven-development.md)
 - [Variant Generation](../variant-generation.md)

@@ -104,6 +104,7 @@ nav:
   - Agentengedächtnis: agentengedaechtnis.md
   - Agentische Suche: agentische-suche.md
   - Agentischer Zyklus: agentischer-zyklus.md
+  - Aufmerksamkeitsverwässerung: aufmerksamkeitsverwaesserung.md
   - Halluzination: halluzination.md
   - KI-Agent: ki-agent.md
   - Kontextbereinigung: kontextbereinigung.md
@@ -111,6 +112,7 @@ nav:
   - Kontextverfall: kontextverfall.md
   - Kontextvergiftung: kontextvergiftung.md
   - Kontextverschmutzung: kontextverschmutzung.md
+  - Lost in the Middle: lost-in-the-middle.md
   - Mehrschrittplanung: mehrschrittplanung.md
   - Prompt-Abweichung: prompt-abweichung.md
   - Quellennachweis: quellennachweis.md
@@ -172,6 +174,7 @@ nav:
   - Leitplanken: leitplanken.md
   - Musterbasierter Vergleich: musterbasierter-vergleich.md
   - Review-Müdigkeit: review-muedigkeit.md
+  - Self-Review Bias: self-review-bias.md
   - Sitzungsaufteilung: sitzungsaufteilung.md
   - Spec-Driven Development: spec-driven-development.md
   - Variantengeneration: variantengeneration.md
@@ -185,6 +188,7 @@ nav:
   - Dark Factory: dark-factory.md
   - Embeddings: embeddings.md
   - Hooks: hooks.md
+  - Hub-and-Spoke-Orchestrierung: hub-and-spoke-orchestrierung.md
   - MCP (Model Context Protocol): mcp.md
   - Orchestrierung: orchestrierung.md
   - Prompt Engineering: prompt-engineering.md
