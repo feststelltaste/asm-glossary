@@ -64,6 +64,8 @@ flowchart TD
     CPR[Context Pruning] -->|removes noise from| CW
     CPR -->|counteracts| CPL
     CPR -->|counteracts| CR
+    SB[Scratchbook] -->|extends| AM
+    SB -->|offloads notes from| CW
 ```
 
 ---
