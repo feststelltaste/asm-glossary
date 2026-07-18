@@ -197,6 +197,7 @@ mindmap
       Hallucination
       Multi-Step Planning
       Prompt Drift
+      Scratchbook
       Structured Output
       Tool Use
       Vibe Coding

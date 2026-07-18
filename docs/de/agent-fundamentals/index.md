@@ -19,6 +19,7 @@ Kernkonzepte zur Wahrnehmung, zum Denken und Handeln von KI-Agenten.
 - [Mehrschrittplanung](../mehrschrittplanung.md)
 - [Prompt-Abweichung](../prompt-abweichung.md)
 - [Quellennachweis](../quellennachweis.md)
+- [Scratchbook](../scratchbook.md)
 - [Strukturierte Ausgabe](../strukturierte-ausgabe.md)
 - [Verankerung](../verankerung.md)
 - [Vibe Coding](../vibe-coding.md)

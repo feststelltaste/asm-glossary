@@ -20,6 +20,7 @@ Core concepts describing how AI agents perceive, reason, and act.
 - [Hallucination](../hallucination.md)
 - [Multi-Step Planning](../multi-step-planning.md)
 - [Prompt Drift](../prompt-drift.md)
+- [Scratchbook](../scratchbook.md)
 - [Structured Output](../structured-output.md)
 - [Tool Use](../tool-use.md)
 - [Vibe Coding](../vibe-coding.md)
