@@ -239,6 +239,8 @@ mindmap
       Agent Workflow Framework
       Sub Agent
       Agent Teams
+      Background Agent
+      Workflow Sharding
       Tool Overload
       Keyword Overlap
       Structured Output
