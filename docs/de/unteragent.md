@@ -14,5 +14,5 @@ image: assets/images/unteragent.png
 
 ---
 
-**Siehe auch:** [Agententeams](agententeams.md) · [Orchestrierung](orchestrierung.md) · [Agentischer Zyklus](agentischer-zyklus.md)
+**Siehe auch:** [Agententeams](agententeams.md) · [Orchestrierung](orchestrierung.md) · [Agentischer Zyklus](agentischer-zyklus.md) · [Hintergrundagent](hintergrundagent.md)
 { .see-also }
