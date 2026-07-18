@@ -251,6 +251,7 @@ mindmap
       Blast Radius
       Checkpointing
       Confidence-Based Escalation
+      Coverage Gap Annotation
       Feedback Loop
       Guardrails
       Handoff Protocol
@@ -264,18 +265,22 @@ mindmap
       Self-Review Bias
       Session Segmentation
       Spec-Driven Development
+      Stratified Review Sampling
+      Task Tracking
       Validation-Retry Loop
       Variant Generation
     Infrastructure
       Agent Runbook
       Agent Teams
       Agent Workflow Framework
+      Background Agent
       Commands
       Context Engineering
       Dark Factory
       Embeddings
       Hooks
       Hub-and-Spoke Orchestration
+      Keyword Overlap
       MCP (Model Context Protocol)
       Narrator Agent
       Orchestration
@@ -284,4 +289,5 @@ mindmap
       Skills
       Sub Agent
       Tool Overload
+      Workflow Sharding
 ```

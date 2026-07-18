@@ -6,8 +6,10 @@ icon: fontawesome/solid/shield-halved
 
 Mechanismen zur menschlichen Steuerung, Absicherung und Lenkung von Agenten.
 
+- [Abdeckungslücken-Annotation](../abdeckungsluecken-annotation.md)
 - [Adversarial Review](../adversarial-review.md)
 - [Agentenmonitoring](../agentenmonitoring.md)
+- [Aufgabenverfolgung](../aufgabenverfolgung.md)
 - [Checkpointing](../checkpointing.md)
 - [Explosionsradius](../explosionsradius.md)
 - [Feedbackschleife](../feedbackschleife.md)
@@ -23,6 +25,7 @@ Mechanismen zur menschlichen Steuerung, Absicherung und Lenkung von Agenten.
 - [Self-Review Bias](../self-review-bias.md)
 - [Sitzungsaufteilung](../sitzungsaufteilung.md)
 - [Spec-Driven Development](../spec-driven-development.md)
+- [Stratifizierte Review-Stichprobe](../stratifizierte-review-stichprobe.md)
 - [Validierungsschleife](../validierungsschleife.md)
 - [Variantengeneration](../variantengeneration.md)
 - [Übergabeprotokoll](../uebergabeprotokoll.md)

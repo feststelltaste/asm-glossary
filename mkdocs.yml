@@ -126,6 +126,7 @@ nav:
   - Blast Radius: blast-radius.md
   - Checkpointing: checkpointing.md
   - Confidence-Based Escalation: confidence-based-escalation.md
+  - Coverage Gap Annotation: coverage-gap-annotation.md
   - Feedback Loop: feedback-loop.md
   - Guardrails: guardrails.md
   - Handoff Protocol: handoff-protocol.md
@@ -139,6 +140,8 @@ nav:
   - Self-Review Bias: self-review-bias.md
   - Session Segmentation: session-segmentation.md
   - Spec-Driven Development: spec-driven-development.md
+  - Stratified Review Sampling: stratified-review-sampling.md
+  - Task Tracking: task-tracking.md
   - Validation-Retry Loop: validation-retry-loop.md
   - Variant Generation: variant-generation.md
 - Infrastructure:
@@ -146,12 +149,14 @@ nav:
   - Agent Runbook: agent-runbook.md
   - Agent Teams: agent-teams.md
   - Agent Workflow Framework: agent-workflow-framework.md
+  - Background Agent: background-agent.md
   - Commands: commands.md
   - Context Engineering: context-engineering.md
   - Dark Factory: dark-factory.md
   - Embeddings: embeddings.md
   - Hooks: hooks.md
   - Hub-and-Spoke Orchestration: hub-and-spoke-orchestration.md
+  - Keyword Overlap: keyword-overlap.md
   - MCP (Model Context Protocol): mcp.md
   - Narrator Agent: narrator-agent.md
   - Orchestration: orchestration.md
@@ -160,6 +165,7 @@ nav:
   - Skills: skills.md
   - Sub Agent: sub-agent.md
   - Tool Overload: tool-overload.md
+  - Workflow Sharding: workflow-sharding.md
 
 extra:
   generator: false

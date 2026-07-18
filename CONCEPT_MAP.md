@@ -240,6 +240,7 @@ mindmap
       Sub Agent
       Agent Teams
       Tool Overload
+      Keyword Overlap
       Structured Output
       Embeddings
       Prompt Engineering
@@ -304,6 +305,9 @@ mindmap
       Validation-Retry Loop
       Sandboxing
       Checkpointing
+      Task Tracking
+      Coverage Gap Annotation
+      Stratified Review Sampling
       Pattern Diffing
       Feedback Loop
       Session Segmentation
