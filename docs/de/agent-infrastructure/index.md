@@ -21,3 +21,4 @@ Werkzeuge, Protokolle und Muster, die Agenten in einer Softwareentwicklungsumgeb
 - [RAG (Retrieval-Augmented Generation)](../rag.md)
 - [Skills](../skills.md)
 - [Unteragent](../unteragent.md)
+- [Werkzeugüberlastung](../werkzeugueberlastung.md)

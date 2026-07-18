@@ -6,13 +6,17 @@ icon: fontawesome/solid/shield-halved
 
 Infrastructure, discipline, and oversight patterns that keep agent-driven modernization safe and purposeful.
 
+- [Adversarial Review](../adversarial-review.md)
 - [Agent Observability](../agent-observability.md)
 - [Blast Radius](../blast-radius.md)
+- [Confidence-Based Escalation](../confidence-based-escalation.md)
 - [Feedback Loop](../feedback-loop.md)
 - [Guardrails](../guardrails.md)
+- [Handoff Protocol](../handoff-protocol.md)
 - [Harness Engineering](../harness-engineering.md)
 - [Human-in-the-Loop](../human-in-the-loop.md)
 - [Intent Engineering](../intent-engineering.md)
+- [Migration Dashboard](../migration-dashboard.md)
 - [Pattern Diffing](../pattern-diffing.md)
 - [Review Fatigue](../review-fatigue.md)
 - [Self-Review Bias](../self-review-bias.md)

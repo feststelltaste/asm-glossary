@@ -25,12 +25,12 @@ hide:
 
 ## Testing & Absicherung
 
-[Charakterisierungstest](charakterisierungstest.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [LLM als Richter](llm-als-richter.md) · [Testrahmen](testrahmen.md)
+[Charakterisierungstest](charakterisierungstest.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [LLM als Richter](llm-als-richter.md) · [Multi-Pass-Review](multi-pass-review.md) · [Testrahmen](testrahmen.md)
 
 ## Entwicklung & Kontrolle
 
-[Agentenmonitoring](agentenmonitoring.md) · [Explosionsradius](explosionsradius.md) · [Feedbackschleife](feedbackschleife.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Leitplanken](leitplanken.md) · [Musterbasierter Vergleich](musterbasierter-vergleich.md) · [Review-Müdigkeit](review-muedigkeit.md) · [Self-Review Bias](self-review-bias.md) · [Sitzungsaufteilung](sitzungsaufteilung.md) · [Spec-Driven Development](spec-driven-development.md) · [Variantengeneration](variantengeneration.md)
+[Adversarial Review](adversarial-review.md) · [Agentenmonitoring](agentenmonitoring.md) · [Explosionsradius](explosionsradius.md) · [Feedbackschleife](feedbackschleife.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Konfidenzbasierte Eskalation](konfidenzbasierte-eskalation.md) · [Leitplanken](leitplanken.md) · [Migrationsdashboard](migrationsdashboard.md) · [Musterbasierter Vergleich](musterbasierter-vergleich.md) · [Review-Müdigkeit](review-muedigkeit.md) · [Self-Review Bias](self-review-bias.md) · [Sitzungsaufteilung](sitzungsaufteilung.md) · [Spec-Driven Development](spec-driven-development.md) · [Variantengeneration](variantengeneration.md) · [Übergabeprotokoll](uebergabeprotokoll.md)
 
 ## Infrastruktur
 
-[Agent Runbook](agent-runbook.md) · [Agententeams](agententeams.md) · [Agentenworkflow-Framework](agentenworkflow-framework.md) · [Befehle](befehle.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [Hub-and-Spoke-Orchestrierung](hub-and-spoke-orchestrierung.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestrierung](orchestrierung.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Unteragent](unteragent.md)
+[Agent Runbook](agent-runbook.md) · [Agententeams](agententeams.md) · [Agentenworkflow-Framework](agentenworkflow-framework.md) · [Befehle](befehle.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [Hub-and-Spoke-Orchestrierung](hub-and-spoke-orchestrierung.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestrierung](orchestrierung.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Unteragent](unteragent.md) · [Werkzeugüberlastung](werkzeugueberlastung.md)

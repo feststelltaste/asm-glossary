@@ -21,3 +21,4 @@ Tools, protocols, and patterns that enable agents to operate within a software d
 - [RAG (Retrieval-Augmented Generation)](../rag.md)
 - [Skills](../skills.md)
 - [Sub Agent](../sub-agent.md)
+- [Tool Overload](../tool-overload.md)

@@ -97,6 +97,7 @@ flowchart LR
     RF[Review Fatigue] -->|undermines| HITL
     RF -->|accelerates| CD
     PDF[Pattern Diffing] -->|counters| RF
+    ADVR[Adversarial Review] -->|counters| RF
 
     TD -->|blocks| MOD[Modernization]
     CD -->|blocks| MOD
@@ -237,6 +238,7 @@ mindmap
       Agent Workflow Framework
       Sub Agent
       Agent Teams
+      Tool Overload
       Structured Output
       Embeddings
       Prompt Engineering
@@ -283,6 +285,7 @@ mindmap
       Characterization Test
       Fitness Functions
       LLM as a Judge
+      Multi-Pass Review
     Engineering & Control
       Harness Engineering
       Intent Engineering
@@ -292,9 +295,13 @@ mindmap
       Variant Generation
       Review Fatigue
       Self-Review Bias
+      Adversarial Review
+      Confidence-Based Escalation
+      Handoff Protocol
       Pattern Diffing
       Feedback Loop
       Session Segmentation
       Agent Observability
+      Migration Dashboard
       Blast Radius
 ```

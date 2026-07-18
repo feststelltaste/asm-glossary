@@ -241,15 +241,20 @@ mindmap
       Characterization Test
       Fitness Functions
       LLM as a Judge
+      Multi-Pass Review
       Test Harness
     Engineering & Control
+      Adversarial Review
       Agent Observability
       Blast Radius
+      Confidence-Based Escalation
       Feedback Loop
       Guardrails
+      Handoff Protocol
       Harness Engineering
       Human-in-the-Loop
       Intent Engineering
+      Migration Dashboard
       Pattern Diffing
       Review Fatigue
       Self-Review Bias
@@ -272,4 +277,5 @@ mindmap
       RAG (Retrieval-Augmented Generation)
       Skills
       Sub Agent
+      Tool Overload
 ```

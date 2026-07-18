@@ -27,12 +27,12 @@ The approach combines established modernization patterns (such as [Strangler Fig
 
 ## Testing & Verification
 
-[Characterization Test](characterization-test.md) · [Fitness Functions](fitness-functions.md) · [LLM as a Judge](llm-as-a-judge.md) · [Test Harness](test-harness.md)
+[Characterization Test](characterization-test.md) · [Fitness Functions](fitness-functions.md) · [LLM as a Judge](llm-as-a-judge.md) · [Multi-Pass Review](multi-pass-review.md) · [Test Harness](test-harness.md)
 
 ## Engineering & Control
 
-[Agent Observability](agent-observability.md) · [Blast Radius](blast-radius.md) · [Feedback Loop](feedback-loop.md) · [Guardrails](guardrails.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Pattern Diffing](pattern-diffing.md) · [Review Fatigue](review-fatigue.md) · [Self-Review Bias](self-review-bias.md) · [Session Segmentation](session-segmentation.md) · [Spec-Driven Development](spec-driven-development.md) · [Variant Generation](variant-generation.md)
+[Adversarial Review](adversarial-review.md) · [Agent Observability](agent-observability.md) · [Blast Radius](blast-radius.md) · [Confidence-Based Escalation](confidence-based-escalation.md) · [Feedback Loop](feedback-loop.md) · [Guardrails](guardrails.md) · [Handoff Protocol](handoff-protocol.md) · [Harness Engineering](harness-engineering.md) · [Human-in-the-Loop](human-in-the-loop.md) · [Intent Engineering](intent-engineering.md) · [Migration Dashboard](migration-dashboard.md) · [Pattern Diffing](pattern-diffing.md) · [Review Fatigue](review-fatigue.md) · [Self-Review Bias](self-review-bias.md) · [Session Segmentation](session-segmentation.md) · [Spec-Driven Development](spec-driven-development.md) · [Variant Generation](variant-generation.md)
 
 ## Infrastructure
 
-[Agent Runbook](agent-runbook.md) · [Agent Teams](agent-teams.md) · [Agent Workflow Framework](agent-workflow-framework.md) · [Commands](commands.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [Hub-and-Spoke Orchestration](hub-and-spoke-orchestration.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestration](orchestration.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Sub Agent](sub-agent.md)
+[Agent Runbook](agent-runbook.md) · [Agent Teams](agent-teams.md) · [Agent Workflow Framework](agent-workflow-framework.md) · [Commands](commands.md) · [Context Engineering](context-engineering.md) · [Dark Factory](dark-factory.md) · [Embeddings](embeddings.md) · [Hooks](hooks.md) · [Hub-and-Spoke Orchestration](hub-and-spoke-orchestration.md) · [MCP (Model Context Protocol)](mcp.md) · [Orchestration](orchestration.md) · [Prompt Engineering](prompt-engineering.md) · [RAG (Retrieval-Augmented Generation)](rag.md) · [Skills](skills.md) · [Sub Agent](sub-agent.md) · [Tool Overload](tool-overload.md)
