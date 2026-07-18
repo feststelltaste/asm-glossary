@@ -60,6 +60,7 @@ nav:
   - Agentic Search: agentic-search.md
   - Attention Dilution: attention-dilution.md
   - Attribution: attribution.md
+  - Compaction: compaction.md
   - Context Poisoning: context-poisoning.md
   - Context Pollution: context-pollution.md
   - Context Pruning: context-pruning.md
@@ -103,6 +104,7 @@ nav:
   - Intent Debt: intent-debt.md
   - Modernization Case: modernization-case.md
   - Modernization Playbook: modernization-playbook.md
+  - Porting Guide: porting-guide.md
   - Seams: seams.md
   - Slicing: slicing.md
   - Sprouting: sprouting.md
@@ -122,6 +124,7 @@ nav:
   - Adversarial Review: adversarial-review.md
   - Agent Observability: agent-observability.md
   - Blast Radius: blast-radius.md
+  - Checkpointing: checkpointing.md
   - Confidence-Based Escalation: confidence-based-escalation.md
   - Feedback Loop: feedback-loop.md
   - Guardrails: guardrails.md
@@ -132,9 +135,11 @@ nav:
   - Migration Dashboard: migration-dashboard.md
   - Pattern Diffing: pattern-diffing.md
   - Review Fatigue: review-fatigue.md
+  - Sandboxing: sandboxing.md
   - Self-Review Bias: self-review-bias.md
   - Session Segmentation: session-segmentation.md
   - Spec-Driven Development: spec-driven-development.md
+  - Validation-Retry Loop: validation-retry-loop.md
   - Variant Generation: variant-generation.md
 - Infrastructure:
   - agent-infrastructure/index.md
@@ -148,6 +153,7 @@ nav:
   - Hooks: hooks.md
   - Hub-and-Spoke Orchestration: hub-and-spoke-orchestration.md
   - MCP (Model Context Protocol): mcp.md
+  - Narrator Agent: narrator-agent.md
   - Orchestration: orchestration.md
   - Prompt Engineering: prompt-engineering.md
   - RAG (Retrieval-Augmented Generation): rag.md

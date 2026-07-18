@@ -13,6 +13,7 @@ Werkzeuge, Protokolle und Muster, die Agenten in einer Softwareentwicklungsumgeb
 - [Context Engineering](../context-engineering.md)
 - [Dark Factory](../dark-factory.md)
 - [Embeddings](../embeddings.md)
+- [Erzähleragent](../erzaehleragent.md)
 - [Hooks](../hooks.md)
 - [Hub-and-Spoke-Orchestrierung](../hub-and-spoke-orchestrierung.md)
 - [MCP (Model Context Protocol)](../mcp.md)

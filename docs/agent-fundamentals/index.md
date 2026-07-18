@@ -12,6 +12,7 @@ Core concepts describing how AI agents perceive, reason, and act.
 - [Agentic Search](../agentic-search.md)
 - [Attention Dilution](../attention-dilution.md)
 - [Attribution](../attribution.md)
+- [Compaction](../compaction.md)
 - [Context Poisoning](../context-poisoning.md)
 - [Context Pollution](../context-pollution.md)
 - [Context Pruning](../context-pruning.md)

@@ -107,6 +107,7 @@ nav:
   - Aufmerksamkeitsverwässerung: aufmerksamkeitsverwaesserung.md
   - Halluzination: halluzination.md
   - KI-Agent: ki-agent.md
+  - Kompaktierung: kompaktierung.md
   - Kontextbereinigung: kontextbereinigung.md
   - Kontextfenster: kontextfenster.md
   - Kontextverfall: kontextverfall.md
@@ -150,6 +151,7 @@ nav:
   - Modernisierungsfall: modernisierungsfall.md
   - Modernisierungshandbuch: modernisierungshandbuch.md
   - Nahtstellen: nahtstellen.md
+  - Portierungsleitfaden: portierungsleitfaden.md
   - Reinraum-Reimplementierung: reinraum-reimplementierung.md
   - Slicing: slicing.md
   - Sprouting: sprouting.md
@@ -168,6 +170,7 @@ nav:
   - engineering-control/index.md
   - Adversarial Review: adversarial-review.md
   - Agentenmonitoring: agentenmonitoring.md
+  - Checkpointing: checkpointing.md
   - Explosionsradius: explosionsradius.md
   - Feedbackschleife: feedbackschleife.md
   - Harness Engineering: harness-engineering.md
@@ -178,9 +181,11 @@ nav:
   - Migrationsdashboard: migrationsdashboard.md
   - Musterbasierter Vergleich: musterbasierter-vergleich.md
   - Review-Müdigkeit: review-muedigkeit.md
+  - Sandboxing: sandboxing.md
   - Self-Review Bias: self-review-bias.md
   - Sitzungsaufteilung: sitzungsaufteilung.md
   - Spec-Driven Development: spec-driven-development.md
+  - Validierungsschleife: validierungsschleife.md
   - Variantengeneration: variantengeneration.md
   - Übergabeprotokoll: uebergabeprotokoll.md
 - Infrastruktur:
@@ -192,6 +197,7 @@ nav:
   - Context Engineering: context-engineering.md
   - Dark Factory: dark-factory.md
   - Embeddings: embeddings.md
+  - Erzähleragent: erzaehleragent.md
   - Hooks: hooks.md
   - Hub-and-Spoke-Orchestrierung: hub-and-spoke-orchestrierung.md
   - MCP (Model Context Protocol): mcp.md

@@ -189,6 +189,7 @@ mindmap
       Agentic Search
       Attention Dilution
       Attribution
+      Compaction
       Context Poisoning
       Context Pollution
       Context Pruning
@@ -230,6 +231,7 @@ mindmap
       Intent Debt
       Modernization Case
       Modernization Playbook
+      Porting Guide
       Seams
       Slicing
       Sprouting
@@ -247,6 +249,7 @@ mindmap
       Adversarial Review
       Agent Observability
       Blast Radius
+      Checkpointing
       Confidence-Based Escalation
       Feedback Loop
       Guardrails
@@ -257,9 +260,11 @@ mindmap
       Migration Dashboard
       Pattern Diffing
       Review Fatigue
+      Sandboxing
       Self-Review Bias
       Session Segmentation
       Spec-Driven Development
+      Validation-Retry Loop
       Variant Generation
     Infrastructure
       Agent Runbook
@@ -272,6 +277,7 @@ mindmap
       Hooks
       Hub-and-Spoke Orchestration
       MCP (Model Context Protocol)
+      Narrator Agent
       Orchestration
       Prompt Engineering
       RAG (Retrieval-Augmented Generation)

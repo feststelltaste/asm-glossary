@@ -12,6 +12,7 @@ Kernkonzepte zur Wahrnehmung, zum Denken und Handeln von KI-Agenten.
 - [Aufmerksamkeitsverwässerung](../aufmerksamkeitsverwaesserung.md)
 - [Halluzination](../halluzination.md)
 - [KI-Agent](../ki-agent.md)
+- [Kompaktierung](../kompaktierung.md)
 - [Kontextbereinigung](../kontextbereinigung.md)
 - [Kontextfenster](../kontextfenster.md)
 - [Kontextverfall](../kontextverfall.md)

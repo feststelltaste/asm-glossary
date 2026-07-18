@@ -16,6 +16,7 @@ Tools, protocols, and patterns that enable agents to operate within a software d
 - [Hooks](../hooks.md)
 - [Hub-and-Spoke Orchestration](../hub-and-spoke-orchestration.md)
 - [MCP (Model Context Protocol)](../mcp.md)
+- [Narrator Agent](../narrator-agent.md)
 - [Orchestration](../orchestration.md)
 - [Prompt Engineering](../prompt-engineering.md)
 - [RAG (Retrieval-Augmented Generation)](../rag.md)

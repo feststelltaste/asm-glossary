@@ -20,6 +20,7 @@ Concepts and patterns for evolving legacy systems with agent assistance.
 - [Intent Debt](../intent-debt.md)
 - [Modernization Case](../modernization-case.md)
 - [Modernization Playbook](../modernization-playbook.md)
+- [Porting Guide](../porting-guide.md)
 - [Seams](../seams.md)
 - [Slicing](../slicing.md)
 - [Sprouting](../sprouting.md)

@@ -225,6 +225,7 @@ mindmap
       Context Poisoning
       Context Pollution
       Context Pruning
+      Compaction
       Prompt Drift
       Attention Dilution
       Lost in the Middle
@@ -245,6 +246,7 @@ mindmap
       Context Engineering
       RAG
       Agent Runbook
+      Narrator Agent
       Dark Factory
     Analysis & Knowledge
       Code Comprehension
@@ -280,6 +282,7 @@ mindmap
       Clean Room Rewrite
       Horseshoe Model
       Idiomatic Transpilation
+      Porting Guide
     Testing & Verification
       Test Harness
       Characterization Test
@@ -298,6 +301,9 @@ mindmap
       Adversarial Review
       Confidence-Based Escalation
       Handoff Protocol
+      Validation-Retry Loop
+      Sandboxing
+      Checkpointing
       Pattern Diffing
       Feedback Loop
       Session Segmentation
