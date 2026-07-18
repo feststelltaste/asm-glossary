@@ -12,5 +12,5 @@ image: assets/images/human-in-the-loop.png
 
 > Kontrollmuster, bei dem ein Mensch an definierten Checkpoints Entscheidungen validiert oder korrigiert, bevor der Agent weitermacht. Zentral für verantwortungsvolle Modernisierung, weil Architekturentscheidungen und fachliche Korrektheit nicht vollständig automatisierbar sind. Die Kunst liegt darin, die richtigen Checkpoints zu definieren: Zu viele bremsen, zu wenige riskieren Fehlentscheidungen.
 
-**Siehe auch:** [Leitplanken](leitplanken.md) · [Intent Engineering](intent-engineering.md) · [Mehrschrittplanung](mehrschrittplanung.md) · [Konfidenzbasierte Eskalation](konfidenzbasierte-eskalation.md)
+**Siehe auch:** [Leitplanken](leitplanken.md) · [Intent Engineering](intent-engineering.md) · [Mehrschrittplanung](mehrschrittplanung.md) · [Konfidenzbasierte Eskalation](konfidenzbasierte-eskalation.md) · [Stratifizierte Review-Stichprobe](stratifizierte-review-stichprobe.md)
 { .see-also }
