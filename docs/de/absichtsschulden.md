@@ -8,7 +8,7 @@ image: assets/images/absichtsschulden.png
 
 # Absichtsschulden
 
-![Absichtsschulden](assets/images/intent-debt.png)
+![Absichtsschulden](assets/images/absichtsschulden.png)
 
 > Die Abwesenheit oder Erosion von explizit festgehaltenem Wissen über Ziele, Constraints und Entscheidungsgrundlagen eines Systems. Intent Debt lebt in fehlenden oder veralteten Artefakten: Requirements, ADRs, Spezifikationen, Domänenmodelle. Wenn Intent nicht externalisiert ist, können weder Menschen noch Agents fundiert entscheiden, ob eine Änderung dem ursprünglichen Zweck des Systems dient. Besonders kritisch ist, dass Intent sich am besten im Moment der Entscheidung festhalten lässt, da nachträgliche Rekonstruktion oft unmöglich ist.
 

@@ -8,7 +8,7 @@ image: assets/images/kontextverschmutzung.png
 
 # Kontextverschmutzung
 
-![Context Pollution](assets/images/context-pollution.png)
+![Kontextverschmutzung](assets/images/kontextverschmutzung.png)
 
 > Kontextverschmutzung bezeichnet die Anhäufung irrelevanter, redundanter oder minderwertiger Inhalte im Kontextfenster eines Agenten, die bedeutungsvolle Signale verdrängen. Anders als bei Context Poisoning, das aktiv irreführende Informationen einschleust, beeinträchtigt Kontextverschmutzung die Leistung durch schieren Lärm: Nicht relevante Dateien, ausführliche Logs und überflüssige Kommentare verringern das effektive Signal-Rausch-Verhältnis. Sorgfältige Kuratierung der Kontextinhalte und gezielte Dateiauswahl sind die wichtigsten Gegenmaßnahmen.
 

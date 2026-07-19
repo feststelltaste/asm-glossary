@@ -8,7 +8,7 @@ image: assets/images/konzeptionelle-umstrukturierung.png
 
 # Konzeptionelle Umstrukturierung
 
-![Konzeptionelle Umstrukturierung](assets/images/conceptual-refactoring.png)
+![Konzeptionelle Umstrukturierung](assets/images/konzeptionelle-umstrukturierung.png)
 
 > Umstrukturierung von Code, um ihn an bekannte Muster und etablierte Konzepte anzugleichen, die KI-Agenten erkennen und nachvollziehen können. Conceptual Refactoring ersetzt Ad-hoc-Implementierungen durch vertraute Lösungen und gibt Agenten wiedererkennbare Strukturen für Analyse und Transformation. Es verwandelt undurchsichtigen, individuellen Code in etwas, das Agenten bereits kennen.
 
