@@ -145,6 +145,14 @@ def inject_image_into_md(md_path: Path, img_rel_path: str, slug: str) -> None:
     print(f"  Injected image reference into {md_path.relative_to(REPO_ROOT)}")
 
 
+def to_png(img_bytes: bytes) -> bytes:
+    """Re-encode image bytes as PNG (the API may return JPEG data)."""
+    img = Image.open(io.BytesIO(img_bytes))
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    return buf.getvalue()
+
+
 def resize_to_width(img_bytes: bytes, width: int) -> bytes:
     """Resize image bytes to the given width, preserving aspect ratio."""
     img = Image.open(io.BytesIO(img_bytes))
@@ -263,6 +271,7 @@ def process_term(md_path: Path, client: genai.Client, model: str, variations: in
         if img_bytes is None:
             continue
         suffix = f"-{i}" if variations > 1 else ""
+        img_bytes = to_png(img_bytes)
         raw_path = RAW_ASSETS / f"{en_slug}{suffix}.png"
         raw_path.write_bytes(img_bytes)
         results.append(img_bytes)

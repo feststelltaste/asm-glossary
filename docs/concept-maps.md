@@ -187,7 +187,9 @@ mindmap
       Agent Memory
       Agentic Loop
       Agentic Search
+      Attention Dilution
       Attribution
+      Compaction
       Context Poisoning
       Context Pollution
       Context Pruning
@@ -195,6 +197,7 @@ mindmap
       Context Window
       Grounding
       Hallucination
+      Lost in the Middle
       Multi-Step Planning
       Prompt Drift
       Scratchbook
@@ -228,6 +231,7 @@ mindmap
       Intent Debt
       Modernization Case
       Modernization Playbook
+      Porting Guide
       Seams
       Slicing
       Sprouting
@@ -239,33 +243,51 @@ mindmap
       Characterization Test
       Fitness Functions
       LLM as a Judge
+      Multi-Pass Review
       Test Harness
     Engineering & Control
+      Adversarial Review
       Agent Observability
       Blast Radius
+      Checkpointing
+      Confidence-Based Escalation
+      Coverage Gap Annotation
       Feedback Loop
       Guardrails
+      Handoff Protocol
       Harness Engineering
       Human-in-the-Loop
       Intent Engineering
+      Migration Dashboard
       Pattern Diffing
       Review Fatigue
+      Sandboxing
+      Self-Review Bias
       Session Segmentation
       Spec-Driven Development
+      Stratified Review Sampling
+      Task Tracking
+      Validation-Retry Loop
       Variant Generation
     Infrastructure
       Agent Runbook
       Agent Teams
       Agent Workflow Framework
+      Background Agent
       Commands
       Context Engineering
       Dark Factory
       Embeddings
       Hooks
+      Hub-and-Spoke Orchestration
+      Keyword Overlap
       MCP (Model Context Protocol)
+      Narrator Agent
       Orchestration
       Prompt Engineering
       RAG (Retrieval-Augmented Generation)
       Skills
       Sub Agent
+      Tool Overload
+      Workflow Sharding
 ```

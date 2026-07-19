@@ -97,6 +97,7 @@ flowchart LR
     RF[Review Fatigue] -->|undermines| HITL
     RF -->|accelerates| CD
     PDF[Pattern Diffing] -->|counters| RF
+    ADVR[Adversarial Review] -->|counters| RF
 
     TD -->|blocks| MOD[Modernization]
     CD -->|blocks| MOD
@@ -224,22 +225,31 @@ mindmap
       Context Poisoning
       Context Pollution
       Context Pruning
+      Compaction
       Prompt Drift
+      Attention Dilution
+      Lost in the Middle
       Grounding
       Attribution
       Vibe Coding
     Infrastructure
       MCP
       Orchestration
+      Hub-and-Spoke Orchestration
       Agent Workflow Framework
       Sub Agent
       Agent Teams
+      Background Agent
+      Workflow Sharding
+      Tool Overload
+      Keyword Overlap
       Structured Output
       Embeddings
       Prompt Engineering
       Context Engineering
       RAG
       Agent Runbook
+      Narrator Agent
       Dark Factory
     Analysis & Knowledge
       Code Comprehension
@@ -275,11 +285,13 @@ mindmap
       Clean Room Rewrite
       Horseshoe Model
       Idiomatic Transpilation
+      Porting Guide
     Testing & Verification
       Test Harness
       Characterization Test
       Fitness Functions
       LLM as a Judge
+      Multi-Pass Review
     Engineering & Control
       Harness Engineering
       Intent Engineering
@@ -288,9 +300,20 @@ mindmap
       Human-in-the-Loop
       Variant Generation
       Review Fatigue
+      Self-Review Bias
+      Adversarial Review
+      Confidence-Based Escalation
+      Handoff Protocol
+      Validation-Retry Loop
+      Sandboxing
+      Checkpointing
+      Task Tracking
+      Coverage Gap Annotation
+      Stratified Review Sampling
       Pattern Diffing
       Feedback Loop
       Session Segmentation
       Agent Observability
+      Migration Dashboard
       Blast Radius
 ```

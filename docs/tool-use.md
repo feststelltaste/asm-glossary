@@ -12,5 +12,5 @@ image: assets/images/en/tool-use.png
 
 > The ability of an agent to invoke external tools: compilers, static analysis tools, test runners, git, build systems, APIs. Also known as "Function Calling" at the API level, where the model requests execution of a named function with structured arguments. This fundamentally distinguishes an agent from pure text generation, because it allows interaction with real code. The available tools define what an agent can actually do: tool use is the lever that turns text generation into software modernization.
 
-**See also:** [AI Agent](ai-agent.md) · [MCP](mcp.md) · [Harness Engineering](harness-engineering.md)
+**See also:** [AI Agent](ai-agent.md) · [MCP](mcp.md) · [Harness Engineering](harness-engineering.md) · [Tool Overload](tool-overload.md) · [Keyword Overlap](keyword-overlap.md)
 { .see-also }

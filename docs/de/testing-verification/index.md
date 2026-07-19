@@ -9,4 +9,5 @@ Mechanismen zur Absicherung von Verhaltenserhalt und Qualität während der Mode
 - [Charakterisierungstest](../charakterisierungstest.md)
 - [Fitnessfunktionen](../fitnessfunktionen.md)
 - [LLM als Richter](../llm-als-richter.md)
+- [Multi-Pass-Review](../multi-pass-review.md)
 - [Testrahmen](../testrahmen.md)

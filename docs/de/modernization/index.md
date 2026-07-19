@@ -20,6 +20,7 @@ Konzepte und Muster für die inkrementelle Modernisierung von Legacy-Systemen.
 - [Modernisierungsfall](../modernisierungsfall.md)
 - [Modernisierungshandbuch](../modernisierungshandbuch.md)
 - [Nahtstellen](../nahtstellen.md)
+- [Portierungsleitfaden](../portierungsleitfaden.md)
 - [Reinraum-Reimplementierung](../reinraum-reimplementierung.md)
 - [Slicing](../slicing.md)
 - [Sprouting](../sprouting.md)
