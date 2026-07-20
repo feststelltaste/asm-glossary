@@ -10,7 +10,7 @@ image: assets/images/hufeisen-modell.png
 
 ![hufeisen-modell](assets/images/hufeisen-modell.png)
 
-> Ein Modernisierungsansatz, der in drei Phasen arbeitet: Extraktion einer abstrakten Repräsentation aus Legacy-Code, Transformation dieser Repräsentation gemäß neuer Anforderungen und Generierung einer neuen Implementierung aus dem Ergebnis. Das Horseshoe Model vermeidet direkte Code-zu-Code-Migration, indem es auf einer höheren Abstraktionsebene operiert, auf der strukturelle und gestalterische Entscheidungen leichter nachvollziehbar sind. Verwandte Ansätze sind Clean Room Rewrite (mit einer Spezifikation als Zwischenrepräsentation) und idiomatische Transpilation (mit einem AST).
+> Ein Modernisierungsansatz, der in drei Phasen arbeitet: Extraktion einer abstrakten Repräsentation aus Legacy-Code, Transformation dieser Repräsentation gemäß neuer Anforderungen und Generierung einer neuen Implementierung aus dem Ergebnis. Das Hufeisen-Modell vermeidet direkte Code-zu-Code-Migration, indem es auf einer höheren Abstraktionsebene operiert, auf der strukturelle und gestalterische Entscheidungen leichter nachvollziehbar sind. Verwandte Ansätze sind Reinraum-Reimplementierung (mit einer Spezifikation als Zwischenrepräsentation) und idiomatische Transpilation (mit einem AST).
 
 **Siehe auch:** [Reinraum-Reimplementierung](reinraum-reimplementierung.md) · [Idiomatische Transpilation](idiomatische-transpilation.md) · [Code-Verständnis](code-verstaendnis.md)
 { .see-also }

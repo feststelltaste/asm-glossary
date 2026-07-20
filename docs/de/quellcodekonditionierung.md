@@ -10,7 +10,7 @@ image: assets/images/quellcodekonditionierung.png
 
 ![quellcodekonditionierung](assets/images/quellcodekonditionierung.png)
 
-> Die gezielte Aufbereitung einer Codebasis, damit KI-Agenten sie besser lesen und navigieren können. Codebase Conditioning umfasst Techniken wie das Angleichen der Codestruktur an die Fachsprache, das Einführen bekannter Muster und das Setzen semantischer Ankerpunkte, die Agenten helfen, Code zuverlässiger zu finden, zu verstehen und zu transformieren.
+> Die gezielte Aufbereitung einer Codebasis, damit KI-Agenten sie besser lesen und navigieren können. Quellcodekonditionierung umfasst Techniken wie das Angleichen der Codestruktur an die Fachsprache, das Einführen bekannter Muster und das Setzen semantischer Ankerpunkte, die Agenten helfen, Code zuverlässiger zu finden, zu verstehen und zu transformieren.
 
 **Siehe auch:** [Konzeptionelle Umstrukturierung](konzeptionelle-umstrukturierung.md) · [Domain-Driven Refactoring](domain-driven-refactoring.md) · [Semantische Anker](semantische-anker.md)
 { .see-also }

@@ -10,7 +10,7 @@ image: assets/images/verankerung.png
 
 ![verankerung](assets/images/verankerung.png)
 
-> Die Praxis, die Ausgaben eines Agenten in verifizierten, autoritativen Quellen wie bestehendem Code, Testergebnissen und Dokumentation zu verankern, anstatt ihn allein auf Mustervervollständigung zu stützen. Grounding reduziert Halluzinationen und Context Poisoning, indem sichergestellt wird, dass der Agent bei der Codegenerierung und -transformation auf tatsächliche Projektartefakte Bezug nimmt.
+> Die Praxis, die Ausgaben eines Agenten in verifizierten, autoritativen Quellen wie bestehendem Code, Testergebnissen und Dokumentation zu verankern, anstatt ihn allein auf Mustervervollständigung zu stützen. Verankerung reduziert Halluzinationen und Kontextvergiftung, indem sichergestellt wird, dass der Agent bei der Codegenerierung und -transformation auf tatsächliche Projektartefakte Bezug nimmt.
 
 **Siehe auch:** [Halluzination](halluzination.md) · [RAG](rag.md) · [Code-Wissensgraph](code-wissensgraph.md)
 { .see-also }

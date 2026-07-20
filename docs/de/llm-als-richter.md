@@ -10,7 +10,7 @@ image: assets/images/llm-als-richter.png
 
 ![llm-als-richter](assets/images/llm-als-richter.png)
 
-> Ein Verifikationsmuster, bei dem ein LLM die Korrektheit, Sicherheit und Absichtskonformität von Code bewertet, der von einem anderen LLM erzeugt wurde. Unverzichtbar in agentischen Modernisierungsworkflows, in denen das Volumen generierten Codes die menschliche Reviewkapazität übersteigt. Kann als eigenständiger Evaluierungsschritt in der CI oder als persistenter Critique Agent implementiert werden, der als Teil eines Agent Teams adversariales Feedback liefert, bevor Code gemergt oder deployed wird.
+> Ein Verifikationsmuster, bei dem ein LLM die Korrektheit, Sicherheit und Absichtskonformität von Code bewertet, der von einem anderen LLM erzeugt wurde. Unverzichtbar in agentischen Modernisierungsworkflows, in denen das Volumen generierten Codes die menschliche Reviewkapazität übersteigt. Kann als eigenständiger Evaluierungsschritt in der CI oder als persistenter Critique Agent implementiert werden, der als Teil eines Agententeams adversariales Feedback liefert, bevor Code gemergt oder deployed wird.
 
 **Siehe auch:** [Agententeams](agententeams.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [Dark Factory](dark-factory.md) · [Self-Review Bias](self-review-bias.md) · [Adversarial Review](adversarial-review.md)
 { .see-also }
