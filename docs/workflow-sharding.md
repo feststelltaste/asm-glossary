@@ -10,7 +10,7 @@ image: assets/images/en/workflow-sharding.png
 
 ![workflow-sharding](assets/images/en/workflow-sharding.png)
 
-> A pattern for running many agents on one transformation with minimal coordination: divide the workload into independent shards, give each shard an isolated worktree, and let agents inside a shard proceed without ever needing to talk to another shard. Because shards share nothing, no orchestrator has to mediate between them, and total throughput scales roughly with the number of shards until merge conflicts and review capacity become the bottleneck. Used in large agent driven ports such as the Bun rewrite in Rust.
+> A pattern for running many agents on one transformation with minimal coordination: divide the workload into independent shards, give each shard an isolated worktree, and let agents inside a shard proceed without ever needing to talk to another shard. Because shards share nothing, no orchestrator has to mediate between them, and total throughput scales roughly with the number of shards until merge conflicts and review capacity become the bottleneck.
 
 **See also:** [Slicing](slicing.md) · [Agent Teams](agent-teams.md) · [Porting Guide](porting-guide.md)
 { .see-also }
