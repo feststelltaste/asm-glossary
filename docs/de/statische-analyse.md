@@ -14,5 +14,5 @@ image: assets/images/statische-analyse.png
 
 ---
 
-**Siehe auch:** [Agentischer Zyklus](agentischer-zyklus.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [Abweichungserkennung](abweichungserkennung.md) · [Tree-sitter](tree-sitter.md)
+**Siehe auch:** [Agentischer Zyklus](agentischer-zyklus.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [Abweichungserkennung](abweichungserkennung.md) · [Tree-sitter](tree-sitter.md) · [Variantenanalyse](variantenanalyse.md)
 { .see-also }
