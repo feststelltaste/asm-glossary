@@ -216,6 +216,7 @@ mindmap
       Software Analytics
       Static Analysis
       Tree-sitter
+      Variant Analysis
     Modernization
       Anti-Corruption Layer (ACL)
       Automated Refactoring

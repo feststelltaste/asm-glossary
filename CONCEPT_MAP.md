@@ -66,6 +66,9 @@ flowchart TD
     CPR -->|counteracts| CR
     SB[Scratchbook] -->|extends| AM
     SB -->|offloads notes from| CW
+    HITL -->|discovers seed instance for| VA[Variant Analysis]
+    VA -->|generalizes via| SA
+    CKG -->|backs| VA
 ```
 
 ---
@@ -263,6 +266,7 @@ mindmap
       Semantic Anchors
       Software Analytics
       Dark Code
+      Variant Analysis
     Modernization
       Technical Debt
       Cognitive Debt

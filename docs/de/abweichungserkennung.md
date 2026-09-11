@@ -12,5 +12,5 @@ image: assets/images/abweichungserkennung.png
 
 > Erkennung von Abweichungen zwischen dem, was der Agent generiert hat, und dem tatsächlichen Systemverhalten. Besonders relevant bei langläufigen Modernisierungsprojekten, in denen sich die Legacy-Codebasis parallel weiterentwickelt. Eng verknüpft mit Continuous Verification und Golden Master Testing als Kontrollmechanismen.
 
-**Siehe auch:** [Charakterisierungstest](charakterisierungstest.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [Statische Analyse](statische-analyse.md)
+**Siehe auch:** [Charakterisierungstest](charakterisierungstest.md) · [Fitnessfunktionen](fitnessfunktionen.md) · [Statische Analyse](statische-analyse.md) · [Variantenanalyse](variantenanalyse.md)
 { .see-also }

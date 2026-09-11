@@ -17,3 +17,4 @@ Tools and techniques for understanding and representing legacy codebases.
 - [Software Analytics](../software-analytics.md)
 - [Static Analysis](../static-analysis.md)
 - [Tree-sitter](../tree-sitter.md)
+- [Variant Analysis](../variant-analysis.md)
