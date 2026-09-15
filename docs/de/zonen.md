@@ -10,7 +10,7 @@ image: assets/images/zonen.png
 
 ![zonen](assets/images/zonen.png)
 
-> Eine Risikokarte, die ein Mensch über eine ältere Codebasis legt, bevor Agenten darin zu arbeiten beginnen. Sie markiert Bereiche als grün (gut getestet, isoliert, sicher für einen engen Agenten-Loop), gelb (gemischte Qualität, die vor jeder Änderung durch Agenten Charakterisierungstests erfordert) oder rot (sensible Logik wie Authentifizierung oder Abrechnung, die tabu bleibt oder nur unter ständigem menschlichem Pairing angefasst wird). Sich selbst überlassen, wenden sich Agenten zuerst dem riskantesten Code zu, weil dort die interessantesten Namen zu finden sind, weshalb die Karte von einem Menschen gezeichnet werden muss, nicht vom Agenten.
+> Festgelegte Bereiche einer älteren Codebasis, die ein Mensch markiert, bevor Agenten darin zu arbeiten beginnen: Bereiche, die bereits sicher für Agenten sind, Bereiche, die das noch nicht sind, sich aber entsprechend nachrüsten lassen, und Bereiche mit einem so hohen Risiko, dass agentisches Arbeiten dort vermieden werden sollte.
 
 **Quelle:** [Brownfield Agentic Engineering](https://addyo.substack.com/p/brownfield-agentic-engineering) von Addy Osmani
 
