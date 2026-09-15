@@ -145,6 +145,7 @@ nav:
   - Task Tracking: task-tracking.md
   - Validation-Retry Loop: validation-retry-loop.md
   - Variant Generation: variant-generation.md
+  - Zones: zones.md
 - Infrastructure:
   - agent-infrastructure/index.md
   - Agent Runbook: agent-runbook.md

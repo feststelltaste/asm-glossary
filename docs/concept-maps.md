@@ -270,6 +270,7 @@ mindmap
       Task Tracking
       Validation-Retry Loop
       Variant Generation
+      Zones
     Infrastructure
       Agent Runbook
       Agent Teams
