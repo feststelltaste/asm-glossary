@@ -55,6 +55,8 @@ flowchart TD
     AO -->|surfaces| H
     BR[Blast Radius] -->|controlled by| SS
     BR -->|controlled by| GL
+    ZN[Zones] -->|bounds acceptable| BR
+    ZN -->|dictates rigor of| HITL
     MSP[Multi-Step Planning] -->|structures work for| AL
     MSP -->|supervised by| HITL
     ORCH -->|enables| MSP
@@ -320,4 +322,5 @@ mindmap
       Agent Observability
       Migration Dashboard
       Blast Radius
+      Zones
 ```

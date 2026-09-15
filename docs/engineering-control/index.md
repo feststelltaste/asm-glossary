@@ -29,3 +29,4 @@ Infrastructure, discipline, and oversight patterns that keep agent-driven modern
 - [Task Tracking](../task-tracking.md)
 - [Validation-Retry Loop](../validation-retry-loop.md)
 - [Variant Generation](../variant-generation.md)
+- [Zones](../zones.md)

@@ -28,4 +28,5 @@ Mechanismen zur menschlichen Steuerung, Absicherung und Lenkung von Agenten.
 - [Stratifizierte Review-Stichprobe](../stratifizierte-review-stichprobe.md)
 - [Validierungsschleife](../validierungsschleife.md)
 - [Variantengeneration](../variantengeneration.md)
+- [Zonen](../zonen.md)
 - [Übergabeprotokoll](../uebergabeprotokoll.md)
