@@ -95,7 +95,7 @@
             "Grounding on files, paths, stable identifiers",
             "Context pruning and session splitting",
             "Handover artifacts between sessions",
-            "Hallucination as the primary signal — and how it differs from prompt drift"
+            "Hallucination as the primary signal — and how it differs from context drift"
           ],
           "example": "Instead of \"refactor the payment service\", better: \"in `src/payments/service.ts` change method `processPayment` to use type `PaymentRequest` instead of `any`\". Path and type name are anchors. A long refactoring works better split across 3 sessions with a short handover than in one 6-hour session — because context rot becomes measurable, even when it does not feel that way."
         },
@@ -326,7 +326,7 @@
           "description": "A specification serves as both the contract for the agent and a durable decision record for the team. Without it, 'make it better' becomes the task — and every outcome is simultaneously correct and unacceptable.",
           "topics": [
             "Spec as a contract: acceptance criteria, scope boundaries, done condition",
-            "Spec as a context anchor: reducing prompt drift across sessions",
+            "Spec as a context anchor: reducing context drift across sessions",
             "Spec as documentation: capturing intent for future maintainers",
             "Reducing intent debt through explicit decisions"
           ],

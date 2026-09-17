@@ -33,7 +33,7 @@ flowchart TD
     AL -->|Risiko von| H[Halluzination]
     AL -->|leidet unter| CR[Context Rot]
     AL -->|anfällig für| CP[Context Poisoning]
-    AL -->|driftet durch| PD[Prompt Drift]
+    AL -->|driftet durch| PD[Kontextabweichung]
     PD -->|beschleunigt| CR
     CP -->|erhöht Risiko von| H
     CR -->|erhöht Risiko von| H
@@ -173,7 +173,7 @@ mindmap
       Halluzination
       Context Rot
       Context Poisoning
-      Prompt Drift
+      Kontextabweichung
       Grounding
     Infrastruktur
       MCP

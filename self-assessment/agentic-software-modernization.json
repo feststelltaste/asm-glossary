@@ -95,7 +95,7 @@
             "Verankerung an Dateien, Pfaden, stabilen Identifikatoren",
             "Kontextbereinigung und Sitzungsaufteilung",
             "Übergabeartefakte zwischen Sitzungen",
-            "Halluzination als primäres Erkennungssignal — und wie sie sich von Prompt-Abweichung unterscheidet"
+            "Halluzination als primäres Erkennungssignal — und wie sie sich von Kontextabweichung unterscheidet"
           ],
           "example": "Statt „refaktoriere den Zahlungsservice\" besser: „in `src/payments/service.ts` Methode `processPayment` auf Typ `PaymentRequest` statt `any` umbauen\". Pfad und Typname sind Anker. Langes Refactoring wird in 3 Sitzungen mit kurzer Übergabe besser als in einer 6-Stunden-Sitzung — weil Kontextverfall messbar wird, auch wenn er sich nicht anfühlt."
         },
@@ -326,7 +326,7 @@
           "description": "Eine Spezifikation dient gleichzeitig als Vertrag für den Agenten und als dauerhaftes Entscheidungsprotokoll für das Team. Ohne sie wird „mach es besser\" zur Aufgabe — und jedes Ergebnis ist gleichzeitig richtig und nicht akzeptabel.",
           "topics": [
             "Spec als Vertrag: Akzeptanzkriterien, Scope-Grenzen, Done-Bedingung",
-            "Spec als Kontext-Anker: Prompt-Abweichung über Sitzungen hinweg reduzieren",
+            "Spec als Kontext-Anker: Kontextabweichung über Sitzungen hinweg reduzieren",
             "Spec als Dokumentation: Absicht für zukünftige Maintainer festhalten",
             "Absichtsschulden durch explizite Entscheidungen reduzieren"
           ],

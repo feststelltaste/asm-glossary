@@ -37,7 +37,7 @@ flowchart TD
     TH -->|detects| H
     CKG -->|detects| H
     AL -->|degraded by| CR[Context Rot]
-    AL -->|degraded by| PD[Prompt Drift]
+    AL -->|degraded by| PD[Context Drift]
     AL -->|degraded by| CP[Context Poisoning]
     SS[Session Segmentation] -->|mitigates| CR
     AL -->|supervised by| HITL
@@ -190,6 +190,7 @@ mindmap
       Attention Dilution
       Attribution
       Compaction
+      Context Drift
       Context Poisoning
       Context Pollution
       Context Pruning
@@ -199,7 +200,6 @@ mindmap
       Hallucination
       Lost in the Middle
       Multi-Step Planning
-      Prompt Drift
       Scratchbook
       Structured Output
       Tool Use

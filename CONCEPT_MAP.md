@@ -33,7 +33,7 @@ flowchart TD
     AL -->|susceptible to| CP[Context Poisoning]
     AL -->|degraded by| CPL[Context Pollution]
     CPL -->|overlaps with| CP
-    AL -->|drifts via| PD[Prompt Drift]
+    AL -->|drifts via| PD[Context Drift]
     PD -->|accelerates| CR
     CP -->|increases risk of| H
     CR -->|increases risk of| H
@@ -231,7 +231,7 @@ mindmap
       Context Pollution
       Context Pruning
       Compaction
-      Prompt Drift
+      Context Drift
       Attention Dilution
       Lost in the Middle
       Grounding

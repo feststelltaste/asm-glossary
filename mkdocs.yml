@@ -61,6 +61,7 @@ nav:
   - Attention Dilution: attention-dilution.md
   - Attribution: attribution.md
   - Compaction: compaction.md
+  - Context Drift: context-drift.md
   - Context Poisoning: context-poisoning.md
   - Context Pollution: context-pollution.md
   - Context Pruning: context-pruning.md
@@ -70,7 +71,6 @@ nav:
   - Hallucination: hallucination.md
   - Lost in the Middle: lost-in-the-middle.md
   - Multi-Step Planning: multi-step-planning.md
-  - Prompt Drift: prompt-drift.md
   - Scratchbook: scratchbook.md
   - Structured Output: structured-output.md
   - Tool Use: tool-use.md
